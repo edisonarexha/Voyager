@@ -26,8 +26,15 @@ const routes = [
     path: "/testLogin",
     name: "testLogin",
     component: TestLogin,
+  },{
+    path: "/homepage",
+    name: "homepage",
+    component: () =>import( "../views/HomePage.vue"),
   }
+ 
 ]
+   
+
 
 const router = new VueRouter({
   mode: "history",
