@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main__div">
-      <img class="login__image img-responsive" src="../assets/login.png" />
+      <img class="login__image img-responsive" src="../assets/view.png" />
       <div class="register__form">
         <b-form class="inside__form" @submit.prevent="createUser">
            <div v-if="errors.general" class="alert alert-danger" role="alert">
