@@ -3,7 +3,7 @@
     <div class="main__div">
       <img class="login__image img-responsive" src="../assets/login.png" />
       <div class="login__form">
-        <b-form class="inside__form">
+        <b-form class="inside__form" @submit.prevent="loginUser">
           <div v-if="errors.general" class="alert alert-danger" role="alert">
             {{ errors.general ? errors.general : "" }}
           </div>
@@ -11,7 +11,7 @@
           <b-form-group class="mt-3" label="Email" label-for="email">
             <b-form-input
               v-model="user.email"
-              type="email"
+              type="text"
               id="email"
               name="email"
               placeholder="Email"
@@ -41,8 +41,8 @@
           </div>
           <b-button
             class="mt-3"
+            type="submit"
             style="height: 50px"
-            @click="checkError()"
             variant="success"
             >Login</b-button
           >
@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 export default {
   data() {
     return {
@@ -79,6 +81,22 @@ export default {
     };
   },
   methods: {
+   async loginUser(){
+     this.checkError()
+        try {
+          if(!this.hasError){
+        await signInWithEmailAndPassword(
+          getAuth(),
+          this.user.email,
+          this.user.password
+        );
+        this.$router.replace("/testLogin");
+          }
+      } catch (err) {
+        console.log(err.message)
+        this.errors.general = err.message;
+      }
+    },
     checkError() {
       let validRegex =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

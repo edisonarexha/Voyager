@@ -1,0 +1,25 @@
+{
+  "name": "voyager-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -r esm server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.18.1",
+    "express-validation": "^4.1.0",
+    "firebase": "^9.7.0",
+    "firebase-admin": "^10.1.0",
+    "helmet": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

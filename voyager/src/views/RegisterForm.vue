@@ -3,7 +3,7 @@
     <div class="main__div">
       <img class="login__image img-responsive" src="../assets/login.png" />
       <div class="register__form">
-        <b-form class="inside__form">
+        <b-form class="inside__form" @submit.prevent="createUser">
            <div v-if="errors.general" class="alert alert-danger" role="alert">
             {{ errors.general ? errors.general : "" }}
           </div>
@@ -69,7 +69,7 @@
               errors.password ? errors.password : ""
             }}</span>
           </b-form-group>
-          <b-button class="mt-3" style="width:100px;" @click="checkError()" variant="primary">Register</b-button>
+          <b-button class="mt-3" type="submit" style="width:100px;" variant="primary">Register</b-button>
           <p style="width:100%;" class="mt-3">Already have an account? <a class="text-decoration-none" href="/">Go to sign in</a></p>
         </b-form>
       </div>
@@ -78,6 +78,7 @@
 </template>
 
 <script>
+import apiCaller from "../utils/apiCaller";
 export default {
   data(){
     return{
@@ -97,6 +98,20 @@ export default {
     }
   },
   methods:{
+    async createUser(){
+      this.checkError()
+      try{
+        if(!this.hasError){
+        await apiCaller.post("users/register", {
+          email: this.user.email,
+          password: this.user.password,
+        });
+          this.$router.push('/')
+        }
+      } catch(error){
+        this.errors.general = error
+      }
+    },
     checkError(){
             let validRegex =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
