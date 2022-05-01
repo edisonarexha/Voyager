@@ -46,7 +46,7 @@
             variant="success"
             >Login</b-button
           >
-          <b-button class="mt-3" style="height: 50px" variant="dark">
+          <b-button class="mt-3" style="height: 50px" variant="dark" @click="socialLogin">
             <img src="../assets/googleIcon.svg" />
             <span style="margin-left: 5px" class="google-text__button"
               >Or sign-in with google</span
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup,GoogleAuthProvider } from "firebase/auth";
 
 export default {
   data() {
@@ -81,6 +81,19 @@ export default {
     };
   },
   methods: {
+   async socialLogin(){
+  signInWithPopup(getAuth(),new GoogleAuthProvider)
+       .then((result) => {
+         console.log(result)
+       let token = result.user.accessToken;
+       let user = result.user;
+       console.log(token)
+       console.log(user)
+       this.$router.push('/testLogin')
+     }).catch((err)=>{
+       console.log(err)
+     })
+    },
    async loginUser(){
      this.checkError()
         try {
