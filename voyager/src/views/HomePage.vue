@@ -9,7 +9,7 @@
       </div>
     
   </div>
-  <div class="row stickytop" >
+  <div class="row stickytop" style="background-color:white">
       <div class="col-md-12">
   <div class="row " style="margin-left:16%;margin-right:10%;height:94px;margin-top:20px;">
       <div class="row"> 
@@ -160,6 +160,39 @@
 
 <script>
 export default {
+     data() {
+      return {
+        pickerOptions: {
+          shortcuts: [{
+            text: 'Last week',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: 'Last month',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: 'Last 3 months',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        value1: '',
+        value2: ''
+      };
+    }
 }
 </script>
 
@@ -291,7 +324,7 @@ padding-left: 20px;
 }
 
 #yetId{
-    margin-left:38%;
+    margin-left:32%;
     
 }
 .title{
