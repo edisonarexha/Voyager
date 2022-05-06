@@ -100,10 +100,21 @@
       
     </div>
     <div class="div-button__skip">
-      <b-button class="button__skip">Skip...</b-button>
+      <b-button @click="redirectToHomePage" class="button__skip">Next..</b-button>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods:{
+    redirectToHomePage(){
+      this.$router.push('/homepage')
+    }
+  }
+}
+</script>
+
 
 <style scoped>
 *{

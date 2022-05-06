@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword }from "firebase/auth";
 import apiCaller from "../utils/apiCaller";
 export default {
   data(){
@@ -99,6 +100,17 @@ export default {
     }
   },
   methods:{
+     async loginUser(){
+        try {
+        await signInWithEmailAndPassword(
+          getAuth(),
+          this.user.email,
+          this.user.password
+        );
+      } catch (err) {
+        console.log(err.message)
+      }
+    },
     async createUser(){
       this.checkError()
       try{
@@ -107,7 +119,8 @@ export default {
           email: this.user.email,
           password: this.user.password,
         });
-          this.$router.push('/')
+        await this.loginUser()
+          this.$router.push('/packages')
         }
       } catch(error){
         this.errors.general = error

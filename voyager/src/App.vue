@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderView v-if="user.loggedIn === true"/>
+    <HeaderView v-if="user.loggedIn === true && this.$router.history.current.name !== 'packages'"/>
     <router-view />
   </div>
 </template>
