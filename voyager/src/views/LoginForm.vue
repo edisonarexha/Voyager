@@ -2,13 +2,14 @@
   <div>
     <div class="main__div">
       <img class="login__image img-responsive" src="../assets/view.png" />
+      <div class="angle"></div>
       <div class="login__form">
         <b-form class="inside__form" @submit.prevent="loginUser">
           <div v-if="errors.general" class="alert alert-danger" role="alert">
             {{ errors.general ? errors.general : "" }}
           </div>
           <h3 class="text-center">Login to your account</h3>
-          <b-form-group class="mt-3" label="Email" label-for="email">
+          <b-form-group class="mt-3">
             <b-form-input
               v-model="user.email"
               type="text"
@@ -20,7 +21,7 @@
               errors.email ? errors.email : ""
             }}</span>
           </b-form-group>
-          <b-form-group class="mt-3" label="Password" label-for="password">
+          <b-form-group class="mt-3">
             <b-form-input
               v-model="user.password"
               type="password"
@@ -89,7 +90,7 @@ export default {
        let user = result.user;
        console.log(token)
        console.log(user)
-       this.$router.push('/testLogin')
+       this.$router.push('/homepage')
      }).catch((err)=>{
        console.log(err)
      })
@@ -163,12 +164,21 @@ html,
 body {
   margin: 0;
 }
+.angle {
+  display: flex;
+  position: absolute;
+  background-color: #fff;
+  transform: rotateZ(3deg);
+  width: 60px;
+  right: 550px;
+  height: 100.5%;
+}
 .main__div {
   height: 100vh;
   display: flex;
 }
 .login__image {
-  width: 42%;
+  width: 60%;
   max-height: 100%;
   object-fit: cover;
   display: block;
@@ -177,7 +187,7 @@ body {
 .login__form {
   /* border: 1px solid red; */
   width: 30%;
-  margin-left: 35px;
+  margin-left: 90px;
   display: flex;
   align-items: center;
 }

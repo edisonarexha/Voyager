@@ -18,23 +18,30 @@ const routes = [
       import(/* webpackChunkName: "register" */ "../views/RegisterForm"),
   },
   {
-    path: "/contact-us",
-    name: "contact-us",
-    component: () => import( '../views/ContactUs'),
+    path: "/about-us",
+    name: "about-us",
+    component: () => import( '../views/AboutUS'),
   },
   {
     path: "/testLogin",
     name: "testLogin",
     component: TestLogin,
-  },{
+  },
+  {
     path: "/homepage",
     name: "homepage",
     component: () =>import( "../views/HomePage.vue"),
-  },{
+  },
+  {
     path: "/packages",
     name: "packages",
     component: () =>import( "../views/packages/ListingPackages.vue"),
-  }
+  },
+  {
+    path: '/header-view',
+    name: 'header-view',
+    component: () => import( '@/views/Header.vue')
+  },
  
 ]
    

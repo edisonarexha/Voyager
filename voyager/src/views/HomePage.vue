@@ -63,7 +63,7 @@
              <div class="row">
                   <div class="col-md-6">
                       <!-- <input class="tinput" placeholder="City or Airplane" type="text"/> -->
-<el-input placeholder="City or Airplane" v-model="input" style="height: 42px;
+<el-input placeholder="City or Airplane" style="height: 42px;
     width: 110%;
     margin-left: -14px;"></el-input>
 
@@ -159,6 +159,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
      data() {
       return {
@@ -192,7 +193,12 @@ export default {
         value1: '',
         value2: ''
       };
-    }
+    },
+    computed: {
+    ...mapGetters({
+      user: "user",
+    }),
+  },
 }
 </script>
 

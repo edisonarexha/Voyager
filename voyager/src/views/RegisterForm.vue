@@ -2,6 +2,7 @@
   <div>
     <div class="main__div">
       <img class="login__image img-responsive" src="../assets/view.png" />
+       <div class="angle"></div>
       <div class="register__form">
         <b-form class="inside__form" @submit.prevent="createUser">
            <div v-if="errors.general" class="alert alert-danger" role="alert">
@@ -10,7 +11,7 @@
           <h3 class="text-center">Register</h3>
           <b-form-group
             class="mt-3"
-           label="Name" label-for="name">
+           >
             <b-form-input
             v-model="user.name"
               type="text"
@@ -21,7 +22,7 @@
           </b-form-group>
           <b-form-group 
             class="mt-3"
-          label="Last Name" label-for="lastName">
+          >
             <b-form-input
             v-model="user.lastName"
               type="text"
@@ -32,7 +33,7 @@
           </b-form-group>
           <b-form-group 
             class="mt-3"
-          label="Username" label-for="username">
+          >
             <b-form-input
             v-model="user.username"
               type="text"
@@ -43,7 +44,7 @@
           </b-form-group>
           <b-form-group 
             class="mt-3"
-          label="Email" label-for="email">
+          >
             <b-form-input
             v-model="user.email"
               type="text"
@@ -57,7 +58,7 @@
           </b-form-group>
           <b-form-group 
             class="mt-3"
-          label="Password" label-for="password">
+         >
             <b-form-input
             v-model="user.password"
               type="password"
@@ -168,12 +169,21 @@ html,
 body {
   margin: 0;
 }
+.angle {
+  display: flex;
+  position: absolute;
+  background-color: #fff;
+  transform: rotateZ(3deg);
+  width: 60px;
+  right: 550px;
+  height: 100.5%;
+}
 .main__div {
   height: 100vh;
   display: flex;
 }
 .login__image {
-  width: 42%;
+  width: 60%;
   max-height: 100%;
   object-fit: cover;
   display: block;
@@ -181,7 +191,7 @@ body {
 
 .register__form {
   width:30%;
-  margin-left: 35px;
+  margin-left: 90px;
   display: flex;
   align-items:center;
 }
