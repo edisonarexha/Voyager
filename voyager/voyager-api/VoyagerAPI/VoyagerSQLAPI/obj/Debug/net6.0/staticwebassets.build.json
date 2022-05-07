@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XaU8EK8+IrN2vrmyMt+cIbLClupoUE1lfqCEAESGvBk=",
+  "Source": "VoyagerSQLAPI",
+  "BasePath": "_content/VoyagerSQLAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
