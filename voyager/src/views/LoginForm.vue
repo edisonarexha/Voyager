@@ -171,7 +171,6 @@ body {
   transform: rotateZ(3deg);
   width: 60px;
   right: 550px;
-  height: 100.5%;
 }
 .main__div {
   height: 100vh;

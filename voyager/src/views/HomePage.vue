@@ -1,5 +1,6 @@
 <template>
-  <div >
+  <div>
+    <HeaderView />
   <div class="row" style="">
       <div class="col-md-12 width">
      <div class="col-md-6 title" >
@@ -160,7 +161,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+  import HeaderView from '../views/Header.vue'
+
 export default {
+  components:{
+    HeaderView
+  },
      data() {
       return {
         pickerOptions: {

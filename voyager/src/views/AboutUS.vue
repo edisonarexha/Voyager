@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeaderView />
     <img class="contact-img" src="../assets/view.png" />
     <div class="top-left">
       Book now for the best prices <br />
@@ -34,7 +35,13 @@
 </template>
 
 <script>
-export default {};
+  import HeaderView from '../views/Header.vue'
+
+export default {
+  components:{
+    HeaderView
+  }
+};
 </script>
 
 <style>

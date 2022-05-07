@@ -186,10 +186,9 @@ body {
   display: flex;
   position: absolute;
   background-color: #fff;
-  transform: rotateZ(3deg);
+  transform: rotateZ(2deg);
   width: 60px;
   right: 550px;
-  height: 100.5%;
 }
 .main__div {
   height: 100vh;

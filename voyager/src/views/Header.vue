@@ -1,6 +1,5 @@
 <template>
   <div>
- 
 <div class="line"></div>
 <el-menu
   :default-active="activeIndex2"
@@ -12,7 +11,7 @@
   <div class="flexed">
   <el-menu-item index="1" @click="goToHome()">Voyager</el-menu-item>
   <el-menu-item index="2" @click="goToAboutUs()">About us</el-menu-item>
-  <el-menu-item index="3" >Contact Us</el-menu-item>
+  <el-menu-item index="3" @click="goToContact()" >Contact Us</el-menu-item>
   <el-submenu index="4">
     <template slot="title">Packages</template>
     <el-menu-item index="4-1">Family Pack</el-menu-item>
@@ -24,9 +23,15 @@
   </div>
 
   <div>
-
-  <!-- <el-menu-item v-if="user" index="1"></el-menu-item> -->
-  <el-button v-if="user.loggedIn === true" index="1" type="info" plain @click="logout()">Log Out</el-button>
+  <el-dropdown>
+  <span class="el-dropdown-link">
+    {{user.data.email}}<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+  <el-dropdown-menu slot="dropdown">
+    <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
+    <el-dropdown-item divided disabled>Profile</el-dropdown-item>
+  </el-dropdown-menu>
+</el-dropdown>
   </div>
 </el-menu>
 
@@ -53,6 +58,11 @@ export default {
          goToHome() {
       this.$router.push({
         name: "homepage",
+      });
+    },
+       goToContact() {
+      this.$router.push({
+        name: "contact",
       });
     },
          goToAboutUs() {
@@ -98,4 +108,12 @@ justify-content: space-between;
   display: flex;
 align-items: center;
 }
+
+ .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>

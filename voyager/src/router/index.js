@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginForm from "../views/LoginForm.vue";
 import TestLogin from "../views/TestLogin.vue";
-
+import Contact from "../views/ContactUs.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -41,6 +41,11 @@ const routes = [
     path: '/header-view',
     name: 'header-view',
     component: () => import( '@/views/Header.vue')
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: Contact,
   },
  
 ]
