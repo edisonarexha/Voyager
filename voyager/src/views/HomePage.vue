@@ -149,7 +149,7 @@
              <span id="hotel">  Hotel Prince</span>  
             </div>
              <div class="col-md-6" >
-              <a href="####" id="linku"><span class="book">Book Now <i class="el-icon-right"></i></span> </a>    
+              <a href="../details" id="linku"><span class="book">Book Now <i class="el-icon-right"></i></span> </a>    
                   </div>
         </div>
        </div>
