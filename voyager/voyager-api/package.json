@@ -17,7 +17,8 @@
     "express-validation": "^4.1.0",
     "firebase": "^9.7.0",
     "firebase-admin": "^10.1.0",
-    "helmet": "^5.0.2"
+    "helmet": "^5.0.2",
+    "mongoose": "^6.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

@@ -80,7 +80,7 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword }from "firebase/auth";
-import apiCaller from "../utils/apiCaller";
+import apiCaller from "../utils/apiRequests/apiCaller";
 export default {
   data(){
     return{

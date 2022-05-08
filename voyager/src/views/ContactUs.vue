@@ -7,15 +7,15 @@
 
     <div class="contact__form">
       <div class="left__div">
-        <b-form class="contact__form-form">
+        <b-form class="contact__form-form" @submit.prevent="createContact">
           <h3>Get in touch</h3>
           <div class="form-input__inline mt-5">
-            <b-input placeholder="Name" class="inputs__form" />
-            <b-input placeholder="Email" class="inputs__form" />
+            <b-input v-model="form.name" placeholder="Name" class="inputs__form" />
+            <b-input v-model="form.email" placeholder="Email" class="inputs__form" />
           </div>
-          <b-input placeholder="Subject" style="height: 50px" class="mt-4" />
-          <b-textarea placeholder="Message" rows="7" no-resize class="mt-4" />
-          <b-button class="mt-3" style="height: 50px" variant="primary"
+          <b-input v-model="form.subject" placeholder="Subject" style="height: 50px" class="mt-4" />
+          <b-textarea v-model="form.message" placeholder="Message" rows="7" no-resize class="mt-4" />
+          <b-button type="submit" class="mt-3" style="height: 50px" variant="primary"
             >Send Message</b-button
           >
         </b-form>
@@ -118,7 +118,6 @@
             <p style="margin-left:5px;">Airport Transfers</p>
             </div>
             <i style="font-size: 23px; margin-right:15px;" class="el-icon-arrow-right"></i>
-            
           </div>
 
           <div class="single__service">
@@ -169,6 +168,7 @@ import { MailIcon } from "vue-feather-icons";
 import { PhoneIcon } from "vue-feather-icons";
 import { HeadphonesIcon } from 'vue-feather-icons'
 import HeaderView from '../views/Header.vue'
+import apiRequests from "../utils/apiRequests";
 
 export default {
   components: {
@@ -179,6 +179,75 @@ export default {
     HeadphonesIcon,
     HeaderView
   },
+   data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      },
+      error: null,
+      success: null,
+    };
+  },
+
+  methods:{
+      makeToast() {
+      this.$toast.success("Contact has been added succesfully", {
+     position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
+    },
+    makeFailToast() {
+           this.$toast.error("Please fill all the data please", {
+     position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
+    },
+    clearForm() {
+      this.form = {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      };
+    },
+     async createContact() {
+      if (
+        this.form.name == "" ||
+        this.form.email == "" ||
+        this.form.subject == "" ||
+        this.form.message == ""
+      ) {
+        this.makeFailToast();
+      } else {
+        await apiRequests.createContact({ ...this.form });
+        this.makeToast();
+        this.clearForm();
+      }
+    },
+  }
 };
 </script>
 
