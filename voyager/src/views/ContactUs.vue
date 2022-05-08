@@ -480,5 +480,19 @@ export default {
     height: fit-content;
     border-radius: 10px;
   }
+
+  .single__service {
+  width: 70%;
+  height: 70px;
+  background-color: #f5f7fa;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor:pointer;
+}
+.services{
+  height:fit-content;
+}
 }
 </style>
