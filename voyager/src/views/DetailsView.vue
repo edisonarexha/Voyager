@@ -52,6 +52,9 @@
 
       </div>
     </div>
+    <div class="col-md-12" style="margin-left:20%">
+ <el-button type="primary" >Book Now</el-button>
+    </div>
   
     </div>
      <div class="col-md-4" > 
