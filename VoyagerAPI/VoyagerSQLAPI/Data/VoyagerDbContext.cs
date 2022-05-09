@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VoyagerSQLAPI.Models;
+using VoyagerSQLAPI.Models.Hotel;
+using VoyagerSQLAPI.Models.Users;
 
 namespace VoyagerSQLAPI.Data
 {
@@ -10,5 +12,7 @@ namespace VoyagerSQLAPI.Data
         }
 
         public DbSet<VoyagerToBeDeleted> voyagers { get; set; }
+        public DbSet<HotelDetails> hotels { get; set; }
+        public DbSet<Users> users { get; set; }
     }
 }

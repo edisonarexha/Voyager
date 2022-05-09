@@ -15,4 +15,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Tickets\" />
+    <Folder Include="Models\Reservation\" />
+    <Folder Include="Models\Package\" />
+  </ItemGroup>
+
 </Project>
