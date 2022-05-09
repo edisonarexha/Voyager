@@ -156,16 +156,21 @@
        </div>
       </div>
   </div>
+  <div class="footer">
+  <FooterView/>
+  </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
   import HeaderView from '../views/Header.vue'
+  import FooterView from '../views/Footer.vue'
 
 export default {
   components:{
-    HeaderView
+    HeaderView,
+    FooterView
   },
      data() {
       return {
@@ -365,5 +370,9 @@ body{overflow-x:hidden;}
 .divmod{
     height: 100px;
     overflow-x: hidden;
+}
+.footer{
+  border-top: 1px solid #DCDFE6;
+  padding-top: 50px;
 }
 </style>

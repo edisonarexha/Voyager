@@ -3,8 +3,7 @@
     <HeaderView />
     <img class="contact-img" src="../assets/view.png" />
     <div class="top-left">
-      Book now for the best prices <br />
-      yet
+      Book now for the best prices yet
     </div>
     <div class="centered-header">Voyager For you About us</div>
     <div>
@@ -31,15 +30,20 @@
         ut aliquip ex ea commodo consequat.
       </p>
     </div>
+    <div class="footer">
+  <FooterView/>
+  </div>
   </div>
 </template>
 
 <script>
   import HeaderView from '../views/Header.vue'
+  import FooterView from '../views/Footer.vue'
 
 export default {
   components:{
-    HeaderView
+    HeaderView,
+    FooterView
   }
 };
 </script>
@@ -82,5 +86,9 @@ export default {
 }
 .paragraph{
   margin: 50px;
+}
+.footer{
+  border-top: 1px solid #DCDFE6;
+  padding-top: 50px;
 }
 </style>

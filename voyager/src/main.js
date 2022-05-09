@@ -9,6 +9,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import "./services/firebase";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+
 const options = {
     // You can set your default options here
 };
@@ -17,6 +20,8 @@ const options = {
 Vue.use(Toast, options);
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
+Vue.use(VueMaterial)
+
 
 new Vue({
   router,

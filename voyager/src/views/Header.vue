@@ -1,15 +1,17 @@
 <template>
   <div>
 <div class="line"></div>
+<div class="flexed">
+<div>
+<img src="../assets/voyager.png" style="width:100px; margin-left: 10px; " @click="goToHome()">
+</div>
 <el-menu
   :default-active="activeIndex2"
   class="el-menu-demo"
   mode="horizontal"
   background-color="white"
-  text-color="black"
   active-text-color="graz">
   <div class="flexed">
-  <el-menu-item index="1" @click="goToHome()">Voyager</el-menu-item>
   <el-menu-item index="2" @click="goToAboutUs()">About us</el-menu-item>
   <el-menu-item index="3" @click="goToContact()" >Contact Us</el-menu-item>
   <el-submenu index="4">
@@ -22,7 +24,8 @@
   </el-submenu>
   </div>
 
-  <div>
+</el-menu>
+  <div style=" margin-right: 10px;">
   <el-dropdown>
   <span class="el-dropdown-link">
     {{user.data.email}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -33,7 +36,7 @@
   </el-dropdown-menu>
 </el-dropdown>
   </div>
-</el-menu>
+</div>
 
   </div>
 </template>
@@ -107,6 +110,8 @@ justify-content: space-between;
 .flexed{
   display: flex;
 align-items: center;
+justify-content: space-between;
+cursor: pointer;
 }
 
  .el-dropdown-link {
@@ -115,5 +120,13 @@ align-items: center;
   }
   .el-icon-arrow-down {
     font-size: 12px;
+    }
+  ::v-deep .el-menu-item{
+        color: #6E798C;
+    font-family: 'Open Sans', sans-serif;
+  }
+  ::v-deep .el-submenu__title{
+     color: #6E798C;
+    font-family: 'Open Sans', sans-serif;
   }
 </style>

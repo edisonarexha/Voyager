@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginForm from "../views/LoginForm.vue";
-import TestLogin from "../views/TestLogin.vue";
 import Contact from "../views/ContactUs.vue"
 Vue.use(VueRouter);
 
@@ -23,11 +22,6 @@ const routes = [
     component: () => import( '../views/AboutUS'),
   },
   {
-    path: "/testLogin",
-    name: "testLogin",
-    component: TestLogin,
-  },
-  {
     path: "/homepage",
     name: "homepage",
     component: () =>import( "../views/HomePage.vue"),
@@ -43,6 +37,11 @@ const routes = [
     component: () => import( '@/views/Header.vue')
   },
   {
+    path: '/footer-view',
+    name: 'footer-view',
+    component: () => import( '@/views/Footer.vue')
+  },
+  {
     path: "/contact",
     name: "contact",
     component: Contact,
@@ -51,6 +50,11 @@ const routes = [
     path: "/details",
     name: "details",
     component: () => import( "../views/DetailsView.vue"),
+  },
+  {
+    path: "/dashboard-layout",
+    name: "dashboard-layout",
+    component: () => import( "../views/DashboardLayout.vue"),
   },
 ]
    

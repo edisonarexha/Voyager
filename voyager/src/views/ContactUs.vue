@@ -155,6 +155,9 @@
 
       
       </div>
+      <div class="footer">
+  <FooterView/>
+  </div>
     </div>
 
     <!-- SERVICE CHAT -->
@@ -169,6 +172,7 @@ import { PhoneIcon } from "vue-feather-icons";
 import { HeadphonesIcon } from 'vue-feather-icons'
 import HeaderView from '../views/Header.vue'
 import apiRequests from "../utils/apiRequests";
+import FooterView from '../views/Footer.vue'
 
 export default {
   components: {
@@ -177,7 +181,8 @@ export default {
     MailIcon,
     PhoneIcon,
     HeadphonesIcon,
-    HeaderView
+    HeaderView,
+    FooterView
   },
    data() {
     return {
@@ -494,5 +499,9 @@ export default {
 .services{
   height:fit-content;
 }
+}
+.footer{
+  border-top: 1px solid #DCDFE6;
+  padding-top: 50px;
 }
 </style>

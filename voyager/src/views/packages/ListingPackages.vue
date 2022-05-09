@@ -100,7 +100,7 @@
       
     </div>
     <div class="div-button__skip">
-      <b-button @click="redirectToHomePage" class="button__skip">Next..</b-button>
+      <b-button @click="redirectToHomePage" class="button__skip">Skip...</b-button>
     </div>
   </div>
 </template>

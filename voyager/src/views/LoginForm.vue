@@ -104,7 +104,7 @@ export default {
           this.user.email,
           this.user.password
         );
-        this.$router.replace("/testLogin");
+        this.$router.replace("/homepage");
           }
       } catch (err) {
         console.log(err.message)
