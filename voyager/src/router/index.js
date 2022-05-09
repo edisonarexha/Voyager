@@ -55,6 +55,15 @@ const routes = [
     path: "/dashboard-layout",
     name: "dashboard-layout",
     component: () => import( "../views/DashboardLayout.vue"),
+  },{
+    path: "/hotelview",
+    name: "hotelview",
+    component: () => import( "../views/HotelView.vue"),
+  },
+  {
+    path: "/userprofile",
+    name: "userprofile",
+    component: () => import( "../views/profile/UserProfile.vue"),
   },
 ]
    
