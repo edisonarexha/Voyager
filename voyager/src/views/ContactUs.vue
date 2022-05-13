@@ -70,7 +70,7 @@
       <div class="service__chat-content">
         <div class="first__div">
           <p class="first__text">Service Chat</p>
-          <p style="font-weight: 600; margin-top: 1%" class="second__text">
+          <p style="font-weight: 600;" class="second__text">
             Get instant help whenever you need it
           </p>
         </div>
@@ -279,7 +279,7 @@ export default {
 
 .single__serivce-last p {
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
 }
 
@@ -314,8 +314,10 @@ export default {
 
 .single__service p {
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+
 }
 .services {
   padding-left: 15px;
@@ -331,6 +333,8 @@ export default {
   font-weight: 600;
   font-size: 22px;
   margin: 0;
+    font-family: 'Open Sans', sans-serif;
+
 }
 .second__text {
   font-size: 14px;
@@ -460,6 +464,7 @@ export default {
 
 .right__div-title {
   font-weight: 500;
+  
 }
 
 @media only screen and (max-width: 800px) {
