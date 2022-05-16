@@ -8,7 +8,7 @@ using VoyagerSQLAPI.Data;
 
 #nullable disable
 
-namespace VoyagerSQLAPI.Data.Migrations
+namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
     partial class VoyagerDbContextModelSnapshot : ModelSnapshot
