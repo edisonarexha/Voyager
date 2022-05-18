@@ -12,13 +12,13 @@
       <div class="profile__pic-div"> 
         <img class="profile__pic" src="../../assets/profilePic3.png" />
         <div class="profile-div__details">
-          <h3>Leon Shala</h3>
+          <h3>Joell White</h3>
           <p class="mt-3">Traveller since 3 days ago</p>
           </div>
       </div>
 
-      <div class="all__tabs  mt-5 ">
-          <b-tabs nav-class="testClass" content-class="mt-3" justified pills card>
+      <div class="all__tabs  mt-5">
+          <b-tabs nav-class="testClass" content-class="mt-5"  align="center">
     <b-tab title-item-class="testClass" title-link-class="testClass" title="Profile" active><ProfileTab /></b-tab>
     <b-tab title="Trips"><TripsTab /></b-tab>
     <b-tab title="Profile Data"><ProfileDataTab /></b-tab>
@@ -57,7 +57,8 @@ export default {
 }
 .main__div {
   width: 100%;
-  height: 1750px;
+  height: fit-content;
+  margin-bottom:7%;
 }
 .main__pic {
   width: 100%;
@@ -72,7 +73,7 @@ export default {
 
 .profile__pic{
   position:absolute;
-  top:29%;
+  top:32%;
   left:5%;
    background-repeat: no-repeat;
 }
@@ -89,8 +90,7 @@ export default {
 
 .all__tabs{
   width:100%;
-  height:800px;
-  /* border:1px solid green; */
+  height:650px;
 }
 
 
