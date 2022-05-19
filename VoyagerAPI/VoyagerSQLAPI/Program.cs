@@ -11,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<VoyagerDbContext>(
     o=>o.UseSqlServer(builder.Configuration.GetConnectionString("VoyagerSqlServer")));
+builder.Services.AddDbContext<VoyagerDbContext>(
+    o => o.UseSqlServer(builder.Configuration.GetConnectionString("Voyager2")));
 
 var app = builder.Build();
 

@@ -32,7 +32,7 @@
   </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
-    <el-dropdown-item divided disabled>Profile</el-dropdown-item>
+    <el-dropdown-item divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
   </div>
@@ -71,6 +71,11 @@ export default {
          goToAboutUs() {
       this.$router.push({
         name: "about-us",
+      });
+    },
+       goToUserProfile() {
+      this.$router.push({
+        name: "userprofile",
       });
     },
       

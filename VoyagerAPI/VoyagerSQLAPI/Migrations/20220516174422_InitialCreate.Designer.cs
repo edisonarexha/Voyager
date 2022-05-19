@@ -9,11 +9,11 @@ using VoyagerSQLAPI.Data;
 
 #nullable disable
 
-namespace VoyagerSQLAPI.Data.Migrations
+namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    [Migration("20220509190747_User_HotelTables")]
-    partial class User_HotelTables
+    [Migration("20220516174422_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
