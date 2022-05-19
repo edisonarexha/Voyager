@@ -1,97 +1,104 @@
 <template>
   <div
     class="sidebar"
-    :data-color="sidebarItemColor"
-    :data-image="sidebarBackgroundImage"
-    :style="sidebarStyle"
   >
-    <div class="logo">
-      <a href="#" class="simple-text logo-mini">
-        <div class="logo-img">
-          <img :src="imgLogo" alt="" />
-        </div>
-      </a>
+<el-row class="tac">
+  <el-col >
+    <div class="sidebar-header" @click="goTo('dashboard-view')">
+     <img src="@/assets/dashboard-logo.svg" style="color:#909399">
+    <h5>Voyager Dashboard</h5>
+    </div>
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose">
+      
+      <el-menu-item index="2">
+        <i class="el-icon-pie-chart
+"></i>
+        <span>My Hotel</span>
+      </el-menu-item>
+      <el-menu-item index="3" >
+        <i class="el-icon-s-ticket"></i>
+        <span>Rooms</span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="el-icon-s-opportunity
+"></i>
+        <span>Payments</span>
+      </el-menu-item>
+      <el-menu-item index="5">
+       <i class="el-icon-user
 
-      <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
-        target="_blank"
-        class="simple-text logo-normal"
-      >
-        {{ title }}
-      </a>
-    </div>
-    <div class="sidebar-wrapper">
-      {{sidebarLinks}}
-      <slot name="content"></slot>
-      <md-list class="nav">
-        <slot>
-          <sidebar-link
-            v-for="(link, index) in sidebarLinks"
-            :key="link.name + index"
-            :to="link.path"
-            :link="link"
-          >
-          </sidebar-link>
-        </slot>
-      </md-list>
-    </div>
+"></i>
+        <span>Users</span>
+      </el-menu-item>
+      <el-menu-item index="6">
+        <i class="el-icon-location-information
+
+"></i>
+        <span>Trips</span>
+      </el-menu-item>
+      <el-menu-item index="7">
+        <i class="el-icon-office-building
+"></i>
+        <span>Hotel News/Site</span>
+      </el-menu-item>
+      <el-menu-item index="8">
+        <i class="el-icon-setting"></i>
+        <span>Settings</span>
+      </el-menu-item>
+    </el-menu>
+  </el-col>
+</el-row>
   </div>
 </template>
 <script>
-import SidebarLink from "./SidebarLink.vue";
-
-export default {
-  components: {
-    SidebarLink,
-  },
-  props: {
-    title: {
-      type: String,
-      default: "Voyager",
+ export default {
+   data(){
+     return{
+       dashboard_details: true
+     }
+   },
+    methods: {
+      goTo(routeName) {
+      this.$router.push({ name: routeName });
     },
-    sidebarBackgroundImage: {
-      type: String,
-      // default: require("@/assets/img/sidebar-2.jpg"),
-    },
-    imgLogo: {
-      type: String,
-      default: require("@/assets/voyager.png"),
-    },
-    sidebarItemColor: {
-      type: String,
-      default: "green",
-      validator: (value) => {
-        let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
-        return acceptedValues.indexOf(value) !== -1;
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
       },
-    },
-    sidebarLinks: {
-      type: Array,
-      default: () => [],
-    },
-    autoClose: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  provide() {
-    return {
-      autoClose: this.autoClose,
-    };
-  },
-  computed: {
-    sidebarStyle() {
-      return {
-        backgroundImage: `url(${this.sidebarBackgroundImage})`,
-      };
-    },
-  },
-};
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  }
 </script>
-<style>
+<style scoped>
 @media screen and (min-width: 991px) {
   .nav-mobile-menu {
     display: none;
   }
 }
+.sidebar{
+  width: 20%;
+  height: 100%;
+background-color: #363740;
+color: white;
+}
+.sidebar-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+}
+::v-deep .el-menu{
+  background-color: #363740;
+}
+::v-deep .el-menu-item{
+ color: white;
+ }
+::v-deep .el-menu-item:focus, .el-menu-item:hover{
+ background-color: #ecf5ff5e;
+ }
 </style>

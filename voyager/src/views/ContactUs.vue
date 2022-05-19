@@ -155,9 +155,7 @@
 
       
       </div>
-      <div class="footer">
   <FooterView/>
-  </div>
     </div>
 
     <!-- SERVICE CHAT -->
@@ -504,9 +502,5 @@ export default {
 .services{
   height:fit-content;
 }
-}
-.footer{
-  border-top: 1px solid #DCDFE6;
-  padding-top: 50px;
 }
 </style>

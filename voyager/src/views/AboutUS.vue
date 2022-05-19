@@ -30,9 +30,7 @@
         ut aliquip ex ea commodo consequat.
       </p>
     </div>
-    <div class="footer">
   <FooterView/>
-  </div>
   </div>
 </template>
 
@@ -67,11 +65,11 @@ export default {
 }
 .contact-img {
   width: 100%;
-  height: 500px;
+  height: 500px !important;
 }
 .second-img {
   width: 100%;
-  height: 500px;
+  height: 500px !important;
 }
 .centered-header {
   width: 100%;
@@ -86,9 +84,5 @@ export default {
 }
 .paragraph{
   margin: 50px;
-}
-.footer{
-  border-top: 1px solid #DCDFE6;
-  padding-top: 50px;
 }
 </style>

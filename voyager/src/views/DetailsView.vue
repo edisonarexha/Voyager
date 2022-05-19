@@ -23,7 +23,7 @@
     </div>
      </div>
      <div class="row" style="height:100px;">
-    <div class="row">
+    <div class="row" style="padding-bottom:20px">
     <div class="col-md-8" > 
     <div class="row">
        <p class="goldenText">
@@ -61,14 +61,16 @@
    
     </div>
     </div>
+     <Footer/>
      </div>
   </div>
 </template>
 
 <script>
+import Footer from './Footer.vue';
 import Header from "./Header.vue";
 export default {
-    components: { Header }
+    components: { Header, Footer }
 }
 </script>
 

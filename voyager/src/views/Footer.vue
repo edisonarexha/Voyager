@@ -1,5 +1,5 @@
 <template>
-  <div class="flexed">
+  <div class="flexed footer">
     <div class="logo">
       <img  src="../assets/voyager.png" >
     </div>
@@ -57,6 +57,11 @@ export default {
 .flexed{
   display: flex;
   justify-content: space-between;
+  
+}
+.footer{
+  border-top: 1px solid #DCDFE6;
+  padding-top: 50px;
 }
 .logo{
    align-self: center;

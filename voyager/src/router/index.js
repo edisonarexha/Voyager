@@ -55,7 +55,13 @@ const routes = [
     path: "/dashboard-layout",
     name: "dashboard-layout",
     component: () => import( "../views/DashboardLayout.vue"),
-  },{
+  },
+  {
+    path: "/dashboard-view",
+    name: "dashboard-view",
+    component: () => import( "../views/DashboardView.vue"),
+  }, 
+  {
     path: "/hotelview",
     name: "hotelview",
     component: () => import( "../views/HotelView.vue"),
