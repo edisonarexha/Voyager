@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import SideBar from "../components/Dashboard/SidebarPlugin/SideBar.vue"
+import SideBar from "../../components/Dashboard/SidebarPlugin/SideBar.vue"
 export default {
   components:{SideBar},
   data() {

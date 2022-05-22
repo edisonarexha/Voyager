@@ -38,6 +38,27 @@
      
     </div>
     </div>
+    <div class="third-container">
+      <div class="report-table">
+      <div class="flexed">
+        <div>
+      <span style="font-size:15px">Showing 4 of <span class="bold" style="font-size:15px">400</span> results</span>
+        </div>
+      </div>
+     
+      <el-table :data="tableDashboard" style="width: 100%;" >
+        <el-table-column prop="header" label="Header" width="100">
+          <el-switch></el-switch>
+        </el-table-column>
+        <el-table-column prop="name" label="Name"  width="200">
+        </el-table-column>
+        <el-table-column prop="spend" label="Spend"  width="200">
+        </el-table-column>
+        <el-table-column prop="clicks" label="Clicks"  width="200">
+        </el-table-column>
+      </el-table>
+    </div>
+    </div>
     
   </div>
 </template>
@@ -66,6 +87,29 @@ export default {
         {
           date: "Check out problems",
           name: "000",
+        },
+      ],
+      tableDashboard: [
+        {
+          
+          name: "DT-Brand-campaign",
+          spend: "$175.22",
+          clicks: "1234",
+        },
+        {
+          name: "new_offer_8735",
+          spend: "$175.22",
+          clicks: "2000",
+        },
+        {
+          name: "spring_2020",
+          spend: "$175.22",
+          clicks: "1239",
+        },
+        {
+          name: "UK_brand_DT_campaign",
+          spend: "$175.22",
+          clicks: "100",
         },
       ],
       metrics: {
@@ -124,5 +168,9 @@ export default {
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #606061;
+}
+.bold{
+  font-weight: bold;
+  color: black;
 }
 </style>

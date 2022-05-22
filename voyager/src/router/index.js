@@ -54,12 +54,32 @@ const routes = [
   {
     path: "/dashboard-layout",
     name: "dashboard-layout",
-    component: () => import( "../views/DashboardLayout.vue"),
+    component: () => import( "../views/Dashboard/DashboardLayout.vue"),
   },
   {
     path: "/dashboard-view",
     name: "dashboard-view",
-    component: () => import( "../views/DashboardView.vue"),
+    component: () => import( "../views/Dashboard/DashboardView.vue"),
+  }, 
+  {
+    path: "/rooms-view",
+    name: "rooms-view",
+    component: () => import( "../views/Dashboard/RoomsView.vue"),
+  }, 
+  {
+    path: "/users-view",
+    name: "users-view",
+    component: () => import( "../views/Dashboard/UsersView.vue"),
+  }, 
+  {
+    path: "/payments-view",
+    name: "payments-view",
+    component: () => import( "../views/Dashboard/PaymentsView.vue"),
+  }, 
+  {
+    path: "/trips-view",
+    name: "trips-view",
+    component: () => import( "../views/Dashboard/TripsView.vue"),
   }, 
   {
     path: "/hotelview",
