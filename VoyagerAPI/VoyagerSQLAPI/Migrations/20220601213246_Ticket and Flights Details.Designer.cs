@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VoyagerSQLAPI.Data;
 
@@ -11,9 +12,10 @@ using VoyagerSQLAPI.Data;
 namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    partial class VoyagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220601213246_Ticket and Flights Details")]
+    partial class TicketandFlightsDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using VoyagerSQLAPI.Data;
 using VoyagerSQLAPI.Models.Users;
 
+
 namespace VoyagerSQLAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -40,6 +41,7 @@ namespace VoyagerSQLAPI.Controllers
             return CreatedAtAction(nameof(GetUserDetails), new { id = userss.UserId });
 
         }
+       
 
     }
 }

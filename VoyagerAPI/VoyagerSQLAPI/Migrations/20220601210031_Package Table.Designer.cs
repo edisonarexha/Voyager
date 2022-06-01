@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VoyagerSQLAPI.Data;
 
@@ -11,9 +12,10 @@ using VoyagerSQLAPI.Data;
 namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    partial class VoyagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220601210031_Package Table")]
+    partial class PackageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,99 +138,6 @@ namespace VoyagerSQLAPI.Migrations
                     b.HasKey("PackageId");
 
                     b.ToTable("PackagesDetails");
-                });
-
-            modelBuilder.Entity("VoyagerSQLAPI.Models.Tickets.Destination", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("DestinationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("destination");
-                });
-
-            modelBuilder.Entity("VoyagerSQLAPI.Models.Tickets.FlightData", b =>
-                {
-                    b.Property<int>("FlightNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightNumber"), 1L, 1);
-
-                    b.Property<string>("AirCraftName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FlightDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FlightName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TailNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("FlightNumber");
-
-                    b.ToTable("FlightsDatas");
-                });
-
-            modelBuilder.Entity("VoyagerSQLAPI.Models.Tickets.TicketDetails", b =>
-                {
-                    b.Property<int>("TicketId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketId"), 1L, 1);
-
-                    b.Property<DateTime>("Arrival")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Departure")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DestinationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FlightNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PackageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TicketName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TicketNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TicketId");
-
-                    b.ToTable("TicketsDetails");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.Users.Users", b =>
