@@ -38,7 +38,7 @@
               <input class="form-check-input" type="checkbox" />
               <label style="margin-left: 5px">Remember Me</label>
             </b-form-group>
-            <a class="text-decoration-none" href="">Forgot password?</a>
+            <a class="text-decoration-none" href="/forgotPassword">Forgot password?</a>
           </div>
           <b-button
             class="mt-3"
