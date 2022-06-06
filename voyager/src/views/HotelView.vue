@@ -2,7 +2,7 @@
   <div>
       <Header></Header>
       <div class="row" style="border:1px solid black">
-
+    test
       </div>
   </div>
 </template>
@@ -25,7 +25,11 @@ data() {
       },
       onSlideEnd(slide) {
         this.sliding = false
-      }
+      },
+       axios.get('https://api.com/v1/users')
+            .then(function( response ){
+                this.users = response.data;
+            }.bind(this));
     }
 
 }

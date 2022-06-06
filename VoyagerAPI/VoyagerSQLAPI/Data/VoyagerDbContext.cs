@@ -6,6 +6,7 @@ using VoyagerSQLAPI.Models.DB;
 using VoyagerSQLAPI.Models.Packages;
 using VoyagerSQLAPI.Models.Tickets;
 using VoyagerSQLAPI.Models.TripProcedure;
+using VoyagerSQLAPI.Models.AppLogs;
 
 namespace VoyagerSQLAPI.Data
 {
@@ -31,5 +32,6 @@ namespace VoyagerSQLAPI.Data
         public DbSet<FlightData> FlightsDatas { get; set; }
         public DbSet<VoyagerSQLAPI.Models.TripProcedure.outputTrip>? outputTrip { get; set; }
      
+        public DbSet<AppLogsData> appLogs { get; set; }
     }
 }

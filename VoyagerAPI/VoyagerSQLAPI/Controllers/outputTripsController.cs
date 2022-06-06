@@ -34,10 +34,18 @@ namespace VoyagerSQLAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<IEnumerable<outputTrip>>> Getoutput(inputTrip input)
         {
-            string StoredProc = "exec getTripDataForUser " +
-                    "@userid= " + input.Id;
+            var Insertedate = DateTime.Now;
+            input.InsertedDate = Insertedate;
 
-            //return await _context.output.ToListAsync();
+            string StoredProc = "exec getTripDataForUser " +
+                    "@userid= " + input.Id + "," +
+                    "@logsNumber = '" + input.LogsNumber + "'," +
+                   "@formaid = '" + input.formaid + "'," +
+                   "@moduliid = '" + input.moduliid + "'," +
+                    "@InsertedDate= '" + input.InsertedDate + "'";
+  
+                   
+                   
             return await _context.outputTrip.FromSqlRaw(StoredProc).ToListAsync();
         }
 
