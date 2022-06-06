@@ -96,6 +96,11 @@ const routes = [
     name: "singlePackage",
     component: () => import( "../views/packages/singlePackage.vue"),
   },
+  {
+    path: "/forgotPassword",
+    name: "forgotPassword",
+    component: () => import( "../views/ForgotPassword.vue"),
+  },
 ]
    
 
