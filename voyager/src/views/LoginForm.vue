@@ -65,7 +65,6 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword, signInWithPopup,GoogleAuthProvider } from "firebase/auth";
-
 export default {
   data() {
     return {
