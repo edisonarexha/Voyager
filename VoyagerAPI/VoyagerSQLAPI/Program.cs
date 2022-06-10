@@ -35,7 +35,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
-
+app.UseCors(a => a.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
