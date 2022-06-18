@@ -58,6 +58,7 @@
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 .main__div{
     width:100%;
     height:fit-content;
@@ -154,9 +155,10 @@
 }
 
 .details__p{
-    color:#374A59;
+    color: #6E798C;
     font-size:18px;
-    font-family: Open Sans;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
 }
 
 .bottom__button{

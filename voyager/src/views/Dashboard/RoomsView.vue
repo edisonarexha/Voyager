@@ -1,6 +1,8 @@
 <template>
   <div class="rooms">
-      <h4>Voyager Dashboard</h4>
+      <side-bar :sidebar-item-color="sidebarBackground"></side-bar>
+      <div class="form-max-width">
+          <h4>Voyager Dashboard</h4>
     <div class="header">
       <h5>Room Table</h5>
     </div>
@@ -25,11 +27,15 @@
       </el-table>
     </div>
     </div>
+      </div>
+    
   </div>
 </template>
 
 <script>
+import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue'
 export default {
+  components: { SideBar },
 data(){
   return{
     tableDashboard: [
@@ -82,6 +88,13 @@ data(){
 
 <style scoped>
 .rooms{
+  /* padding: 20px; */
+   display: flex;
+   height: 900px;
+   overflow: hidden !important;
+}
+.form-max-width{
+  max-width: 80%;
   padding: 20px;
 }
 .header{
@@ -90,7 +103,7 @@ data(){
 .report-table {
   border: 1px solid #00000021;
   border-radius: 8px;
-  width: 45%;
+  /* width: 45%; */
   padding: 10px;
   margin: 15px;
 }

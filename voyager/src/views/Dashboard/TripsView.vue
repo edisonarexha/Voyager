@@ -1,5 +1,8 @@
 <template>
   <div class="rooms">
+    <side-bar :sidebar-item-color="sidebarBackground"></side-bar>
+    <div class="form-max-width">
+
     <h4>Voyager Dashboard</h4>
     <div class="third-container">
       <div class="report-table">
@@ -10,7 +13,7 @@
         <el-table
           ref="multipleTable"
           :data="tableData"
-          style="width: 100%"
+          style="width: 950px"
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55"> </el-table-column>
@@ -61,11 +64,14 @@
         </span>
       </el-dialog>
     </div>
+    </div>
   </div>
 </template>
 
 <script>
+import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue';
 export default {
+  components: { SideBar },
   data() {
     return {
         dialogFormVisible: false,
@@ -139,6 +145,12 @@ export default {
 
 <style scoped>
 .rooms {
+  /* padding: 20px; */
+  display: flex;
+  height: 900px;
+}
+.form-max-width{
+  max-width: 80%;
   padding: 20px;
 }
 .header {

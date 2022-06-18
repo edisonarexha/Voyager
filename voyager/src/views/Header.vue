@@ -32,6 +32,7 @@
   </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
+    <el-dropdown-item v-if="checkIfAdmin" @click.native="goToDashboard()">Dashboard</el-dropdown-item>
     <el-dropdown-item divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
@@ -56,6 +57,10 @@ export default {
     ...mapGetters({
       user: "user",
     }),
+    checkIfAdmin(){
+      if(this.user.data.email.includes("admin")) return true
+      return false
+    }
  },
     methods: {
          goToHome() {
@@ -76,6 +81,11 @@ export default {
        goToUserProfile() {
       this.$router.push({
         name: "userprofile",
+      });
+    },
+       goToDashboard() {
+      this.$router.push({
+        name: "dashboard-view",
       });
     },
       
