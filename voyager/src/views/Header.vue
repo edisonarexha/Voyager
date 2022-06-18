@@ -16,10 +16,10 @@
   <el-menu-item index="3" @click="goToContact()" >Contact Us</el-menu-item>
   <el-submenu index="4">
     <template slot="title">Packages</template>
-    <el-menu-item index="4-1">Family Pack</el-menu-item>
-    <el-menu-item index="4-2">Business Pack</el-menu-item>
-    <el-menu-item index="4-3">Single Pack</el-menu-item>
-    <el-menu-item index="4-3">HoneyMoon Pack</el-menu-item>
+    <el-menu-item index="4-1" @click="goToPackage()">Family Pack</el-menu-item>
+    <el-menu-item index="4-2" @click="goToPackage()" >Business Pack</el-menu-item>
+    <el-menu-item index="4-3" @click="goToPackage()">Single Pack</el-menu-item>
+    <el-menu-item index="4-3" @click="goToPackage()">HoneyMoon Pack</el-menu-item>
   
   </el-submenu>
   </div>
@@ -88,7 +88,11 @@ export default {
         name: "dashboard-view",
       });
     },
-      
+      goToPackage() {
+      this.$router.push({
+        name: "singlePackage",
+      });
+    },
     logout() {
       getAuth()
         .signOut()
