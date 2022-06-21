@@ -30,6 +30,17 @@ namespace VoyagerSQLAPI.Controllers
             var users = await _context.users.FindAsync(id);
             return users == null ? NotFound() : Ok(users);
         }
+
+
+        [HttpGet("email")]
+        [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUserWithEmail(string email)
+        {
+            var users =  _context.users.FirstOrDefault(acc => acc.Email == email);
+            return users == null ? NotFound() : Ok(users);
+        }
+
         //[AcceptVerbs("sendUserData")]
         //[ActionName("sendUserData")]
         [HttpPost]

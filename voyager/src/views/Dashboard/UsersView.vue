@@ -1,5 +1,7 @@
 <template>
   <div class="rooms">
+    <side-bar :sidebar-item-color="sidebarBackground"></side-bar>
+    <div class="form-max-width">
     <h4>Voyager Dashboard</h4>
     <div class="users-container">
       <div class="header">
@@ -27,25 +29,28 @@
                 </div>
               </div>
             </el-table-column>
-            <el-table-column prop="name" label="User Name" width="300">
+            <el-table-column prop="name" label="User Name" width="200">
             </el-table-column>
-            <el-table-column prop="spend" label="Date" width="300">
+            <el-table-column prop="spend" label="Date" width="200">
             </el-table-column>
-            <el-table-column prop="clicks" label="Activity" width="300">
+            <el-table-column prop="clicks" label="Activity" width="200">
               <div class="activity">High</div>
             </el-table-column>
           </el-table>
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 
 <script>
+import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue';
 import { FilterIcon, ListIcon } from 'vue-feather-icons'
 export default {
    components: {
     FilterIcon, ListIcon
+      ,SideBar
   },
   data() {
     return {
@@ -111,6 +116,11 @@ export default {
 
 <style scoped>
 .rooms {
+  /* padding: 20px; */
+  display: flex;
+}
+.form-max-width{
+  max-width: 80%;
   padding: 20px;
 }
 .header {

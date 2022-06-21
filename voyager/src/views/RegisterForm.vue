@@ -81,6 +81,7 @@
 <script>
 import { getAuth, signInWithEmailAndPassword }from "firebase/auth";
 import apiCaller from "../utils/apiRequests/apiCaller";
+import {createUser} from '../sdk/users'
 export default {
   data(){
     return{
@@ -100,6 +101,16 @@ export default {
     }
   },
   methods:{
+    async createUserData(){
+      const userData = {
+        name: this.user.name,
+        lastName: this.user.lastName,
+        userName: this.user.username,
+        email: this.user.email,
+        packageId: 0,
+      }
+      await createUser(userData)
+    },
      async loginUser(){
         try {
         await signInWithEmailAndPassword(
@@ -119,6 +130,7 @@ export default {
           email: this.user.email,
           password: this.user.password,
         });
+        await this.createUserData()
         await this.loginUser()
           this.$router.push('/packages')
         }

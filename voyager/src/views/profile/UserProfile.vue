@@ -1,18 +1,16 @@
 <template>
   <div>
     <HeaderView />
-
    <div class="main__div">
       <div class="main__pic">
         <img class="top__image" src="../../assets/profilePic2.jpg" />
       </div>
 
-    
 
       <div class="profile__pic-div"> 
         <img class="profile__pic" src="../../assets/profilePic3.png" />
         <div class="profile-div__details">
-          <h3>Joell White</h3>
+          <h3>{{userData ? `${userData.name} ${userData.lastName}` : null}}</h3>
           <p class="mt-3">Traveller since 3 days ago</p>
           </div>
       </div>
@@ -39,13 +37,26 @@ import FooterView from "../Footer.vue";
 import ProfileTab from "./ProfileTab.vue";
 import TripsTab from "./TripsTab.vue";
 import ProfileDataTab from "./ProfileDataTab.vue";
+import { getUser } from "../../sdk/users";
+import {getUserData} from "../../utils/utils.js"
 export default {
+  data(){
+    return{
+      userData:{},
+    }
+  },
  components: {
     HeaderView,
     FooterView,
     ProfileTab,
     TripsTab,
     ProfileDataTab
+  },
+  async mounted() {
+    const user = await getUserData()
+    const userEmail = user.email
+    const {data} = await getUser(userEmail)
+    this.userData = data
   },
 }
 </script>

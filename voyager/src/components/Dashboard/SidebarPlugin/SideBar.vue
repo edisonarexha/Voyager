@@ -14,27 +14,26 @@
       @open="handleOpen"
       @close="handleClose">
       
-      <el-menu-item index="2">
-        <i class="el-icon-pie-chart
-"></i>
+      <el-menu-item index="2" @click="goTo('dashboard-view')">
+        <i class="el-icon-pie-chart"></i>
         <span>My Hotel</span>
       </el-menu-item>
-      <el-menu-item index="3" >
+      <el-menu-item index="3" @click="goTo('rooms-view')">
         <i class="el-icon-s-ticket"></i>
         <span>Rooms</span>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="4" @click="goTo('payments-view')">
         <i class="el-icon-s-opportunity
 "></i>
         <span>Payments</span>
       </el-menu-item>
-      <el-menu-item index="5">
+      <el-menu-item index="5" @click="goTo('users-view')">
        <i class="el-icon-user
 
 "></i>
         <span>Users</span>
       </el-menu-item>
-      <el-menu-item index="6">
+      <el-menu-item index="6" @click="goTo('trips-view')">
         <i class="el-icon-location-information
 
 "></i>
@@ -82,7 +81,7 @@
 }
 .sidebar{
   width: 20%;
-  height: 100%;
+  /* height: 100%; */
 background-color: #363740;
 color: white;
 }

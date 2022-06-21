@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard">
-    <div>
+    <side-bar :sidebar-item-color="sidebarBackground"></side-bar>
+    <div style="max-width: 80%;" class="form-max-width">
+       <div>
       <h4>Voyager Dashboard</h4>
       <metrics-view class="metrics" :metrics="metrics" />
     </div>
@@ -59,6 +61,8 @@
       </el-table>
     </div>
     </div>
+    </div>
+   
     
   </div>
 </template>
@@ -66,9 +70,10 @@
 <script>
 // import SideBar from "../components/Dashboard/SidebarPlugin/SideBar.vue"
 import MetricsView from "@/views/MetricsView.vue";
+import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue';
 export default {
   name: "dashboard-view",
-  components: { MetricsView },
+  components: { MetricsView, SideBar },
   data() {
     return {
       tableData: [
@@ -125,7 +130,9 @@ export default {
 
 <style scoped>
 .dashboard {
-  padding: 20px;
+  /* padding: 20px; */
+  display: flex;
+  
 }
 .report-table {
   border: 1px solid #00000021;
@@ -172,5 +179,9 @@ export default {
 .bold{
   font-weight: bold;
   color: black;
+}
+.form-max-width{
+  max-width: 80%;
+  padding: 20px;
 }
 </style>

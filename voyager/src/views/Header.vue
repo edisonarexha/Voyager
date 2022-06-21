@@ -16,10 +16,10 @@
   <el-menu-item index="3" @click="goToContact()" >Contact Us</el-menu-item>
   <el-submenu index="4">
     <template slot="title">Packages</template>
-    <el-menu-item index="4-1">Family Pack</el-menu-item>
-    <el-menu-item index="4-2">Business Pack</el-menu-item>
-    <el-menu-item index="4-3">Single Pack</el-menu-item>
-    <el-menu-item index="4-3">HoneyMoon Pack</el-menu-item>
+    <el-menu-item index="4-1" @click="goToPackage()">Family Pack</el-menu-item>
+    <el-menu-item index="4-2" @click="goToPackage()" >Business Pack</el-menu-item>
+    <el-menu-item index="4-3" @click="goToPackage()">Single Pack</el-menu-item>
+    <el-menu-item index="4-3" @click="goToPackage()">HoneyMoon Pack</el-menu-item>
   
   </el-submenu>
   </div>
@@ -32,6 +32,7 @@
   </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
+    <el-dropdown-item v-if="checkIfAdmin" @click.native="goToDashboard()">Dashboard</el-dropdown-item>
     <el-dropdown-item divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
@@ -56,6 +57,10 @@ export default {
     ...mapGetters({
       user: "user",
     }),
+    checkIfAdmin(){
+      if(this.user.data.email.includes("admin")) return true
+      return false
+    }
  },
     methods: {
          goToHome() {
@@ -78,7 +83,16 @@ export default {
         name: "userprofile",
       });
     },
-      
+       goToDashboard() {
+      this.$router.push({
+        name: "dashboard-view",
+      });
+    },
+      goToPackage() {
+      this.$router.push({
+        name: "singlePackage",
+      });
+    },
     logout() {
       getAuth()
         .signOut()
