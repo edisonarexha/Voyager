@@ -20,9 +20,9 @@ namespace VoyagerSQLAPI.Data
         public VoyagerDbContext(DbContextOptions<VoyagerDbContext> options)
             : base(options) { 
         }
-
+        public DbSet<HotelRooms> hotelrooms { get; set; }
+        public DbSet<HotelDatas> hotelDatas { get; set; }
         public DbSet<VoyagerToBeDeleted> voyagers { get; set; }
-        public DbSet<HotelDetails> hotels { get; set; }
         public DbSet<Users> users { get; set; }
         public DbSet<VoyagerSQLAPI.Models.DB.output>? output { get; set; }
         public DbSet<TicketDetails> TicketsDetails { get; set; }

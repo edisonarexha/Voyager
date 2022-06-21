@@ -11,6 +11,7 @@ const state = () => ({
     },
     SET_USER(state, userData) {
       state.user.data = userData;
+      localStorage.setItem('userData', JSON.stringify(userData))
     },
   };
   

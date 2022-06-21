@@ -10,7 +10,7 @@
       <div class="profile__pic-div"> 
         <img class="profile__pic" src="../../assets/profilePic3.png" />
         <div class="profile-div__details">
-          <h3>{{userData ? userData.email : null}}</h3>
+          <h3>{{userData ? `${userData.name} ${userData.lastName}` : null}}</h3>
           <p class="mt-3">Traveller since 3 days ago</p>
           </div>
       </div>
@@ -38,8 +38,7 @@ import ProfileTab from "./ProfileTab.vue";
 import TripsTab from "./TripsTab.vue";
 import ProfileDataTab from "./ProfileDataTab.vue";
 import { getUser } from "../../sdk/users";
-import { mapGetters } from "vuex";
-
+import {getUserData} from "../../utils/utils.js"
 export default {
   data(){
     return{
@@ -53,13 +52,10 @@ export default {
     TripsTab,
     ProfileDataTab
   },
-   computed: {
-    ...mapGetters({
-      user: "user",
-    }),
-  },
   async mounted() {
-    const {data} = await getUser(this.user.data.email)
+    const user = await getUserData()
+    const userEmail = user.email
+    const {data} = await getUser(userEmail)
     this.userData = data
   },
 }

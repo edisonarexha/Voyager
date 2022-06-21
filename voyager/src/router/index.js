@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginForm from "../views/LoginForm.vue";
 import Contact from "../views/ContactUs.vue"
+import UserProfile from "../views/profile/UserProfile.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -99,7 +100,7 @@ const routes = [
   {
     path: "/userprofile",
     name: "userprofile",
-    component: () => import( "../views/profile/UserProfile.vue"),
+    component: UserProfile
   },
   {
     path: "/singlePackage",
