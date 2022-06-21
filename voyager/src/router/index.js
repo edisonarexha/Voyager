@@ -87,6 +87,16 @@ const routes = [
     component: () => import( "../views/HotelView.vue"),
   },
   {
+    path: "/hotel-news-site",
+    name: "hotel-news-site",
+    component: () => import( "../views/Dashboard/HotelNewsSite"),
+  },
+  {
+    path: "/about-us-manage",
+    name: "about-us-manage",
+    component: () => import( "../views/Dashboard/AboutUsManage"),
+  },
+  {
     path: "/userprofile",
     name: "userprofile",
     component: () => import( "../views/profile/UserProfile.vue"),

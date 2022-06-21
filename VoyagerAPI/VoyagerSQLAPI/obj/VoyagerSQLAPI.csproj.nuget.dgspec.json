@@ -1,30 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj": {}
+    "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/VoyagerSQLAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj": {
+    "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/VoyagerSQLAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
+        "projectUniqueName": "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/VoyagerSQLAPI.csproj",
         "projectName": "VoyagerSQLAPI",
-        "projectPath": "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
-        "packagesPath": "C:\\Users\\shala\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\obj\\",
+        "projectPath": "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/VoyagerSQLAPI.csproj",
+        "packagesPath": "/Users/edisonarexha/.nuget/packages/",
+        "outputPath": "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\shala\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/edisonarexha/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/gjirafadev/Bisko/_packaging/Bisko/nuget/v3/index.json": {},
-          "https://pkgs.dev.azure.com/gjirafadev/Codex/_packaging/Codex.Lib%40Local/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -79,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
         }
       }
     }

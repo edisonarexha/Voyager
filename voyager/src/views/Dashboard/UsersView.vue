@@ -41,6 +41,37 @@
       </div>
     </div>
     </div>
+    <div>
+      <el-dialog :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+          <div class="flexed">
+          <el-form-item :label-width="formLabelWidth">
+            <el-input  autocomplete="off" placeholder="Trip Name" class="input"></el-input>
+          </el-form-item>
+          <el-form-item :label-width="formLabelWidth">
+            <el-input  autocomplete="off" placeholder="Place" class="input"></el-input>
+          </el-form-item>
+          </div>
+          <div class="flexed">
+            <el-form-item :label-width="formLabelWidth">
+            <el-input  autocomplete="off" placeholder="Price" class="input"></el-input>
+          </el-form-item>
+          <el-form-item :label-width="formLabelWidth">
+            <el-input  autocomplete="off" placeholder="Date" class="input"></el-input>
+          </el-form-item>
+          </div>
+          <el-form-item :label-width="formLabelWidth">
+            <el-input  autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
+          </el-form-item>
+          
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogFormVisible = false"
+            >Add</el-button
+          >
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -54,6 +85,7 @@ export default {
   },
   data() {
     return {
+      dialogFormVisible: false,
       url: "https://cdn.dribbble.com/users/2095589/screenshots/4166422/user_1.png",
       srcList: [
         "https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg",

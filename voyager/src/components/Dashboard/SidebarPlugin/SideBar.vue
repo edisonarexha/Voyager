@@ -16,7 +16,7 @@
       
       <el-menu-item index="2" @click="goTo('dashboard-view')">
         <i class="el-icon-pie-chart"></i>
-        <span>My Hotel</span>
+        <span>Dashboard</span>
       </el-menu-item>
       <el-menu-item index="3" @click="goTo('rooms-view')">
         <i class="el-icon-s-ticket"></i>
@@ -39,10 +39,15 @@
 "></i>
         <span>Trips</span>
       </el-menu-item>
-      <el-menu-item index="7">
+      <el-menu-item index="7" @click="goTo('hotel-news-site')">
         <i class="el-icon-office-building
 "></i>
         <span>Hotel News/Site</span>
+      </el-menu-item>
+      <el-menu-item index="7" @click="goTo('about-us-manage')">
+        <i class="el-icon-office-building
+"></i>
+        <span>About Us</span>
       </el-menu-item>
       <el-menu-item index="8">
         <i class="el-icon-setting"></i>
