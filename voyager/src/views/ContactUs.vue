@@ -350,7 +350,7 @@ export default {
 .service__chat {
   margin-top: 7%;
   width: 100%;
-  height: 540px;
+  height: fit-content;
   /* border:1px solid red; */
   /* background-color:#4e8af2 */
 }

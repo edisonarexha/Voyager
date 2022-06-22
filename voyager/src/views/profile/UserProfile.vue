@@ -101,7 +101,7 @@ export default {
 
 .all__tabs{
   width:100%;
-  height:650px;
+  height:fit-content;
 }
 
 

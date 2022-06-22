@@ -24,7 +24,7 @@
           />
         </b-form-group>
         <b-form-group
-          style="margin-right: 5%"
+          style="margin-right: 5%;"
           class="profile__tab-form-group"
           label="Username"
         >
@@ -101,7 +101,8 @@ export default {
 <style scoped>
 .main__div {
   width: 70%;
-  height: 400px;
+  height: 300px;
+  /* outline:1px solid red; */
   margin: 0 auto;
   font-family: Open Sans;
 }
@@ -121,11 +122,14 @@ export default {
 }
 
 .profile__tab-form-group {
+  margin-top:3%;
   width: 47.5%;
+  /* outline:1px solid red; */
 }
 
 .profile__tab-form-input {
-  height: 50px;
+  margin-top:15px;
+  height: 60px;
   color: #6e798c;
 }
 
