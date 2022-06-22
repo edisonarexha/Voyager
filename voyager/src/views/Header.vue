@@ -23,12 +23,11 @@
   
   </el-submenu>
   </div>
-
 </el-menu>
   <div style=" margin-right: 10px;">
   <el-dropdown>
   <span class="el-dropdown-link">
-    {{user.data.email}}<i class="el-icon-arrow-down el-icon--right"></i>
+    {{user ? user.data.email : null}}<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
@@ -58,7 +57,7 @@ export default {
       user: "user",
     }),
     checkIfAdmin(){
-      if(this.user.data.email.includes("admin")) return true
+      if(this.user && this.user.data.email.includes("admin")) return true
       return false
     }
  },
@@ -105,18 +104,9 @@ export default {
           console.log(err);
         });
     },
-        
-    // checkUser() {
-    //   if (this.user.data) {
-    //     let arr = [2];
-    //     arr = this.user.data.email.split("@");
-    //     // this.name = arr[0];
-    //   }
-    // },
+
   },
-//   mounted() {
-//    this.checkUser();
-//  },
+
   }
 </script>
 

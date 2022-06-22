@@ -1,5 +1,15 @@
 import request from "./request";
 
+export async function getAllUsers() {
+    try {
+        const response = await request
+            .get("/Users/Users");
+        return response;
+    } catch (err) {
+        return console.log(err.name);
+    }
+  }
+
 export async function getUser(email) {
   try {
         const response = await request

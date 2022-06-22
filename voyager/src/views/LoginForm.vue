@@ -65,6 +65,9 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword, signInWithPopup,GoogleAuthProvider } from "firebase/auth";
+import { getAllUsers } from "../sdk/users";
+import {createUser} from '../sdk/users'
+
 export default {
   data() {
     return {
@@ -83,12 +86,25 @@ export default {
   methods: {
    async socialLogin(){
   signInWithPopup(getAuth(),new GoogleAuthProvider)
-       .then((result) => {
-         console.log(result)
-       let token = result.user.accessToken;
-       let user = result.user;
-       console.log(token)
-       console.log(user)
+       .then(async (result) => {
+        console.log(result.user)
+          var emri = result.user.displayName.split(' ')
+        const res = await getAllUsers()
+        for(let i =0; i<res.data.length; i++){
+          var varguEmail = []
+          varguEmail.push(res.data[i].email)
+        }
+
+        if(!varguEmail.includes(result.user.email)){
+          const userData = {
+          name: emri[0],
+          lastName: emri[1],
+          userName: 'No username',
+          email: result.user.email,
+          packageId: 0,
+        }
+        await createUser(userData)
+        }
        this.$router.push('/homepage')
      }).catch((err)=>{
        console.log(err)
@@ -103,6 +119,7 @@ export default {
           this.user.email,
           this.user.password
         );
+       
         this.$router.replace("/homepage");
           }
       } catch (err) {
