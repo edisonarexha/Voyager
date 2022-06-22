@@ -11,9 +11,8 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
-
 const options = {
-    // You can set your default options here
+  // You can set your default options here
 };
 
 

@@ -19,7 +19,7 @@
           <b-tabs nav-class="testClass" content-class="mt-5"  align="center">
     <b-tab title-item-class="testClass" title-link-class="testClass" title="Profile" active><ProfileTab /></b-tab>
     <b-tab title="Trips"><TripsTab /></b-tab>
-    <b-tab title="Profile Data"><ProfileDataTab /></b-tab>
+    <b-tab title="Profile Data"><ProfileDataTab :user="userData" /></b-tab>
   </b-tabs>
 
    

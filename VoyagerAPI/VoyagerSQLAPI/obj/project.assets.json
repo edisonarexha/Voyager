@@ -9662,25 +9662,29 @@
     ]
   },
   "packageFolders": {
-    "/Users/edisonarexha/.nuget/packages/": {}
+    "C:\\Users\\shala\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/VoyagerSQLAPI.csproj",
+      "projectUniqueName": "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
       "projectName": "VoyagerSQLAPI",
-      "projectPath": "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/VoyagerSQLAPI.csproj",
-      "packagesPath": "/Users/edisonarexha/.nuget/packages/",
-      "outputPath": "/Users/edisonarexha/Desktop/Voyager/VoyagerAPI/VoyagerSQLAPI/obj/",
+      "projectPath": "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
+      "packagesPath": "C:\\Users\\shala\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leons\\Documents\\ProjektetFakultet\\lab2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/edisonarexha/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\shala\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/gjirafadev/Bisko/_packaging/Bisko/nuget/v3/index.json": {},
+        "https://pkgs.dev.azure.com/gjirafadev/Codex/_packaging/Codex.Lib%40Local/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
@@ -9735,7 +9739,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -3,12 +3,8 @@ import request from "./request";
 export async function getUser(email) {
   try {
         const response = await request
-            .get("/users/email", {
-                params: {
-                    email: email,
-                },
-            });
-        return response;
+            .get(`/users/${email}`);
+        return response
     } catch (err) {
         return console.log(err.name);
     }
@@ -16,16 +12,19 @@ export async function getUser(email) {
 
 export function createUser(user) {
   return request
-    .post("/users", {
-        name: user.name,
-        lastName: user.lastName,
-        userName: user.userName,
-        email: user.email,
-        packageId: 0,
-      
-    })
+    .post("/users", user)
     .then((response) => {
-      return response;
+      return response
     })
     .catch((err) => console.log(err.name));
 }
+
+export async function updateUser(user) {
+    try {
+        const response = await request
+            .put(`/users/${user.email}`, user);
+        return response
+    } catch (err) {
+        return console.log(err.name);
+    }
+  }

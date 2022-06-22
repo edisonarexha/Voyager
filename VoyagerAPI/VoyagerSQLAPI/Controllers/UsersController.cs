@@ -32,12 +32,12 @@ namespace VoyagerSQLAPI.Controllers
         }
 
 
-        [HttpGet("email")]
+        [HttpGet("{email}")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUserWithEmail(string email)
+        public IActionResult GetUserWithEmail(string email)
         {
-            var users =  _context.users.FirstOrDefault(acc => acc.Email == email);
+            var users = _context.users.FirstOrDefault(acc => acc.Email == email);
             return users == null ? NotFound() : Ok(users);
         }
 
@@ -52,7 +52,41 @@ namespace VoyagerSQLAPI.Controllers
             return CreatedAtAction(nameof(GetUserDetails), new { id = userss.UserId });
 
         }
-       
+
+        [HttpPut("{email}")]
+        public async Task<IActionResult> PutUser(String email, Users userss)
+        {
+            if (email != userss.Email)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(userss).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(email))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool UserExists(String email)
+        {
+            return (_context.users?.Any(e => e.Email == email)).GetValueOrDefault();
+        }
+
 
     }
 }
