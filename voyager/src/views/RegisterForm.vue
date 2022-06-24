@@ -135,7 +135,7 @@ export default {
           this.$router.push('/packages')
         }
       } catch(error){
-        this.errors.general = error
+        this.errors.general = error.message
       }
     },
     checkError(){

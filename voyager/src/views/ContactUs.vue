@@ -66,7 +66,7 @@
 
     <!-- SERVICE CHAT -->
 
-    <div class="service__chat">
+    <div class="service__chat" style="margin-bottom:5%">
       <div class="service__chat-content">
         <div class="first__div">
           <p class="first__text">Service Chat</p>
@@ -155,8 +155,8 @@
 
       
       </div>
-  <FooterView/>
     </div>
+  <FooterView/>
 
     <!-- SERVICE CHAT -->
   </div>

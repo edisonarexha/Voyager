@@ -30,7 +30,8 @@
 
 
 
- <div class="single__trip">
+
+         <div class="single__trip">
             <div class="image__trip">
                 <img class="image__details" src="../../assets/room.png" />
             </div>
@@ -53,6 +54,7 @@
 
                 <div class="bottom__button mt-4"> <p>Booked</p></div>
         </div>
+
     </div>
 </div>
 </template>
@@ -74,6 +76,7 @@
     height:570px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:10px;
+    margin-top:15px;
 }
 
 .single__trip:nth-child(even){

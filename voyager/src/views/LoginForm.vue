@@ -87,9 +87,13 @@ export default {
    async socialLogin(){
   signInWithPopup(getAuth(),new GoogleAuthProvider)
        .then(async (result) => {
-        console.log(result.user)
           var emri = result.user.displayName.split(' ')
         const res = await getAllUsers()
+        if(!res){
+          this.makeFailToast()
+          return
+        }
+        else{
         for(let i =0; i<res.data.length; i++){
           var varguEmail = []
           varguEmail.push(res.data[i].email)
@@ -106,9 +110,26 @@ export default {
         await createUser(userData)
         }
        this.$router.push('/homepage')
+        }
      }).catch((err)=>{
        console.log(err)
      })
+    },
+     makeFailToast() {
+      this.$toast.error("Server error!", {
+        position: "top-right",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        rtl: false,
+      });
     },
    async loginUser(){
      this.checkError()

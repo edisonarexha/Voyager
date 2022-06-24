@@ -83,19 +83,19 @@ export default {
 }
 
 .profile__pic{
-  position:absolute;
-  top:32%;
-  left:5%;
-   background-repeat: no-repeat;
+  width:300px;
+  height:300px;
+  margin-top:-150px;
 }
 .profile__pic-div{
-  width:50%;
-  height:160px;
-  margin:0 auto;
-  padding:25px;
+ display:flex;
+ width:80%;
+ margin:0 auto;
 }
 .profile-div__details{
   color:#6E798C;
+  margin-top:15px;
+  margin-left:25px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -116,7 +116,10 @@ export default {
 .profile__pic-div{
   width:100%;
   height:fit-content;
-  margin-top:40%;
+  display:flex;
+  flex-direction: column;
+  margin:0 auto;
+  margin-top:15px;
 }
 
 }

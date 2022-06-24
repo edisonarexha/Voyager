@@ -25,6 +25,10 @@
             </div>
         </div>
 
+    
+      
+       
+
 
         </div>
 
@@ -44,12 +48,11 @@
                     </div>
             </div>
 
-            <div class="single__review">
+             <div class="single__review">
                 <div class="left__details">
                     <div class="left__details-top">
                         <img width="30" src="../../assets/quotes.png" />
-                    <p class="mt-2 comment__style">Really enjoyed this travelling site, i love how its 
-amazing </p>
+                    <p class="mt-2 comment__style">Post something</p>
                     </div>
                     <h3>Joell White</h3>
                     </div>
@@ -58,6 +61,8 @@ amazing </p>
                         <img src="../../assets/profilePic3.png" />
                     </div>
             </div>
+
+
         </div>
     </div>
 </div>
@@ -67,8 +72,7 @@ amazing </p>
 <style scoped>
 .main__div{
     width:100%;
-    height:500px;
-    /* border:1px solid red; */
+    height:fit-content;
     display: flex;
     justify-content: space-evenly;
 }
@@ -81,7 +85,7 @@ amazing </p>
 
 .right__div{
     width:60%;
-    height:500px;
+    height:fit-content;
     /* border:1px solid red; */
 }
 
