@@ -11,11 +11,19 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 const options = {
   // You can set your default options here
 };
-
-
+library.add(faUserSecret)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(Toast, options);
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false;

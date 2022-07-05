@@ -111,6 +111,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*{
+  font-family:'Open Sans';
+}
+.el-menu.el-menu--horizontal{
+  border:none;
+}
 .el-menu-demo{
   display: flex;
 align-items: center;

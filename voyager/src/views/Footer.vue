@@ -203,10 +203,12 @@ export default {
 
 </style>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
 
-
+*{
+  font-family:'Open Sans';
+}
 
 .container {
   position: absolute;
