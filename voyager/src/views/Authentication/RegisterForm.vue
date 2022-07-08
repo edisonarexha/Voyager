@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main__div">
-      <img class="login__image img-responsive" src="../assets/view.png" />
+      <img class="login__image img-responsive" src="../../assets/view.png" />
        <div class="angle"></div>
       <div class="register__form">
         <b-form class="inside__form" @submit.prevent="createUser">
@@ -80,8 +80,8 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword }from "firebase/auth";
-import apiCaller from "../utils/apiRequests/apiCaller";
-import {createUser} from '../sdk/users'
+import apiCaller from "../../utils/apiRequests/apiCaller";
+import {createUser} from '../../sdk/users'
 export default {
   data(){
     return{

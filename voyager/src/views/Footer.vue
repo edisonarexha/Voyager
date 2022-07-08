@@ -42,25 +42,16 @@
           </ul>
         </div>
         <div class="col-md-3 footer-ns animated fadeInRight">
-          <h4>Newsletter</h4>
-          <p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
+          <h4>Voyager</h4>
+          <p>Our mission is to power global travel for everyone, everywhere.</p>
           <div class="input-group">
            <div class="container">
   <input type="text" placeholder="Search...">
   <div class="search"></div>
 </div>
-            <!-- <input
-              type="text"
-              class="form-control"
-              placeholder="Search for..."
-            />
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-envelope"></span>
-              </button>
-            </span> -->
+           
           </div>
-          <!-- /input-group -->
+         
         </div>
       </div>
     </footer>

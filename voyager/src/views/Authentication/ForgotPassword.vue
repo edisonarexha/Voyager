@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main__div">
-      <img class="login__image img-responsive" src="../assets/view.png" />
+      <img class="login__image img-responsive" src="../../assets/view.png" />
       <div class="angle"></div>
       <div class="login__form">
         <b-form class="inside__form" @submit.prevent="resetPassword">

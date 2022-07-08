@@ -1,8 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import LoginForm from "../views/LoginForm.vue";
+import LoginForm from "../views/Authentication/LoginForm.vue";
 import Contact from "../views/ContactUs.vue"
 import UserProfile from "../views/profile/UserProfile.vue"
+import About from "../views/About/AboutUS.vue"
+import Homepage from "../views/HomePage.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -15,17 +17,17 @@ const routes = [
     path: "/register",
     name: "register",
     component: () =>
-      import(/* webpackChunkName: "register" */ "../views/RegisterForm"),
+      import(/* webpackChunkName: "register" */ "../views/Authentication/RegisterForm"),
   },
   {
     path: "/about-us",
     name: "about-us",
-    component: () => import( '../views/AboutUS'),
+    component: About,
   },
   {
     path: "/homepage",
     name: "homepage",
-    component: () =>import( "../views/HomePage.vue"),
+    component: Homepage,
   },
   {
     path: "/packages",
@@ -110,7 +112,7 @@ const routes = [
   {
     path: "/forgotPassword",
     name: "forgotPassword",
-    component: () => import( "../views/ForgotPassword.vue"),
+    component: () => import( "../views/Authentication/ForgotPassword.vue"),
   },
 ]
    

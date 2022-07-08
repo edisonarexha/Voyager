@@ -26,7 +26,7 @@
               that next great getaway. We understand that the more we travel,
               the more we enrich our lives.
             </p>
-            <button class="top-left__button">Contact US</button>
+            <button @click="goToContact()" class="top-left__button">Contact US</button>
           </div>
         </div>
         <div class="top-main-right">
@@ -119,8 +119,8 @@
 </template>
 
 <script>
-import HeaderView from "../views/Header.vue";
-import FooterView from "../views/Footer.vue";
+import HeaderView from "../Header.vue";
+import FooterView from "../Footer.vue";
 import SoonPackages from "./SoonPackages.vue";
 export default {
   components: {
@@ -128,6 +128,11 @@ export default {
     FooterView,
     SoonPackages,
   },
+  methods:{
+    goToContact(){
+      this.$router.push('contact')
+    }
+  }
 };
 </script>
 
@@ -170,8 +175,9 @@ export default {
   margin-top: 15px;
   font-family: "Anek Latin", sans-serif;
   line-height: 35px;
-  word-spacing: 1px;
+  word-spacing: 2px;
   font-size: 18px;
+  font-weight:550;
 }
 
 .top-left__first-paragraph {
@@ -188,7 +194,7 @@ export default {
   height: 100%;
 }
 .top-left__button {
-  width: 160px;
+  width: 150px;
   height: 65px;
   background-image: linear-gradient(
     to right,
@@ -203,12 +209,13 @@ export default {
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
+  color: rgb(255, 255, 255);
   box-shadow: 0 0 20px #eee;
   border: none;
   border-radius: 10px;
   display: block;
   font-size: 19px;
+  font-weight:600;
 }
 
 .top-left__button:hover {
@@ -232,6 +239,7 @@ export default {
   word-spacing: 1px;
   font-size: 18px;
   line-height: 30px;
+  font-weight:600;
 }
 
 .top__div h1 {
@@ -289,17 +297,17 @@ export default {
 }
 
 .member__post{
-   font-size:20px;
+   font-size:17px;
   margin:0;
   font-family: 'Open Sans';
 
   font-weight: 500;
 }
 .member__description{
-    font-size:16px;
+    font-size:14px;
   margin:0;
   font-family: 'Open Sans';
-  font-weight: 500;
+  font-weight: 300;
 }
 .member__social{
   height:15%;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main__div">
-      <img class="login__image img-responsive" src="../assets/view.png" />
+      <img class="login__image img-responsive" src="../../assets/view.png" />
       <div class="angle"></div>
       <div class="login__form">
         <b-form class="inside__form" @submit.prevent="loginUser">
@@ -48,7 +48,7 @@
             >Login</b-button
           >
           <b-button class="mt-3" style="height: 50px" variant="dark" @click="socialLogin">
-            <img src="../assets/googleIcon.svg" />
+            <img src="../../assets/googleIcon.svg" />
             <span style="margin-left: 5px" class="google-text__button"
               >Or sign-in with google</span
             ></b-button
@@ -65,8 +65,8 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword, signInWithPopup,GoogleAuthProvider } from "firebase/auth";
-import { getAllUsers } from "../sdk/users";
-import {createUser} from '../sdk/users'
+import { getAllUsers } from "../../sdk/users";
+import {createUser} from '../../sdk/users'
 
 export default {
   data() {
