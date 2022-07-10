@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using VoyagerSQLAPI.Data;
+using VoyagerSQLAPI.Models.TeamMembers;
+
+namespace VoyagerSQLAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TeamMembersDatasController : ControllerBase
+    {
+        private readonly VoyagerDbContext _context;
+
+        public TeamMembersDatasController(VoyagerDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/TeamMembersDatas
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TeamMembersData>>> GetteamMembers()
+        {
+          if (_context.teamMembers == null)
+          {
+              return NotFound();
+          }
+            return await _context.teamMembers.ToListAsync();
+        }
+
+        // GET: api/TeamMembersDatas/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TeamMembersData>> GetTeamMembersData(int id)
+        {
+          if (_context.teamMembers == null)
+          {
+              return NotFound();
+          }
+            var teamMembersData = await _context.teamMembers.FindAsync(id);
+
+            if (teamMembersData == null)
+            {
+                return NotFound();
+            }
+
+            return teamMembersData;
+        }
+
+        // PUT: api/TeamMembersDatas/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTeamMembersData(int id, TeamMembersData teamMembersData)
+        {
+            if (id != teamMembersData.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(teamMembersData).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TeamMembersDataExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/TeamMembersDatas
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<TeamMembersData>> PostTeamMembersData(TeamMembersData teamMembersData)
+        {
+          if (_context.teamMembers == null)
+          {
+              return Problem("Entity set 'VoyagerDbContext.teamMembers'  is null.");
+          }
+            _context.teamMembers.Add(teamMembersData);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTeamMembersData", new { id = teamMembersData.Id }, teamMembersData);
+        }
+
+        // DELETE: api/TeamMembersDatas/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTeamMembersData(int id)
+        {
+            if (_context.teamMembers == null)
+            {
+                return NotFound();
+            }
+            var teamMembersData = await _context.teamMembers.FindAsync(id);
+            if (teamMembersData == null)
+            {
+                return NotFound();
+            }
+
+            _context.teamMembers.Remove(teamMembersData);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        //nuk e besoj qe ka me bo ama se duhet me drysghu qet url
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var image = System.IO.File.OpenRead("C:\\test\\random_image.jpeg");
+            return File(image, "image/jpeg");
+        }
+        private bool TeamMembersDataExists(int id)
+        {
+            return (_context.teamMembers?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+    }
+}

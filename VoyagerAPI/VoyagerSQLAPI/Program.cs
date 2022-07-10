@@ -37,6 +37,7 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 app.UseCors(a => a.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseStaticFiles();
+//nese qet qetu error dmth qe nuk keni folder me emrin resources. Krijone
 app.UseStaticFiles(new StaticFileOptions()
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),

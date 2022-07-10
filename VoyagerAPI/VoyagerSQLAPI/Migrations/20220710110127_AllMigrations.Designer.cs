@@ -12,8 +12,8 @@ using VoyagerSQLAPI.Data;
 namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    [Migration("20220621165238_hoteltable")]
-    partial class hoteltable
+    [Migration("20220710110127_AllMigrations")]
+    partial class AllMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,7 +93,7 @@ namespace VoyagerSQLAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoomId")
+                    b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("HotelId");
@@ -121,38 +121,33 @@ namespace VoyagerSQLAPI.Migrations
                     b.ToTable("hotelrooms");
                 });
 
-            modelBuilder.Entity("VoyagerSQLAPI.Models.Packgages.PackageDetails", b =>
+            modelBuilder.Entity("VoyagerSQLAPI.Models.TeamMembers.TeamMembersData", b =>
                 {
-                    b.Property<string>("PackageId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("Destination")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("JobDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Details")
+                    b.Property<string>("JobName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PackageName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PackagePrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.Property<int>("TripId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PackageId");
-
-                    b.ToTable("PackagesDetails");
+                    b.ToTable("teamMembers");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.Tickets.Destination", b =>
