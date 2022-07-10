@@ -52,7 +52,7 @@ const routes = [
   {
     path: "/details",
     name: "details",
-    component: () => import( "../views/DetailsView.vue"),
+    component: () => import( "../views/HotelDetails.vue"),
   },
   {
     path: "/dashboard-layout",

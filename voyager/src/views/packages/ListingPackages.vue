@@ -1,9 +1,11 @@
 <template>
+<div>
+    <HeaderView />
   <div class="main__div">
     <div class="all__packages">
-      <div class="div__single-package">
+       <div class="div__single-package">
         <div class="div-package__image">
-          <img class="package__image" src="../../assets/view.png" />
+          <img class="package__image" src="../../assets/honeyMoonPack.png" />
         </div>
         <div class="details">
           <div class="div__first-details">
@@ -11,7 +13,7 @@
             <p>17 days ago</p>
           </div>
           <div class="div__second-details">
-            <h4 class="second-details__h3">Family Pack</h4>
+            <h4 class="second-details__h3">HoneyMoon Pack</h4>
             <p class="second-details__p">
               This is the second part of the SMM starter pack series of
               articles. If you made it this far, you must be willing to learn
@@ -20,7 +22,7 @@
           </div>
           <div class="div__last-details">
               <a style="font-weight:600;" href="#">Voyager</a>
-              <a style="font-weight:400, Regular" href="#">Claim this &#x2192;</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
               </div>
         </div>
       </div>
@@ -44,7 +46,7 @@
           </div>
           <div class="div__last-details">
               <a style="font-weight:600;" href="#">Voyager</a>
-              <a style="font-weight:400, Regular" href="#">Claim this &#x2192;</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
               </div>
         </div>
       </div>
@@ -68,7 +70,7 @@
           </div>
           <div class="div__last-details">
               <a style="font-weight:600;" href="#">Voyager</a>
-              <a style="font-weight:400, Regular" href="#">Claim this &#x2192;</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
               </div>
         </div>
       </div>
@@ -92,21 +94,122 @@
           </div>
           <div class="div__last-details">
               <a style="font-weight:600;" href="#">Voyager</a>
-              <a style="font-weight:400, Regular" href="#">Claim this &#x2192;</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
+              </div>
+        </div>
+      </div>
+
+        <div class="div__single-package">
+        <div class="div-package__image">
+          <img class="package__image" src="../../assets/honeyMoonPack.png" />
+        </div>
+        <div class="details">
+          <div class="div__first-details">
+            <p>Travel Packages</p>
+            <p>17 days ago</p>
+          </div>
+          <div class="div__second-details">
+            <h4 class="second-details__h3">HoneyMoon Pack</h4>
+            <p class="second-details__p">
+              This is the second part of the SMM starter pack series of
+              articles. If you made it this far, you must be willing to learn
+              about promoting business through social media.
+            </p>
+          </div>
+          <div class="div__last-details">
+              <a style="font-weight:600;" href="#">Voyager</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
+              </div>
+        </div>
+      </div>
+
+        <div class="div__single-package">
+        <div class="div-package__image">
+          <img class="package__image" src="../../assets/honeyMoonPack.png" />
+        </div>
+        <div class="details">
+          <div class="div__first-details">
+            <p>Travel Packages</p>
+            <p>17 days ago</p>
+          </div>
+          <div class="div__second-details">
+            <h4 class="second-details__h3">HoneyMoon Pack</h4>
+            <p class="second-details__p">
+              This is the second part of the SMM starter pack series of
+              articles. If you made it this far, you must be willing to learn
+              about promoting business through social media.
+            </p>
+          </div>
+          <div class="div__last-details">
+              <a style="font-weight:600;" href="#">Voyager</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
+              </div>
+        </div>
+      </div>
+
+        <div class="div__single-package">
+        <div class="div-package__image">
+          <img class="package__image" src="../../assets/honeyMoonPack.png" />
+        </div>
+        <div class="details">
+          <div class="div__first-details">
+            <p>Travel Packages</p>
+            <p>17 days ago</p>
+          </div>
+          <div class="div__second-details">
+            <h4 class="second-details__h3">HoneyMoon Pack</h4>
+            <p class="second-details__p">
+              This is the second part of the SMM starter pack series of
+              articles. If you made it this far, you must be willing to learn
+              about promoting business through social media.
+            </p>
+          </div>
+          <div class="div__last-details">
+              <a style="font-weight:600;" href="#">Voyager</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
+              </div>
+        </div>
+      </div>
+
+       <div class="div__single-package">
+        <div class="div-package__image">
+          <img class="package__image" src="../../assets/honeyMoonPack.png" />
+        </div>
+        <div class="details">
+          <div class="div__first-details">
+            <p>Travel Packages</p>
+            <p>17 days ago</p>
+          </div>
+          <div class="div__second-details">
+            <h4 class="second-details__h3">HoneyMoon Pack</h4>
+            <p class="second-details__p">
+              This is the second part of the SMM starter pack series of
+              articles. If you made it this far, you must be willing to learn
+              about promoting business through social media.
+            </p>
+          </div>
+          <div class="div__last-details">
+              <a style="font-weight:600;" href="#">Voyager</a>
+              <a style="font-weight:400, Regular" href="/singlePackage">Claim this &#x2192;</a>
               </div>
         </div>
       </div>
 
       
     </div>
-    <div class="div-button__skip">
-      <b-button @click="redirectToHomePage" class="button__skip">Skip...</b-button>
-    </div>
   </div>
+    <FooterView/>
+    </div>
 </template>
 
 <script>
+import HeaderView from '../../views/Header.vue'
+import FooterView from "../../views/Footer.vue";
 export default {
+  components:{
+    HeaderView,
+    FooterView,
+  },
   methods:{
     redirectToHomePage(){
       this.$router.push('/homepage')
@@ -122,19 +225,22 @@ export default {
 }
 html,
 body {
+  background-color: rgb(236, 236, 236);
   margin: 0;
 }
+
 .main__div {
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   background-color: rgb(236, 236, 236)
 }
 
 .all__packages {
   width: 100%;
-  height: 85%;
+  height: fit-content;
   display: flex;
   flex-direction: row;
+  flex-wrap:wrap;
   justify-content: space-evenly;
   align-items: center;
   /* border: 1px solid red; */
@@ -143,8 +249,10 @@ body {
 .div__single-package {
   border-radius: 15px;
   width: 21%;
-  height: 67%;
+  height: 450px;
   background-color: white;
+  margin-top:3%;
+  margin-bottom:2%;
 }
 .package__image {
   height: 100%;
@@ -152,20 +260,6 @@ body {
   object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-}
-.div-button__skip {
-  width: 95%;
-  display: flex;
-  justify-content: flex-end;
-}
-.button__skip {
-  background: #6e41e2;
-  border: none;
-  width: 80px;
-}
-
-.button__skip:hover {
-  background: #4e17da;
 }
 .div-package__image {
   width: 100%;

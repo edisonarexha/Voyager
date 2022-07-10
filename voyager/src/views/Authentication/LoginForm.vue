@@ -144,8 +144,7 @@ export default {
         this.$router.replace("/homepage");
           }
       } catch (err) {
-        console.log(err.message)
-        this.errors.general = err.message;
+        this.errors.general = err.message[0];
       }
     },
     checkError() {

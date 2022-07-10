@@ -132,7 +132,7 @@ export default {
         });
         await this.createUserData()
         await this.loginUser()
-          this.$router.push('/packages')
+          this.$router.push('/homepage')
         }
       } catch(error){
         this.errors.general = error.message

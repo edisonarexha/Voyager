@@ -12,7 +12,7 @@
           </p>
           <p>© 2022 Voyager, All rights reserved</p>
         </div>
-        <div class="col-md-4 footer-nav animated fadeInUp" style="display:flex">
+        <div class="col-md-4 footer-nav animated fadeInUp" style="display:flex; justify-content:space-between;">
           <div class="col-md-6">
           <h4>Menu —</h4>
             <ul class="pages">
@@ -201,6 +201,12 @@ export default {
   font-family:'Open Sans';
 }
 
+
+@media only screen and (max-width: 800px) {
+.container {
+  display: none;
+}
+}
 .container {
   position: absolute;
   margin: auto;
