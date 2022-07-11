@@ -2,6 +2,7 @@ const state = () => ({
     user: {
       loggedIn: false,
       data: null,
+      claims: null,
     },
   });
   
@@ -13,11 +14,15 @@ const state = () => ({
       state.user.data = userData;
       localStorage.setItem('userData', JSON.stringify(userData))
     },
+    SET_USER_CLAIMS(state, userClaims) {
+      state.claims = userClaims;
+    },
   };
   
   const actions = {
-    fetchUser({ commit }, user) {
+    fetchUser({ commit }, {user, claims}) {
       commit("SET_USER", user ? user : null);
+      commit("SET_USER_CLAIMS", user ? claims : null);
       commit("SET_LOGGED_IN", user !== null);
     },
   };
@@ -25,6 +30,9 @@ const state = () => ({
   const getters = {
     user(state) {
       return state.user;
+    },
+    claims(state) {
+      return state.claims;
     },
   };
   

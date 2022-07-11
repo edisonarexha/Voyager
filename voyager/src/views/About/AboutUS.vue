@@ -318,4 +318,72 @@ export default {
   align-items:center;
   /* outline:1px solid red; */
 }
+
+@media only screen and (max-width: 800px) {
+
+  .main{
+    width:100%;
+    height:fit-content;
+  }
+
+  .top-main{
+    width:100%;
+
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top-left__button{
+    margin:0 auto;
+  }
+
+  .top-left__first-paragraph{
+    margin:0 auto;
+  }
+
+  .top-main-left{
+    width:100%;
+    height:fit-content;
+    text-align: center;
+  }
+
+.second__main{
+  width:100%;
+  height:fit-content;
+  margin-top:10px;
+  margin-bottom:10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.single__member{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.team__div{
+  height:fit-content;
+}
+
+.single__member-details{
+  margin-top:15px;
+}
+
+.member__post{
+  margin-top:15px;
+}
+
+.member__description{
+  margin-top:15px;
+}
+.member__social{
+  width:100%;
+  display:flex;
+  justify-content: space-evenly;
+  margin-top:15px;
+}
+
+}
 </style>

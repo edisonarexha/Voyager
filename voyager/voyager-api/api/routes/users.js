@@ -1,14 +1,13 @@
 import express from "express";
 import userController from "../controllers/users";
-import checkIfAdmin from "../middlewares/checkIfAdmin";
+import checkIfAuthenticated from "../middlewares/checkIfAuthenticated";
 
-const userRouter = express.Router({
-  mergeParams: true,
-});
+const userRouter = express.Router();
 
 userRouter.post("/register", userController.register);
 
-userRouter.use(checkIfAdmin);
+userRouter.use(checkIfAuthenticated);
+
 
 
 export default userRouter;

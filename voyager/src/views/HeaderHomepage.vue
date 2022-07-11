@@ -13,7 +13,9 @@
     {{user ? user.data.email : null}}<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
   <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item v-if="checkIfAdmin" @click.native="goToDashboard()">Dashboard</el-dropdown-item>
+    <el-dropdown-item   v-if="
+            this.$store.state.user.claims && this.$store.state.user.claims.admin
+          " @click.native="goToDashboard()">Dashboard</el-dropdown-item>
     <el-dropdown-item v-if="!checkIfAdmin" divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
     <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
   </el-dropdown-menu>
@@ -54,6 +56,7 @@ export default {
     computed: {
     ...mapGetters({
       user: "user",
+      claims: "claims",
     }),
     checkIfAdmin(){
       if(this.user && this.user.data.email.includes("admin")) return true
@@ -247,5 +250,45 @@ export default {
     border-radius:15px;
 }
 
+
+@media only screen and (max-width: 800px) {
+
+.header__top-links{
+  display:flex;
+  flex-direction: column;
+  margin-top:20px;
+}
+
+.bottom__header-top-text{
+  height:fit-content;
+}
+
+.middle__header{
+  height:fit-content;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top:40px;
+}
+.bottom__header{
+  height:fit-content;
+  position:relative;
+}
+
+.bottom__header-bottom-inputs{
+  display:flex;
+  flex-direction: column;
+}
+
+.bottom__header-bottom-inputs input{
+  width:100%;
+}
+.inputs__button{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+}
+}
 
 </style>

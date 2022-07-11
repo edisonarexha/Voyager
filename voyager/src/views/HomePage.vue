@@ -327,5 +327,52 @@ export default {
   /* background-blend-mode: overlay; */
 }
 
+@media only screen and (max-width: 800px) {
+.destinations__text{
+  width:100%;
+  }
+
+.main__destinations{
+    width:100%;
+    height:fit-content;
+  }
+
+.all__destinations{
+  display:flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  height:fit-content;
+}
+
+.single__destination__london,.single__destination__paris,.single__destination__seoul,.single__destination__tokyo{
+  width:45%;
+  margin-top:5px;
+}
+
+
+.single__hotel{
+  width:100%;
+  height:fit-content;
+  margin-top:100px;  
+  display:flex;
+  flex-direction: column;
+  margin-bottom:10px;
+}
+.single__hotel-pic{
+  width:100%;
+  height:100%;
+  border-radius:0;
+}
+
+.single__hotel-pic img{
+  width:100%;
+  height:100%;
+  border:none;
+  border-top-left-radius:0px;
+  border-bottom-left-radius: 0px;
+}
+
+}
+
 
 </style>
