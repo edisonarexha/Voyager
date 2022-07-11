@@ -10,13 +10,21 @@
         
         <div class="left__div">
 
-        <h2 class="left__div__h2">Prince Hotel VIP Line Booking</h2>
-        <p class="left__div__p">  Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 
-      1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-      and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-       Lorem Ipsum is simply dummy text of the printing and typesetting industry.  </p> 
-           <b-button class="left__div__button">Claim this</b-button>
+        <h2 class="left__div__h2">{{list.hotelName}}</h2>
+        <p class="left__div__p"> {{list.hotelDesc}} </p> 
+       <stripe-checkout
+       ref = "checkoutRef"
+       mode="payment"
+       :pk="publishableKey"
+       :line-items="lineItems"
+       :success-url="successURL"
+       :cancel-url="cancelUrl"
+       @loading ="v => loading=v"
+       
+       >
+        
+       </stripe-checkout>
+           <b-button class="left__div__button" @click="submit"> Claim this</b-button>
           </div>
 
 
@@ -69,13 +77,32 @@
 
 
           </div>
-
-
+<!-- <br/>
+      <div v-for="item in datasources" v-bind:key="item.Id" >
+      <div class="hotel_details_right row">
+        <div class="hotel_details_picture col-md-2">
+            imghere
+        </div>
+        <div class="hotel_details col-md-10">
+          <div class="row">
+          
+          <p class="titlefont">
+                    {{item.hotelName}}
+                  </p>
+           
+          </div>
+      
+        </div>
+     
+        </div>
+       </div>
           </div>
         
 
       </div>
-
+       -->
+       </div>
+       </div>
     </div>
 
     <FooterView class="mt-3"/>
@@ -85,26 +112,104 @@
 <script>
 import HeaderView from "./Header.vue";
 import FooterView from "./Footer.vue";
+import {StripeCheckout} from '@vue-stripe/vue-stripe'
+import Vue from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+Vue.use(VueAxios,axios)
 export default {
   components: {
     HeaderView,
     FooterView,
+    StripeCheckout
+  },
+  mounted(){
+    this.$route.params.id;
+    console.log(this.$route.params.id);
+        Vue.axios.get('https://localhost:44377/api/HotelDatas/'+ this.$route.params.id).then((resp)=>{
+        this.list=resp.data;
+        
+         console.log('test', resp.data)
+    });
+
+    Vue.axios.post('https://localhost:44377/api/hoteldetailsAPI/').then((datasource)=>{
+      this.datasources=datasource.data
+       console.log('datasource', datasource.data)
+    });
+    
+
   },
   data(){
+    // this.publishableKey="pk_test_51LJzV4ICtllJLqls31DllGAWtoYUiMLk2JIDBe42CZIi7OXit6dpEyNz9EFcgBVvo0XcqzdghKkKOOFfYqeI9Jtz00jk35XT00"
     return{
-      checkIn:'',
-      checkOut:'',
-       datePickerOptions: {
-      disabledDate (date) {
-        return date < new Date()
-      }
-    },
+      datasources:undefined,
+      list:undefined,
+      // loading:false,
+      // lineItems:[
+      //   {
+      //     price:'price_1LJzcyICtllJLqlsjWcoKQdF',
+      //     quantity:1
+      //   }
+      // ],
+   
+      // sucessURL:'http://localhost:8080/successPay',
+      // cancelURL:'http://localhost:8080/errorPay',
+      // checkIn:'',
+      // checkOut:'',
+    //    datePickerOptions: {
+    //   disabledDate (date) {
+    //     return date < new Date()
+    //   }
+    // },
+    }
+  },
+  methods:{
+    submit(){
+  
+      // console.log( " test " +this.$router.push({name:"checkout"}));
+      // this.$router.push({ name: "checkout"})
+        this.responseAvailable=false;
+        
+        fetch("https://localhost:44377/api/HotelDatas",{
+          "method":"GET",
+          
+        }).then(response=>{
+          if(response.ok){
+            return response.json();
+          }else{
+            alert("Server returned " + response.status + " : " + response.statusText);
+          }
+        }).then(response=>{
+          this.result= response.body;
+          this.responseAvailable = true;
+        }).catch(err => {
+    console.log(err);
+});
+     
+
     }
   }
+
 };
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+.titlefont{
+  padding:20px;
+ font-family: 'Open Sans', sans-serif;
+ font-weight:600
+}
+.hotel_details_right{
+  height: 100px;
+  
+  border-radius: 20px;
+  width:90%;
+  float: right;
+    margin-right: 26px;
+
+}
 .el-dropdown-link {
     cursor: pointer;
     color: #6b7280;

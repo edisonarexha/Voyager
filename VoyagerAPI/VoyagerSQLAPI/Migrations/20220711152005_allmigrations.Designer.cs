@@ -12,8 +12,8 @@ using VoyagerSQLAPI.Data;
 namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    [Migration("20220710110127_AllMigrations")]
-    partial class AllMigrations
+    [Migration("20220711152005_allmigrations")]
+    partial class allmigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,9 +85,19 @@ namespace VoyagerSQLAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HotelDesc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HotelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HotelPrice")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("InsertedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -99,6 +109,41 @@ namespace VoyagerSQLAPI.Migrations
                     b.HasKey("HotelId");
 
                     b.ToTable("hotelDatas");
+                });
+
+            modelBuilder.Entity("VoyagerSQLAPI.Models.Hotel.HotelDetailsProc.HotelDetailsProc_Out", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelDesc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("InsertedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HotelId");
+
+                    b.ToTable("hotelproc");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.Hotel.HotelRooms", b =>
@@ -119,6 +164,39 @@ namespace VoyagerSQLAPI.Migrations
                     b.HasKey("RoomsId");
 
                     b.ToTable("hotelrooms");
+                });
+
+            modelBuilder.Entity("VoyagerSQLAPI.Models.Packages.PackagesData", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("PackageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("int");
+
+                    b.Property<int>("flightId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("hotelid")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("insertedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("packagesDatas");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.TeamMembers.TeamMembersData", b =>

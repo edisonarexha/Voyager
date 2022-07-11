@@ -29,7 +29,8 @@ namespace VoyagerSQLAPI.Controllers
           {
               return NotFound();
           }
-            return await _context.hotelDatas.ToListAsync();
+            return await _context.hotelDatas.OrderByDescending(x => x.HotelId).ToListAsync();
+            //return await _context.hotelDatas.ToListAsync();
         }
 
         // GET: api/HotelDatas/5

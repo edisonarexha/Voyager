@@ -7,10 +7,13 @@ using VoyagerSQLAPI.Models.Tickets;
 using VoyagerSQLAPI.Models.TripProcedure;
 using VoyagerSQLAPI.Models.AppLogs;
 using VoyagerSQLAPI.Models.TeamMembers;
+using VoyagerSQLAPI.Models.Packages;
+using VoyagerSQLAPI.Models.Hotel.HotelDetailsProc;
+using VoyagerSQLAPI.Models.PaymentGateWay;
 
 namespace VoyagerSQLAPI.Data
 {
-    public class VoyagerDbContext:DbContext
+    public class VoyagerDbContext : DbContext
     {
 
 
@@ -19,7 +22,7 @@ namespace VoyagerSQLAPI.Data
         }
 
         public VoyagerDbContext(DbContextOptions<VoyagerDbContext> options)
-            : base(options) { 
+            : base(options) {
         }
         public DbSet<HotelRooms> hotelrooms { get; set; }
         public DbSet<HotelDatas> hotelDatas { get; set; }
@@ -30,8 +33,12 @@ namespace VoyagerSQLAPI.Data
         public DbSet<Destination> destination { get; set; }
         public DbSet<FlightData> FlightsDatas { get; set; }
         public DbSet<VoyagerSQLAPI.Models.TripProcedure.outputTrip>? outputTrip { get; set; }
-     
+
         public DbSet<AppLogsData> appLogs { get; set; }
         public DbSet<TeamMembersData> teamMembers { get; set; }
+        public DbSet<PackagesData> packagesDatas { get; set; }
+        public DbSet<HotelDetailsProc_Out> hotelproc { get; set; }
+        public DbSet<PaymentDetails> paymentdata { get; set; }
+        public DbSet<SuccessPaymentGateAway> paymentSucc {get;set;}
     }
 }

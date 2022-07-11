@@ -32,41 +32,39 @@
             </div>
         </div>
       </div>
-
-      <div class="single__hotel mt-5">
+    <div v-for="item in list" v-bind:key="item.Id" >
+      <div class="single__hotel mt-5" >
         <div class="single__hotel-pic">
           <img src="@/assets/HomeRoom.jpg" />
         </div>
 
         <div class="single__hotel-details">
           <div class="single__hotel-top-details">
-            <p class="city__hotel">LONDON</p>
+            <!-- LONDON -->
+            <p class="city__hotel">{{item.location}} {{item.address}}</p> 
             <p>3 Days Ago</p>
           </div>
           <div class="single__hotel-middle-details">
-            <h3>Prince Hotel VIP Line Booking</h3>
+            <h3>{{item.hotelName}}</h3>
             <p>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. " Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. " Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. " Ut enim ad minim veniam, quis nostrud exercitation
-              ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+             {{item.hotelDesc}}
             </p>
           </div>
 
           <div class="single__hotel-bottom-details">
             <p class="bottom__details-hotel">Hotel Prince</p>
-            <p @click="goToHotel()" class="bottom__details-book">
+            <p @click="goToHotel(item.hotelId)" class="bottom__details-book">
               Book Now<i class="el-icon-right"></i>
             </p>
           </div>
         </div>
       </div>
-
+      </div>
+<!-- <div v-for="item in list" v-bind:key="item.Id">
+<p style="font-weight:bolder">
+  {{item.hotelName}}
+</p>
+</div> -->
     </div>
     <FooterView class="mt-5" />
   </div>
@@ -75,14 +73,33 @@
 <script>
 import HeaderTest from '../views/HeaderHomepage.vue'
 import FooterView from "../views/Footer.vue";
+import Vue from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+Vue.use(VueAxios,axios)
 export default {
   components: {
     HeaderTest,
     FooterView,
   },
+  name:"HomePage",
+  data()
+  {
+    return {
+      list:undefined
+      }
+  },
+  mounted(){
+      Vue.axios.get('https://localhost:44377/api/HotelDatas').then((resp)=>{
+        this.list=resp.data;
+        // console.warn(resp.data);
+    })
+  },
   methods: {
-    goToHotel() {
-      this.$router.push("details");
+    goToHotel(id) {
+      alert("id=" + id);
+      this.$router.push({name: 'details', params: { id: id }})
+      //  this.$router.push("details");
     },
   },
 };

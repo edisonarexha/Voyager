@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VoyagerSQLAPI.Data;
 
@@ -11,9 +12,10 @@ using VoyagerSQLAPI.Data;
 namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    partial class VoyagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220710195214_PackagesTable")]
+    partial class PackagesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,9 +93,6 @@ namespace VoyagerSQLAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HotelPrice")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("InsertedDate")
                         .HasColumnType("datetime2");
 
@@ -107,41 +106,6 @@ namespace VoyagerSQLAPI.Migrations
                     b.HasKey("HotelId");
 
                     b.ToTable("hotelDatas");
-                });
-
-            modelBuilder.Entity("VoyagerSQLAPI.Models.Hotel.HotelDetailsProc.HotelDetailsProc_Out", b =>
-                {
-                    b.Property<int>("HotelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HotelDesc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HotelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("InsertedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("RoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HotelId");
-
-                    b.ToTable("hotelproc");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.Hotel.HotelRooms", b =>
@@ -195,74 +159,6 @@ namespace VoyagerSQLAPI.Migrations
                     b.HasKey("id");
 
                     b.ToTable("packagesDatas");
-                });
-
-            modelBuilder.Entity("VoyagerSQLAPI.Models.PaymentGateWay.PaymentDetails", b =>
-                {
-                    b.Property<Guid>("paymentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("adminApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("hotelId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("isDone")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("roomid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ticketid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("userid")
-                        .HasColumnType("int");
-
-                    b.HasKey("paymentId");
-
-                    b.ToTable("paymentdata");
-                });
-
-            modelBuilder.Entity("VoyagerSQLAPI.Models.PaymentGateWay.SuccessPaymentGateAway", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("adminApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("hotelid")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("inserteddate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("lastname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("paymentSucc");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.TeamMembers.TeamMembersData", b =>

@@ -176,6 +176,23 @@ const routes = [
     path :'*',
     component:NotFound
 }
+    {
+      path: "/successPay",
+      name: "successPay",
+      component:  () => import( "../views/CheckOut/SuccessPay.vue"),
+
+    },
+    {
+      path: "/errorPay",
+      name: "errorPay",
+      component: () => import( "../views/CheckOut/ErrorPay.vue"),
+    },
+    {
+      path: "/checkout",
+      name: "checkout",
+      component:  () => import( "../views/CheckOut/checkOut.vue"),
+
+    },
 ]
    
 
