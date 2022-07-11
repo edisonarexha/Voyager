@@ -12,6 +12,10 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-onAuthStateChanged(getAuth(), (user) => {
-  store.dispatch("fetchUser", user);
+onAuthStateChanged(getAuth(), async (user) => {
+  const tokenResult = user
+    ? await getAuth().currentUser.getIdTokenResult()
+    : { claims: null };
+
+  store.dispatch("fetchUser", { user, claims: tokenResult.claims });
 });

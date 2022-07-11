@@ -8,7 +8,9 @@
   </span>
   <el-dropdown-menu slot="dropdown">
     <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
-    <el-dropdown-item v-if="checkIfAdmin" @click.native="goToDashboard()">Dashboard</el-dropdown-item>
+    <el-dropdown-item   v-if="
+            this.$store.state.user.claims && this.$store.state.user.claims.admin
+          " @click.native="goToDashboard()">Dashboard</el-dropdown-item>
     <el-dropdown-item divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
@@ -54,6 +56,7 @@ export default {
     computed: {
     ...mapGetters({
       user: "user",
+      claims: "claims",
     }),
     checkIfAdmin(){
       if(this.user && this.user.data.email.includes("admin")) return true
