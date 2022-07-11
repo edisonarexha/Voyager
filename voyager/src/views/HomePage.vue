@@ -6,7 +6,7 @@
 
     <div class="main mt-5">
      
-      <div class="main__destinations mt-5">
+      <div class="main__destinations mt-5" style="">
         <div class="destinations__text">
         <h2>Popular Destinations</h2>
             <p>Best Travel Destinations</p>
@@ -320,7 +320,9 @@ export default {
   /* outline: 1px solid blue; */
   background: black;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../assets/background.jpg");
+    url("../assets/sant.avif");
+    background-repeat: no-repeat;
+    background-size: cover;
   opacity: 0.9;
   /* background-blend-mode: overlay; */
 }

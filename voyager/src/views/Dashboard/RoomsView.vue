@@ -4,9 +4,15 @@
       <div class="form-max-width">
           <h4>Voyager Dashboard</h4>
     <div class="header">
-      <h5>Room Table</h5>
+     <div class="flexed" style="gap:1050px">
+            <h6 style="font-size: 20px">Rooms</h6>
+            <el-button type="primary" @click="dialogFormVisible = true"
+              >Add a Room</el-button
+            >
+          </div>
     </div>
-    <div class="third-container">
+    <div class="flexed">
+      <div class="third-container">
       <div class="report-table">
       <div class="flexed">
         <div>
@@ -27,8 +33,69 @@
       </el-table>
     </div>
     </div>
-      </div>
+    <div>
+  <apex-chart width="500" type="area" :options="options" :series="series"></apex-chart>
+</div>
+    </div>
     
+      </div>
+    <div>
+        <el-dialog :visible.sync="dialogFormVisible">
+          <el-form :model="form">
+            <div class="flexed">
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Hotel Name"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Place"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <div class="flexed">
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Price"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Date"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <el-form-item :label-width="formLabelWidth">
+              <el-input
+                v-model="form.name"
+                autocomplete="off"
+                placeholder="Description"
+                type="textarea"
+                class="input"
+                rows="5"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogFormVisible = false"
+              >Add</el-button
+            >
+          </span>
+        </el-dialog>
+      </div>
   </div>
 </template>
 
@@ -38,6 +105,37 @@ export default {
   components: { SideBar },
 data(){
   return{
+    dialogFormVisible: false,
+    options: {
+        chart: {
+          id: 'vuechart-example',
+          height: 350,
+          type: 'area'
+        },
+        // xaxis: {
+        //   categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+        // },
+        stroke: {
+          curve: 'smooth'
+        },
+        dataLabels: {
+          enabled: false
+        },
+      },
+      series: [{
+        name: 'series-1',
+        data: [30, 40, 45, 50, 49, 60, 70, 91]
+      }],
+    form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
+      },
     tableDashboard: [
         {
           
@@ -117,5 +215,11 @@ data(){
 .bold{
   font-weight: bold;
   color: black;
+}
+.flexed {
+  display: flex;
+}
+.justify-between{
+  justify-content: space-between;
 }
 </style>

@@ -85,7 +85,7 @@
   }
 }
 .sidebar{
-  width: 20%;
+  width: 16%;
   /* height: 100%; */
 background-color: #363740;
 color: white;

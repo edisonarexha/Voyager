@@ -117,12 +117,12 @@ namespace VoyagerSQLAPI.Controllers
         }
 
         //nuk e besoj qe ka me bo ama se duhet me drysghu qet url
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var image = System.IO.File.OpenRead("C:\\test\\random_image.jpeg");
-            return File(image, "image/jpeg");
-        }
+       // [HttpGet]
+       // public IActionResult Get()
+       // {
+       //     var image = System.IO.File.OpenRead("C:\\test\\random_image.jpeg");
+       //     return File(image, "image/jpeg");
+       // }
         private bool TeamMembersDataExists(int id)
         {
             return (_context.teamMembers?.Any(e => e.Id == id)).GetValueOrDefault();

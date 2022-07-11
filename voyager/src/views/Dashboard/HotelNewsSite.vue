@@ -4,65 +4,91 @@
     <div class="form-max-width">
       <h4>Voyager Dashboard</h4>
       <div class="third-container">
-      <div class="report-table">
-        <div class="flexed">
-          <h6 style="font-size: 20px">Trips</h6>
-          <el-button type="primary" @click="dialogFormVisible=true">Add a Trip</el-button>
-        </div>
-        <el-table
-          ref="multipleTable"
-          :data="tableData"
-          style="width: 950px"
-          @selection-change="handleSelectionChange"
-        >
-          <el-table-column type="selection" width="55"> </el-table-column>
-          <el-table-column width="120">
-            <template slot-scope="scope">{{ scope.row.date }}</template>
-          </el-table-column>
-          <el-table-column property="name" width="120"> </el-table-column>
-          <el-table-column property="address" show-overflow-tooltip>
-          </el-table-column>
-          <el-table-column property="address" show-overflow-tooltip>
-          </el-table-column>
-          <el-table-column property="address" show-overflow-tooltip>
-          </el-table-column>
-        </el-table>
-        <div style="margin-top: 20px">
-          <el-button @click="toggleSelection()">Clear selection</el-button>
+        <div class="report-table">
+          <div class="flexed justify-between">
+            <h6 style="font-size: 20px">Hotels</h6>
+            <el-button type="primary" @click="dialogFormVisible = true"
+              >Add a Hotel</el-button
+            >
+          </div>
+          <el-table
+            ref="multipleTable"
+            :data="tableData"
+            style="width: 950px"
+          >
+            <el-table-column width="120">
+              <template slot-scope="scope">{{ scope.row.date }}</template>
+            </el-table-column>
+            <el-table-column property="name" width="120"> </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip>
+            </el-table-column>
+          </el-table>
+          <div style="margin-top: 20px">
+            <el-button @click="toggleSelection()">Clear selection</el-button>
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-      <el-dialog :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-          <div class="flexed">
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Trip Name" class="input"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Place" class="input"></el-input>
-          </el-form-item>
-          </div>
-          <div class="flexed">
+      <div>
+        <el-dialog :visible.sync="dialogFormVisible">
+          <el-form :model="form">
+            <div class="flexed">
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Hotel Name"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Place"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <div class="flexed">
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Price"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  v-model="form.name"
+                  autocomplete="off"
+                  placeholder="Date"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+            </div>
             <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Price" class="input"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Date" class="input"></el-input>
-          </el-form-item>
-          </div>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
-          </el-form-item>
-          
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogFormVisible = false"
-            >Add</el-button
-          >
-        </span>
-      </el-dialog>
-    </div>
+              <el-input
+                v-model="form.name"
+                autocomplete="off"
+                placeholder="Description"
+                type="textarea"
+                class="input"
+                rows="5"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogFormVisible = false"
+              >Add</el-button
+            >
+          </span>
+        </el-dialog>
+      </div>
       <!-- <div style="max-height: 400px">
         <el-form
           :model="ruleForm"
@@ -133,17 +159,17 @@ export default {
   data() {
     return {
       dialogFormVisible: false,
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        // formLabelWidth: '120px',
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
+      },
+      // formLabelWidth: '120px',
       tableData: [
         {
           date: "2016-05-03",
@@ -183,7 +209,7 @@ export default {
       ],
       multipleSelection: [],
       value1: "",
-      imageUrl: '',
+      imageUrl: "",
       ruleForm: {
         name: "",
         region: "",
@@ -271,21 +297,21 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-     handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-      },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === "image/jpeg";
+      const isLt2M = file.size / 1024 / 1024 < 2;
 
-        if (!isJPG) {
-          this.$message.error('Avatar picture must be JPG format!');
-        }
-        if (!isLt2M) {
-          this.$message.error('Avatar picture size can not exceed 2MB!');
-        }
-        return isJPG && isLt2M;
+      if (!isJPG) {
+        this.$message.error("Avatar picture must be JPG format!");
       }
+      if (!isLt2M) {
+        this.$message.error("Avatar picture size can not exceed 2MB!");
+      }
+      return isJPG && isLt2M;
+    },
   },
 };
 </script>
@@ -294,31 +320,34 @@ export default {
 .flexed {
   display: flex;
 }
+.justify-between{
+  justify-content: space-between;
+}
 .form-max-width {
   max-width: 80%;
   padding: 20px;
 }
- .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
 </style>

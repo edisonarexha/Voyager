@@ -33,9 +33,6 @@
             </el-table-column>
             <el-table-column prop="spend" label="Date" width="200">
             </el-table-column>
-            <el-table-column prop="clicks" label="Activity" width="200">
-              <div class="activity">High</div>
-            </el-table-column>
           </el-table>
         </div>
       </div>

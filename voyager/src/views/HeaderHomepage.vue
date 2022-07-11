@@ -1,15 +1,21 @@
 <template>
   <div class="main__div">
     <div class="header__top-links">
-      <img @click="goToHome()" src="../assets/logoWhite.png" />
+       <img @click="goToHome()" src="../assets/logoWhite.png"  />
+         <div class="middle__header mt-5">
+             <a href="/homepage">Home </a>
+             <a href="/about-us">About </a>
+             <a href="/contact">Contact </a>
+             <a href="/packages">Packages </a>
+         </div>
        <el-dropdown>
   <span class="el-dropdown-link">
     {{user ? user.data.email : null}}<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
   <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
     <el-dropdown-item v-if="checkIfAdmin" @click.native="goToDashboard()">Dashboard</el-dropdown-item>
-    <el-dropdown-item divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
+    <el-dropdown-item v-if="!checkIfAdmin" divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
+    <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
 
@@ -17,14 +23,8 @@
 
     </div>
 
-    <div class="middle__header mt-5">
-        <a href="/homepage">Home </a>
-        <a href="/about-us">About </a>
-        <a href="/contact">Contact </a>
-        <a href="/packages">Packages </a>
-    </div>
 
-    <div class="bottom__header">
+    <div class="bottom__header" style="top:200px">
         <div class="bottom__header-top-text">
             <h3>Where do you want to go?</h3>
             <p>Fill this form and our manager will contact you</p>
@@ -103,10 +103,11 @@ export default {
     flex-direction: column;
 }
 .header__top-links {
-  width: 75%;
-  height: 120px;
+  width: 100%;
+  height: 80px;
+  padding: 5px;
   /* outline:1px solid green; */
-  margin: 0 auto;
+  // margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -114,8 +115,10 @@ export default {
 }
 
 .header__top-links img {
-  width: 300px;
-  height: 70px;
+  width: 100px;
+  height: 20px;
+  margin-left: 5px;
+  margin-bottom: 5px;
   cursor:pointer;
 }
 
@@ -141,7 +144,7 @@ export default {
 
 .middle__header a:hover{
     text-decoration: none !important;
-    color:#ff4a52;
+    color:rgba(55, 82, 255, 0.575);
 }
 
 .bottom__header{
@@ -204,28 +207,28 @@ export default {
 .icon-rtl {
   padding-right: 35px;
   background: url("@/assets/icons/mbri-search.svg") no-repeat right;
-  background-size: 35px;
+  background-size: 30px;
   background-color:white;
 }
 
 .icon-rtl-month{
     padding-right: 35px;
   background: url("@/assets/icons/mbri-calendar.svg") no-repeat right;
-  background-size: 35px;
+  background-size: 30px;
   background-color:white;
 }
 
 .icon-rtl-range{
     padding-right: 35px;
   background: url("@/assets/icons/mbri-up-down.svg") no-repeat right;
-  background-size: 35px;
+  background-size: 30px;
   background-color:white;
 }
 
 .inputs__button{
     width:22%;
     height:75%;
-  background:#ff4a52;
+  background:rgba(55, 82, 255, 0.575);
   color:white;
     border:none;
     border-radius:45px;
@@ -233,11 +236,11 @@ export default {
 
 
 .el-dropdown-link, .el-dropdown-selfdefine{
-    background:#ff4a52;
+    background:rgba(55, 82, 255, 0.575);
     padding:20px;
     border-radius:20px;
     color:#ececec;
-    font-size:17px;
+    font-size:15px;
 }
 .el-dropdown-menu, .el-popper{
     width:11%;
