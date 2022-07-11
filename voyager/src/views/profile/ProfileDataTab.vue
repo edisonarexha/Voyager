@@ -136,13 +136,20 @@ export default {
 @media only screen and (max-width: 800px) {
   .profile__tab-form {
     width: 100%;
-    height: 50%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin: 0 auto;
     /* border:1px solid red; */
     margin-top: 3%;
+  }
+
+  .main__div{
+    width:95%;
+    margin:0 auto;
+    height:fit-content;
+
   }
 
   /* .profile__tab-form-group{
