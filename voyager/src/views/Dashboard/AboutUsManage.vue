@@ -23,6 +23,33 @@
         </div>
       
       </div>
+      <div class="report-table">
+        <div class="flexed">
+          <h6 style="font-size: 20px">Manage Team Members</h6>
+         <el-button type="primary" @click="teamMembersDialog=true">New</el-button>
+        </div>
+         <el-table
+            ref="multipleTable"
+            :data="tableData"
+            style="width: 950px"
+          >
+            <el-table-column width="120">
+              <template slot-scope="scope">{{ scope.row.date }}</template>
+            </el-table-column>
+            <el-table-column property="name" width="120"> </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="address" show-overflow-tooltip width="80" style="display:flex;gap:10px">
+              <i class="el-icon-edit" style="color:#409EFF"></i>
+              <i class="el-icon-delete" style="color:red"></i>
+            </el-table-column>
+          </el-table>
+      </div>
+      
     </div>
     <div>
       <el-dialog :visible.sync="dialogFormVisible">
@@ -42,6 +69,40 @@
         </span>
       </el-dialog>
     </div>
+    <div>
+      <el-dialog :visible.sync="teamMembersDialog">
+        <el-form :model="form">
+          <el-form-item :label-width="formLabelWidth">
+            <el-input v-model="form.name" autocomplete="off" placeholder="Name" class="input"></el-input>
+          </el-form-item>
+          <el-form-item :label-width="formLabelWidth">
+            <el-input v-model="form.name" autocomplete="off" placeholder="Job Name" class="input"></el-input>
+          </el-form-item>
+          <el-form-item :label-width="formLabelWidth">
+            <el-input v-model="form.name" autocomplete="off" placeholder="Job Description" type="textarea" class="input" rows="5"></el-input>
+          </el-form-item>
+          <el-form-item :label-width="formLabelWidth">
+            <el-upload
+                action="https://jsonplaceholder.typicode.com/posts/"
+                list-type="picture-card"
+                :on-preview="handlePictureCardPreview"
+                :on-remove="handleRemove">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+              <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+              </el-dialog>
+          </el-form-item>
+          
+
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogFormVisible = false"
+            >Done</el-button
+          >
+        </span>
+      </el-dialog>
+    </div>
     </div>
   </div>
 </template>
@@ -53,6 +114,7 @@ export default {
   data() {
     return {
         dialogFormVisible: false,
+        teamMembersDialog: false,
         form: {
           name: '',
           region: '',
@@ -101,6 +163,8 @@ export default {
           address: "No. 189, Grove St, Los Angeles",
         },
       ],
+      dialogImageUrl: '',
+      dialogVisible: false,
       multipleSelection: [],
     };
   },
@@ -114,6 +178,13 @@ export default {
         this.$refs.multipleTable.clearSelection();
       }
     },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
@@ -143,7 +214,7 @@ export default {
   border: 1px solid #00000021;
   border-radius: 8px;
   width: 900px;
-  height: 700px;
+  /* height: 700px; */
   padding: 10px;
   margin: 15px;
 }
