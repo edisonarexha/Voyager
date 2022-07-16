@@ -13,6 +13,7 @@ namespace VoyagerSQLAPI.Models.Tickets
         public string AirCraftName { get; set; }
         [Required]
         public int TailNumber { get; set; }
+        public decimal FlightPrice { get; set; }
 
     }
 }

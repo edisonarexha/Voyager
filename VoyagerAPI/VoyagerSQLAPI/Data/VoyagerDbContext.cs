@@ -2,14 +2,12 @@
 using VoyagerSQLAPI.Models;
 using VoyagerSQLAPI.Models.Hotel;
 using VoyagerSQLAPI.Models.Users;
-using VoyagerSQLAPI.Models.DB;
 using VoyagerSQLAPI.Models.Tickets;
-using VoyagerSQLAPI.Models.TripProcedure;
 using VoyagerSQLAPI.Models.AppLogs;
 using VoyagerSQLAPI.Models.TeamMembers;
-using VoyagerSQLAPI.Models.Packages;
 using VoyagerSQLAPI.Models.Hotel.HotelDetailsProc;
 using VoyagerSQLAPI.Models.PaymentGateWay;
+using VoyagerSQLAPI.Models.PackagesData;
 
 namespace VoyagerSQLAPI.Data
 {

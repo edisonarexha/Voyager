@@ -15,16 +15,9 @@
               href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@200&family=Roboto:wght@100&display=swap"
               rel="stylesheet"
             />
-            <p class="top-left__first-paragraph">ABOUT US</p>
+            <p class="top-left__first-paragraph">{{this.aboutData ? this.aboutData.description : null}}</p>
             <p class="top-left__second-paragraph">
-              When it comes to travel, the team at Voyager is a lot like you.
-              We’re always bringing back travel tips and stories from our
-              adventures because we don’t just think about trips, we go out and
-              live them. And like you, we’re passionate about sharing insider
-              knowledge of destinations, finding great deals, or simply
-              discovering ways to save time and energy when planning and booking
-              that next great getaway. We understand that the more we travel,
-              the more we enrich our lives.
+             {{this.aboutData ? this.aboutData.descriptionSecond : null}}
             </p>
             <button @click="goToContact()" class="top-left__button">Contact US</button>
           </div>
@@ -122,15 +115,29 @@
 import HeaderView from "../Header.vue";
 import FooterView from "../Footer.vue";
 import SoonPackages from "./SoonPackages.vue";
+import {getAboutList} from '../../sdk/about'
+
 export default {
   components: {
     HeaderView,
     FooterView,
     SoonPackages,
   },
+  data(){
+    return{
+      aboutData:{}
+    }
+  },
+  mounted(){
+    this.getAbout()
+  },
   methods:{
     goToContact(){
       this.$router.push('contact')
+    },
+   async getAbout(){
+      const resp = await getAboutList()
+      this.aboutData = resp[0]
     }
   }
 };

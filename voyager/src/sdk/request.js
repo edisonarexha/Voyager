@@ -1,3 +1,5 @@
+//for .net server
+
 import axios from 'axios'
 
 const baseURL = 'https://localhost:44377/api/'

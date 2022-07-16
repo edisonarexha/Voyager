@@ -8,15 +8,15 @@
       <div class="report-table">
         <div class="flexed">
           <h6 style="font-size: 20px">Manage About Us</h6>
-          <el-button type="primary" @click="dialogFormVisible=true">Modify</el-button>
+          <el-button type="primary" @click="dialogFormVisible=true">{{this.aboutData ? 'Modify' : 'Add'}}</el-button>
         </div>
-        <div>
+        <div class="mt-2">
             <el-form :model="form">
           <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Title" class="input"></el-input>
+            <el-input  :disabled="true" v-model="this.aboutData.description" autocomplete="off" placeholder="Title" class="input"></el-input>
           </el-form-item>
           <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
+            <el-input  :disabled="true" v-model="this.aboutData.descriptionSecond" autocomplete="off" placeholder="Description" type="textarea" class="input" columns="7" rows="5"></el-input>
           </el-form-item>
           
         </el-form>
@@ -55,15 +55,17 @@
       <el-dialog :visible.sync="dialogFormVisible">
         <el-form :model="form">
           <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Title" class="input"></el-input>
+            <el-input v-if="!this.aboutData" v-model="about.description" autocomplete="off" placeholder="Title" class="input"></el-input>
+            <el-input v-else v-model="aboutData.description" autocomplete="off" placeholder="Title" class="input"></el-input>
           </el-form-item>
           <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
+            <el-input v-if="!this.aboutData" v-model="about.descriptionSecond" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
+            <el-input v-else v-model="aboutData.descriptionSecond" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
           </el-form-item>
           
         </el-form>
         <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogFormVisible = false"
+          <el-button type="primary" @click="addAboutUs()"
             >Done</el-button
           >
         </span>
@@ -109,12 +111,18 @@
 
 <script>
 import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue';
+import {getAboutList, createAbout, editAbout} from '../../sdk/about'
 export default {
   components: { SideBar },
   data() {
     return {
         dialogFormVisible: false,
         teamMembersDialog: false,
+        aboutData:[],
+        about:{
+          descriptionSecond:'',
+          description:'',
+        },
         form: {
           name: '',
           region: '',
@@ -168,7 +176,30 @@ export default {
       multipleSelection: [],
     };
   },
+  mounted(){
+    this.getAboutUs()
+  },
   methods: {
+    async getAboutUs(){
+      const result = await getAboutList()
+      console.log(result)
+      this.aboutData = !result.length ? [] : result[0]
+      console.log(this.aboutData)
+    },
+    async addAboutUs(){
+      if(!this.aboutData){
+        await createAbout(this.about)
+      }
+      else if(this.aboutData){
+        const obj = {
+          descriptionSecond: this.aboutData.descriptionSecond,
+          description:this.aboutData.description,
+          _id:this.aboutData._id
+        }
+        await editAbout(obj)
+      }
+      this.dialogFormVisible = false
+    },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach((row) => {
@@ -193,7 +224,6 @@ export default {
 </script>
 
 <style scoped>
-
 .rooms {
   /* padding: 20px; */
   display: flex;
@@ -235,6 +265,6 @@ export default {
   justify-content: space-between;
 }
 .input{
-  width: 300px;
+  width: 100%;
 }
 </style>

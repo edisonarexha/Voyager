@@ -18,7 +18,7 @@ namespace VoyagerSQLAPI.Models.Tickets
         public int? HotelId { get; set; }
 
         public int DestinationId { get; set; }
-
+        public decimal FlightPrice { get; set; }
 
     }
 }
