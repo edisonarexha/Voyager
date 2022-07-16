@@ -152,6 +152,14 @@ const routes = [
     },
   },
   {
+    path: "/contact-us-manage",
+    name: "contact-us-manage",
+    component: () => import( "../views/Dashboard/ContactUsManage"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
     path: "/userprofile",
     name: "userprofile",
     component: UserProfile,

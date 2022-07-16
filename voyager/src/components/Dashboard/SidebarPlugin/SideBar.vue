@@ -49,6 +49,11 @@
 "></i>
         <span>About Us</span>
       </el-menu-item>
+      <el-menu-item index="7" @click="goTo('contact-us-manage')">
+        <i class="el-icon-office-building
+"></i>
+        <span>Contact Us</span>
+      </el-menu-item>
       <el-menu-item index="8">
         <i class="el-icon-setting"></i>
         <span>Settings</span>
