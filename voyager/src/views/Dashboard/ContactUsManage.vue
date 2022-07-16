@@ -6,9 +6,9 @@
       <div class="third-container">
         <div class="report-table">
           <div class="flexed">
-            <h6 style="font-size: 20px">Manage Contact Us</h6>
+            <h6 style="font-size: 20px">Manage Contact Info</h6>
             <el-button type="primary" @click="dialogFormVisible = true"
-              >Modify</el-button
+              >{{this.detailsData.length ? 'Modify' : 'Add'}}</el-button
             >
           </div>
           <div>
@@ -16,15 +16,17 @@
               <div>
                 <el-form-item>
                   <el-input
-                    v-model="form.name"
+                    v-model="this.detailsData[0].email"
                     autocomplete="off"
+                    :disabled='true'
                     placeholder="Email"
                     class="input"
                   ></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-input
-                    v-model="form.name"
+                    v-model="this.detailsData[0].phone"
+                    :disabled='true'
                     autocomplete="off"
                     placeholder="Phone"
                     type="input"
@@ -36,7 +38,8 @@
               <div>
                 <el-form-item>
                   <el-input
-                    v-model="form.name"
+                    v-model="this.detailsData[0].address"
+                    :disabled='true'
                     autocomplete="off"
                     placeholder="Address"
                     type="input"
@@ -45,7 +48,8 @@
                 </el-form-item>
                 <el-form-item>
                   <el-input
-                    v-model="form.name"
+                    :disabled='true'
+                    v-model="this.detailsData[0].website"
                     autocomplete="off"
                     placeholder="Website"
                     type="input"
@@ -60,7 +64,8 @@
           <div class="flexed">
             <h6 style="font-size: 20px">Contact Messages</h6>
           </div>
-          <el-table ref="multipleTable" :data="tableData" style="width: 950px">
+          <el-table ref="multipleTable" :data="contactData" style="width: 950px">
+            <el-table-column type="index"> </el-table-column>
             <el-table-column property="name" width="120"> </el-table-column>
             <el-table-column property="email" show-overflow-tooltip>
             </el-table-column>
@@ -72,12 +77,21 @@
         </div>
       </div>
       <div>
-        <el-dialog :visible.sync="dialogFormVisible">
+        <el-dialog :visible.sync="dialogFormVisible" @close="clearError">
+           <p class="text-danger error__style"> {{error ? error : null}} </p>
           <el-form :model="form" class="flexed-form">
           <div>
              <el-form-item>
               <el-input
-                v-model="form.name"
+              v-if="!this.detailsData.length"
+                v-model="details.email"
+                autocomplete="off"
+                placeholder="Email"
+                class="input"
+              ></el-input>
+               <el-input
+              v-else
+                v-model="detailsData[0].email"
                 autocomplete="off"
                 placeholder="Email"
                 class="input"
@@ -85,7 +99,16 @@
             </el-form-item>
             <el-form-item>
               <el-input
-                v-model="form.name"
+              v-if="!this.detailsData.length"
+                v-model="details.address"
+                autocomplete="off"
+                placeholder="Address"
+                type="input"
+                class="input"
+              ></el-input>
+               <el-input
+              v-else
+                v-model="detailsData[0].address"
                 autocomplete="off"
                 placeholder="Address"
                 type="input"
@@ -96,7 +119,16 @@
            <div>
             <el-form-item>
               <el-input
-                v-model="form.name"
+              v-if="!this.detailsData.length"
+                v-model="details.phone"
+                autocomplete="off"
+                placeholder="Phone"
+                type="input"
+                class="input"
+              ></el-input>
+                <el-input
+              v-else
+                v-model="detailsData[0].phone"
                 autocomplete="off"
                 placeholder="Phone"
                 type="input"
@@ -105,7 +137,16 @@
             </el-form-item>
             <el-form-item>
               <el-input
-                v-model="form.name"
+              v-if="!this.detailsData.length"
+                v-model="details.website"
+                autocomplete="off"
+                placeholder="Website"
+                type="input"
+                class="input"
+              ></el-input>
+               <el-input
+              v-else
+                v-model="detailsData[0].website"
                 autocomplete="off"
                 placeholder="Website"
                 type="input"
@@ -116,7 +157,7 @@
             
           </el-form>
           <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="dialogFormVisible = false"
+            <el-button type="primary" @click="addADetail()"
               >Done</el-button
             >
           </span>
@@ -128,10 +169,20 @@
 
 <script>
 import SideBar from "@/components/Dashboard/SidebarPlugin/SideBar.vue";
+import {createDetails, editDetails, getContact, getDetails} from '@/sdk/contact'
 export default {
   components: { SideBar },
   data() {
     return {
+      error:'',
+      details:{
+        email:'',
+        address:'',
+        phone:'',
+        website:''
+      },
+      contactData:[],
+      detailsData:[],
       dialogFormVisible: false,
       form: {
         name: "",
@@ -143,29 +194,48 @@ export default {
         resource: "",
         desc: "",
       },
-      tableData: [
-        {
-          name: "Tom",
-          email: "edisona@gmail.com",
-          subject: "2016-05-03",
-          message: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          name: "Tom",
-          email: "edisona@gmail.com",
-          subject: "2016-05-03",
-          message: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          name: "Tom",
-          email: "edisona@gmail.com",
-          subject: "2016-05-03",
-          message: "No. 189, Grove St, Los Angeles",
-        },
-      ],
     };
   },
+  mounted(){
+    this.getAllContacts()
+    this.getAllDetails()
+  },
   methods: {
+    clearError(){
+      this.error = ''
+    },
+     successContactDetails() {
+      this.$toast.success("Details have been updated succesfully", {
+     position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
+    },
+       failContactDetails() {
+           this.$toast.error("Server Error!!", {
+     position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
+    },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach((row) => {
@@ -175,6 +245,53 @@ export default {
         this.$refs.multipleTable.clearSelection();
       }
     },
+    async getAllContacts(){
+      this.contactData = await getContact()
+    },
+    async getAllDetails(){
+      this.detailsData = await getDetails()
+    },
+    async addADetail(){
+      if(!this.detailsData.length){
+        if(!this.details.address.trim().length || !this.details.email.trim().length ||  !this.details.phone.trim().length 
+      || !this.details.website.trim().length){
+        this.error = 'Please fill all the fields!!'
+      this.dialogFormVisible = true
+      }
+      else{
+        this.error = ''
+        await createDetails(this.details)
+      this.dialogFormVisible = false
+      }
+      }
+      else{
+        if(!this.detailsData[0].email.trim().length || !this.detailsData[0].phone.trim().length
+        || !this.detailsData[0].address.trim().length || !this.detailsData[0].website.trim().length
+        ){
+          this.error = 'Please fill all the fields!!'
+          this.dialogFormVisible = true
+        }
+        else{
+          this.error = ''
+        const obj = {
+          _id :this.detailsData[0]._id,
+          email:this.detailsData[0].email,
+          phone:this.detailsData[0].phone,
+          address:this.detailsData[0].address,
+          website:this.detailsData[0].website
+        }
+        const res = await editDetails(obj)
+          this.dialogFormVisible = false
+        if(res.status == 200){
+          this.successContactDetails()
+        }
+        else{
+          this.failContactDetails()
+        }
+      }
+      }
+    }
+
   },
 };
 </script>
@@ -229,5 +346,13 @@ export default {
 }
 .input {
   width: 300px;
+}
+
+.error__style{
+  text-align:center;
+  font-weight:bold;
+  font-size:18px;
+          font-family: 'Open Sans', sans-serif;
+
 }
 </style>

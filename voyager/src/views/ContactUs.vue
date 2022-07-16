@@ -29,8 +29,7 @@
                 <i style="font-size: 23px" class="el-icon-location-outline"></i>
               </div>
               <p class="text-address__contact">
-                <b>Address:</b> 198 West 21th Street, Suite 721 New York NY
-                10016
+                <b>Address:</b> {{this.details.length ? this.details[0].address : ''}}
               </p>
             </div>
             <div class="address__contact mt-3">
@@ -38,7 +37,7 @@
                 <i style="font-size: 23px" class="el-icon-phone"></i>
               </div>
               <p style="align-self: center" class="text-address__contact">
-                <b>Phone:</b> +38345123456
+                <b>Phone:</b> {{this.details.length ? this.details[0].phone : ''}}
               </p>
             </div>
 
@@ -47,7 +46,7 @@
                 <i style="font-size: 23px" class="el-icon-s-promotion"></i>
               </div>
               <p style="align-self: center" class="text-address__contact">
-                <b>Email:</b> info@hotmail.com
+                <b>Email:</b> {{this.details.length ? this.details[0].email : ''}}
               </p>
             </div>
 
@@ -56,7 +55,7 @@
                 <globe-icon size="1.5x" class="custom-class"></globe-icon>
               </div>
               <p style="align-self: center" class="text-address__contact">
-                <b>Website:</b> voyager.com
+                <b>Website:</b> {{this.details.length ? this.details[0].website : ''}}
               </p>
             </div>
           </div>
@@ -171,7 +170,7 @@ import { HeadphonesIcon } from 'vue-feather-icons'
 import HeaderView from '../views/Header.vue'
 import apiRequests from "../utils/apiRequests";
 import FooterView from '../views/Footer.vue'
-
+import {getDetails} from '@/sdk/contact'
 export default {
   components: {
     GlobeIcon,
@@ -184,6 +183,7 @@ export default {
   },
    data() {
     return {
+      details:[],
       form: {
         name: "",
         email: "",
@@ -195,7 +195,14 @@ export default {
     };
   },
 
+  mounted(){
+    this.getAllDetails()
+  },
+
   methods:{
+   async getAllDetails(){
+      this.details = await getDetails()
+    },
       makeToast() {
       this.$toast.success("Contact has been added succesfully", {
      position: "top-right",

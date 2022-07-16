@@ -2,37 +2,49 @@
   <div class="rooms">
     <side-bar :sidebar-item-color="sidebarBackground"></side-bar>
     <div class="form-max-width">
-
-    <h4>Voyager Dashboard</h4>
-    <div class="third-container">
-      <div class="report-table">
-        <div class="flexed">
-          <h6 style="font-size: 20px">Manage About Us</h6>
-          <el-button type="primary" @click="dialogFormVisible=true">{{this.aboutData ? 'Modify' : 'Add'}}</el-button>
-        </div>
-        <div class="mt-2">
+      <h4>Voyager Dashboard</h4>
+      <div class="third-container">
+        <div class="report-table">
+          <div class="flexed">
+            <h6 style="font-size: 20px">Manage About Us</h6>
+            <el-button type="primary" @click="dialogFormVisible = true">{{
+              this.aboutData ? "Modify" : "Add"
+            }}</el-button>
+          </div>
+          <div class="mt-2">
             <el-form :model="form">
-          <el-form-item :label-width="formLabelWidth">
-            <el-input  :disabled="true" v-model="this.aboutData.description" autocomplete="off" placeholder="Title" class="input"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input  :disabled="true" v-model="this.aboutData.descriptionSecond" autocomplete="off" placeholder="Description" type="textarea" class="input" columns="7" rows="5"></el-input>
-          </el-form-item>
-          
-        </el-form>
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  :disabled="true"
+                  v-model="this.aboutData.description"
+                  autocomplete="off"
+                  placeholder="Title"
+                  class="input"
+                ></el-input>
+              </el-form-item>
+              <el-form-item :label-width="formLabelWidth">
+                <el-input
+                  :disabled="true"
+                  v-model="this.aboutData.descriptionSecond"
+                  autocomplete="off"
+                  placeholder="Description"
+                  type="textarea"
+                  class="input"
+                  columns="7"
+                  rows="5"
+                ></el-input>
+              </el-form-item>
+            </el-form>
+          </div>
         </div>
-      
-      </div>
-      <div class="report-table">
-        <div class="flexed">
-          <h6 style="font-size: 20px">Manage Team Members</h6>
-         <el-button type="primary" @click="teamMembersDialog=true">New</el-button>
-        </div>
-         <el-table
-            ref="multipleTable"
-            :data="tableData"
-            style="width: 950px"
-          >
+        <div class="report-table">
+          <div class="flexed">
+            <h6 style="font-size: 20px">Manage Team Members</h6>
+            <el-button type="primary" @click="teamMembersDialog = true"
+              >New</el-button
+            >
+          </div>
+          <el-table ref="multipleTable" :data="tableData" style="width: 950px">
             <el-table-column width="120">
               <template slot-scope="scope">{{ scope.row.date }}</template>
             </el-table-column>
@@ -43,97 +55,144 @@
             </el-table-column>
             <el-table-column property="address" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column property="address" show-overflow-tooltip width="80" style="display:flex;gap:10px">
-              <i class="el-icon-edit" style="color:#409EFF"></i>
-              <i class="el-icon-delete" style="color:red"></i>
+            <el-table-column
+              property="address"
+              show-overflow-tooltip
+              width="80"
+              style="display: flex; gap: 10px"
+            >
+              <i class="el-icon-edit" style="color: #409eff"></i>
+              <i class="el-icon-delete" style="color: red"></i>
             </el-table-column>
           </el-table>
+        </div>
       </div>
-      
-    </div>
-    <div>
-      <el-dialog :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-if="!this.aboutData" v-model="about.description" autocomplete="off" placeholder="Title" class="input"></el-input>
-            <el-input v-else v-model="aboutData.description" autocomplete="off" placeholder="Title" class="input"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-if="!this.aboutData" v-model="about.descriptionSecond" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
-            <el-input v-else v-model="aboutData.descriptionSecond" autocomplete="off" placeholder="Description" type="textarea" class="input" rows="5"></el-input>
-          </el-form-item>
-          
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="addAboutUs()"
-            >Done</el-button
-          >
-        </span>
-      </el-dialog>
-    </div>
-    <div>
-      <el-dialog :visible.sync="teamMembersDialog">
-        <el-form :model="form">
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Name" class="input"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Job Name" class="input"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-input v-model="form.name" autocomplete="off" placeholder="Job Description" type="textarea" class="input" rows="5"></el-input>
-          </el-form-item>
-          <el-form-item :label-width="formLabelWidth">
-            <el-upload
+      <div>
+        <el-dialog :visible.sync="dialogFormVisible" @close="clearError">
+          <p class="text-danger error__style">{{error.length ? error : ''}}</p>
+          <el-form :model="form">
+            <el-form-item :label-width="formLabelWidth">
+              <el-input
+                v-if="!this.aboutData"
+                v-model="about.description"
+                autocomplete="off"
+                placeholder="Title"
+                class="input"
+              ></el-input>
+              <el-input
+                v-else
+                v-model="aboutData.description"
+                autocomplete="off"
+                placeholder="Title"
+                class="input"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth">
+              <el-input
+                v-if="!this.aboutData"
+                v-model="about.descriptionSecond"
+                autocomplete="off"
+                placeholder="Description"
+                type="textarea"
+                class="input"
+                rows="5"
+              ></el-input>
+              <el-input
+                v-else
+                v-model="aboutData.descriptionSecond"
+                autocomplete="off"
+                placeholder="Description"
+                type="textarea"
+                class="input"
+                rows="5"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="addAboutUs()">Done</el-button>
+          </span>
+        </el-dialog>
+      </div>
+      <div>
+        <el-dialog :visible.sync="teamMembersDialog">
+          <el-form :model="form">
+            <el-form-item :label-width="formLabelWidth">
+              <el-input
+                v-model="form.name"
+                autocomplete="off"
+                placeholder="Name"
+                class="input"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth">
+              <el-input
+                v-model="form.name"
+                autocomplete="off"
+                placeholder="Job Name"
+                class="input"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth">
+              <el-input
+                v-model="form.name"
+                autocomplete="off"
+                placeholder="Job Description"
+                type="textarea"
+                class="input"
+                rows="5"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth">
+              <el-upload
                 action="https://jsonplaceholder.typicode.com/posts/"
                 list-type="picture-card"
                 :on-preview="handlePictureCardPreview"
-                :on-remove="handleRemove">
+                :on-remove="handleRemove"
+              >
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
-                <img width="100%" :src="dialogImageUrl" alt="">
+                <img width="100%" :src="dialogImageUrl" alt="" />
               </el-dialog>
-          </el-form-item>
-          
-
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogFormVisible = false"
-            >Done</el-button
-          >
-        </span>
-      </el-dialog>
-    </div>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogFormVisible = false"
+              >Done</el-button
+            >
+          </span>
+        </el-dialog>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue';
-import {getAboutList, createAbout, editAbout} from '../../sdk/about'
+import SideBar from "@/components/Dashboard/SidebarPlugin/SideBar.vue";
+import { getAboutList, createAbout, editAbout } from "../../sdk/about";
 export default {
   components: { SideBar },
   data() {
     return {
-        dialogFormVisible: false,
-        teamMembersDialog: false,
-        aboutData:[],
-        about:{
-          descriptionSecond:'',
-          description:'',
-        },
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        // formLabelWidth: '120px',
+      error: "",
+      dialogFormVisible: false,
+      teamMembersDialog: false,
+      aboutData: [],
+      about: {
+        descriptionSecond: "",
+        description: "",
+      },
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
+      },
+      // formLabelWidth: '120px',
       tableData: [
         {
           date: "2016-05-03",
@@ -171,34 +230,91 @@ export default {
           address: "No. 189, Grove St, Los Angeles",
         },
       ],
-      dialogImageUrl: '',
+      dialogImageUrl: "",
       dialogVisible: false,
       multipleSelection: [],
     };
   },
-  mounted(){
-    this.getAboutUs()
+  mounted() {
+    this.getAboutUs();
   },
   methods: {
-    async getAboutUs(){
-      const result = await getAboutList()
-      console.log(result)
-      this.aboutData = !result.length ? [] : result[0]
-      console.log(this.aboutData)
+    successAbout() {
+      this.$toast.success("About has been updated succesfully", {
+     position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
     },
-    async addAboutUs(){
-      if(!this.aboutData){
-        await createAbout(this.about)
-      }
-      else if(this.aboutData){
-        const obj = {
-          descriptionSecond: this.aboutData.descriptionSecond,
-          description:this.aboutData.description,
-          _id:this.aboutData._id
+       failAbout() {
+           this.$toast.error("Server Error!!", {
+     position: "top-right",
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
+    },
+    clearError(){
+      this.error = ''
+    },
+    async getAboutUs() {
+      const result = await getAboutList();
+      this.aboutData = !result.length ? [] : result[0];
+    },
+    async addAboutUs() {
+      if (!this.aboutData) {
+        if (
+          !this.about.descriptionSecond.trim().length ||
+          !this.about.description.trim().length
+        ) {
+          this.error = "Please fill all the fields!!";
+          this.dialogFormVisible = true;
+        } else {
+          this.error = "";
+          await createAbout(this.about);
+          this.dialogFormVisible = false;
+          this.successAbout()
         }
-        await editAbout(obj)
+      } else if (this.aboutData) {
+        if (
+          !this.aboutData.descriptionSecond.trim().length ||
+          !this.aboutData.description.trim().length
+        ) {
+          this.error = "Please fill all the fields!!";
+          this.dialogFormVisible = true;
+        } else {
+          const obj = {
+            descriptionSecond: this.aboutData.descriptionSecond,
+            description: this.aboutData.description,
+            _id: this.aboutData._id,
+          };
+          const res = await editAbout(obj);
+          this.dialogFormVisible = false;
+          if(res.status == 200){
+            this.successAbout()
+          }
+          else{
+            this.failAbout()
+          }
+        }
       }
-      this.dialogFormVisible = false
     },
     toggleSelection(rows) {
       if (rows) {
@@ -209,13 +325,13 @@ export default {
         this.$refs.multipleTable.clearSelection();
       }
     },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
@@ -230,10 +346,10 @@ export default {
   gap: 20px;
   height: 900px;
 }
-.third-container{
+.third-container {
   padding: 20px;
 }
-.form-max-width{
+.form-max-width {
   max-width: 80%;
   padding: 20px;
 }
@@ -264,7 +380,15 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
-.input{
+.input {
   width: 100%;
+}
+
+.error__style{
+  text-align:center;
+  font-weight:bold;
+  font-size:18px;
+          font-family: 'Open Sans', sans-serif;
+
 }
 </style>

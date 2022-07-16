@@ -38,7 +38,7 @@ app.use(getAuthToken);
 app.use("/users", userRouter);
 app.use("/contact", contactRoute);
 app.use("/about", aboutRoute);
-app.use("/about", detailsRoute);
+app.use("/details", detailsRoute);
 
 
 app.listen(port, () => {
