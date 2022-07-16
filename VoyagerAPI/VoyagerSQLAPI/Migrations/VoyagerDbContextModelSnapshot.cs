@@ -94,6 +94,10 @@ namespace VoyagerSQLAPI.Migrations
                     b.Property<int>("HotelPrice")
                         .HasColumnType("int");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("InsertedDate")
                         .HasColumnType("datetime2");
 
@@ -164,7 +168,7 @@ namespace VoyagerSQLAPI.Migrations
                     b.ToTable("hotelrooms");
                 });
 
-            modelBuilder.Entity("VoyagerSQLAPI.Models.Packages.PackagesData", b =>
+            modelBuilder.Entity("VoyagerSQLAPI.Models.PackagesData.PackagesData", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -175,6 +179,9 @@ namespace VoyagerSQLAPI.Migrations
                     b.Property<string>("PackageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Version")
                         .HasColumnType("int");
@@ -338,6 +345,9 @@ namespace VoyagerSQLAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("FlightPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("TailNumber")
                         .HasColumnType("int");
 
@@ -365,6 +375,9 @@ namespace VoyagerSQLAPI.Migrations
 
                     b.Property<int>("FlightNumber")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("FlightPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("HotelId")
                         .HasColumnType("int");
