@@ -35,6 +35,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>

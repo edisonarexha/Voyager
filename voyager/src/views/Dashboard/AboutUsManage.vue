@@ -44,16 +44,17 @@
               >New</el-button
             >
           </div>
-          <el-table ref="multipleTable" :data="tableData" style="width: 950px">
-            <el-table-column width="120">
-              <template slot-scope="scope">{{ scope.row.date }}</template>
-            </el-table-column>
+          <el-table ref="multipleTable" :data="teamMembersData.data" style="width: 950px">
+            <!-- <el-table-column width="120"> -->
+              <template slot-scope="scope">
+            <!-- </el-table-column>  -->
+            <el-table-column type="index"> </el-table-column>
             <el-table-column property="name" width="120"> </el-table-column>
-            <el-table-column property="address" show-overflow-tooltip>
+            <el-table-column property="jobName" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column property="address" show-overflow-tooltip>
+            <el-table-column property="jobDescription" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column property="address" show-overflow-tooltip>
+            <el-table-column property="photo" show-overflow-tooltip>
             </el-table-column>
             <el-table-column
               property="address"
@@ -61,15 +62,18 @@
               width="80"
               style="display: flex; gap: 10px"
             >
-              <i class="el-icon-edit" style="color: #409eff"></i>
-              <i class="el-icon-delete" style="color: red"></i>
+              <i class="el-icon-edit" style="color: #409eff; font-size:22px; cursor:pointer;" ></i>
+              <i class="el-icon-delete" @click="deleteMember($event, scope.row)" style="color: red; font-size:22px; margin-left:15px; cursor:pointer;"></i>
             </el-table-column>
+            </template>
           </el-table>
         </div>
       </div>
       <div>
         <el-dialog :visible.sync="dialogFormVisible" @close="clearError">
-          <p class="text-danger error__style">{{error.length ? error : ''}}</p>
+          <p class="text-danger error__style">
+            {{ error.length ? error : "" }}
+          </p>
           <el-form :model="form">
             <el-form-item :label-width="formLabelWidth">
               <el-input
@@ -114,11 +118,12 @@
         </el-dialog>
       </div>
       <div>
+        <!-- team members -->
         <el-dialog :visible.sync="teamMembersDialog">
           <el-form :model="form">
             <el-form-item :label-width="formLabelWidth">
               <el-input
-                v-model="form.name"
+                v-model="member.name"
                 autocomplete="off"
                 placeholder="Name"
                 class="input"
@@ -126,7 +131,7 @@
             </el-form-item>
             <el-form-item :label-width="formLabelWidth">
               <el-input
-                v-model="form.name"
+                v-model="member.jobName"
                 autocomplete="off"
                 placeholder="Job Name"
                 class="input"
@@ -134,7 +139,7 @@
             </el-form-item>
             <el-form-item :label-width="formLabelWidth">
               <el-input
-                v-model="form.name"
+                v-model="member.jobDescription"
                 autocomplete="off"
                 placeholder="Job Description"
                 type="textarea"
@@ -146,6 +151,7 @@
               <el-upload
                 action="https://jsonplaceholder.typicode.com/posts/"
                 list-type="picture-card"
+                :on-success="handlePictureGetUrl"
                 :on-preview="handlePictureCardPreview"
                 :on-remove="handleRemove"
               >
@@ -157,11 +163,12 @@
             </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="dialogFormVisible = false"
+            <el-button type="primary" @click="createMember()"
               >Done</el-button
             >
           </span>
         </el-dialog>
+        <!-- Team MEmbers -->
       </div>
     </div>
   </div>
@@ -170,10 +177,18 @@
 <script>
 import SideBar from "@/components/Dashboard/SidebarPlugin/SideBar.vue";
 import { getAboutList, createAbout, editAbout } from "../../sdk/about";
+import {getAllTeamMembers, createTeamMember,deleteTeamMember} from "../../sdk/teamMembers"
 export default {
   components: { SideBar },
   data() {
     return {
+      member:{
+        name:'',
+        jobName:'',
+        jobDescription:'',
+        photo:''
+      },
+      teamMembersData:[],
       error: "",
       dialogFormVisible: false,
       teamMembersDialog: false,
@@ -236,43 +251,54 @@ export default {
     };
   },
   mounted() {
-    this.getAboutUs();
+    this.getAboutUs()
+    this.getTeamMembers()
   },
   methods: {
+    async getTeamMembers(){
+      this.teamMembersData = await getAllTeamMembers()
+    },
+    async deleteMember(member){
+      await deleteTeamMember(member)
+    },
+    async createMember(){
+      await createTeamMember(this.member)
+      this.dialogVisible = false
+    },
     successAbout() {
       this.$toast.success("About has been updated succesfully", {
-     position: "top-right",
-  timeout: 3000,
-  closeOnClick: true,
-  pauseOnFocusLoss: true,
-  pauseOnHover: true,
-  draggable: true,
-  draggablePercent: 0.6,
-  showCloseButtonOnHover: false,
-  hideProgressBar: true,
-  closeButton: "button",
-  icon: true,
-  rtl: false
-});
+        position: "top-right",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        rtl: false,
+      });
     },
-       failAbout() {
-           this.$toast.error("Server Error!!", {
-     position: "top-right",
-  timeout: 3000,
-  closeOnClick: true,
-  pauseOnFocusLoss: true,
-  pauseOnHover: true,
-  draggable: true,
-  draggablePercent: 0.6,
-  showCloseButtonOnHover: false,
-  hideProgressBar: true,
-  closeButton: "button",
-  icon: true,
-  rtl: false
-});
+    failAbout() {
+      this.$toast.error("Server Error!!", {
+        position: "top-right",
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        rtl: false,
+      });
     },
-    clearError(){
-      this.error = ''
+    clearError() {
+      this.error = "";
     },
     async getAboutUs() {
       const result = await getAboutList();
@@ -290,7 +316,7 @@ export default {
           this.error = "";
           await createAbout(this.about);
           this.dialogFormVisible = false;
-          this.successAbout()
+          this.successAbout();
         }
       } else if (this.aboutData) {
         if (
@@ -307,11 +333,10 @@ export default {
           };
           const res = await editAbout(obj);
           this.dialogFormVisible = false;
-          if(res.status == 200){
-            this.successAbout()
-          }
-          else{
-            this.failAbout()
+          if (res.status == 200) {
+            this.successAbout();
+          } else {
+            this.failAbout();
           }
         }
       }
@@ -330,7 +355,11 @@ export default {
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
+      this.member.photo = file.name
       this.dialogVisible = true;
+    },
+    handlePictureGetUrl(file){
+      console.log(file)
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;
@@ -384,11 +413,10 @@ export default {
   width: 100%;
 }
 
-.error__style{
-  text-align:center;
-  font-weight:bold;
-  font-size:18px;
-          font-family: 'Open Sans', sans-serif;
-
+.error__style {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
 }
 </style>

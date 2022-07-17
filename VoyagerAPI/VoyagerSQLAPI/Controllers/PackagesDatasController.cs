@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VoyagerSQLAPI.Data;
-using VoyagerSQLAPI.Models.PackagesData;
+using VoyagerSQLAPI.Models.Packages;
 
 namespace VoyagerSQLAPI.Controllers
 {

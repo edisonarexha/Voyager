@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VoyagerSQLAPI.Migrations
 {
-    public partial class ALL : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -154,12 +154,12 @@ namespace VoyagerSQLAPI.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PackageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Version = table.Column<int>(type: "int", nullable: false),
-                    insertedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    hotelid = table.Column<int>(type: "int", nullable: false),
-                    flightId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    HotelId = table.Column<int>(type: "int", nullable: false),
+                    PackagePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TripId = table.Column<int>(type: "int", nullable: false),
+                    Destination = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Details = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TicketId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -203,7 +203,7 @@ namespace VoyagerSQLAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "teamMembers",
+                name: "TeamMembersDatas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -215,7 +215,7 @@ namespace VoyagerSQLAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_teamMembers", x => x.Id);
+                    table.PrimaryKey("PK_TeamMembersDatas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -312,7 +312,7 @@ namespace VoyagerSQLAPI.Migrations
                 name: "paymentSucc");
 
             migrationBuilder.DropTable(
-                name: "teamMembers");
+                name: "TeamMembersDatas");
 
             migrationBuilder.DropTable(
                 name: "TicketsDetails");

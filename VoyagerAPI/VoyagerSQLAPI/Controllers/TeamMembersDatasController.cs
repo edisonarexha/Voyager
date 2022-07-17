@@ -23,44 +23,44 @@ namespace VoyagerSQLAPI.Controllers
 
         // GET: api/TeamMembersDatas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TeamMembersData>>> GetteamMembers()
+        public async Task<ActionResult<IEnumerable<TeamMembersData>>> GetTeamMembersDatas()
         {
-          if (_context.teamMembers == null)
+          if (_context.TeamMembersDatas == null)
           {
               return NotFound();
           }
-            return await _context.teamMembers.ToListAsync();
+            return await _context.TeamMembersDatas.ToListAsync();
         }
 
         // GET: api/TeamMembersDatas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamMembersData>> GetTeamMembersData(int id)
         {
-          if (_context.teamMembers == null)
+          if (_context.TeamMembersDatas == null)
           {
               return NotFound();
           }
-            var teamMembersData = await _context.teamMembers.FindAsync(id);
+            var TeamMembersDatasData = await _context.TeamMembersDatas.FindAsync(id);
 
-            if (teamMembersData == null)
+            if (TeamMembersDatasData == null)
             {
                 return NotFound();
             }
 
-            return teamMembersData;
+            return TeamMembersDatasData;
         }
 
         // PUT: api/TeamMembersDatas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeamMembersData(int id, TeamMembersData teamMembersData)
+        public async Task<IActionResult> PutTeamMembersData(int id, TeamMembersData TeamMembersDatasData)
         {
-            if (id != teamMembersData.Id)
+            if (id != TeamMembersDatasData.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(teamMembersData).State = EntityState.Modified;
+            _context.Entry(TeamMembersDatasData).State = EntityState.Modified;
 
             try
             {
@@ -84,33 +84,33 @@ namespace VoyagerSQLAPI.Controllers
         // POST: api/TeamMembersDatas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TeamMembersData>> PostTeamMembersData(TeamMembersData teamMembersData)
+        public async Task<ActionResult<TeamMembersData>> PostTeamMembersData(TeamMembersData TeamMembersDatasData)
         {
-          if (_context.teamMembers == null)
+          if (_context.TeamMembersDatas == null)
           {
-              return Problem("Entity set 'VoyagerDbContext.teamMembers'  is null.");
+              return Problem("Entity set 'VoyagerDbContext.TeamMembersDatas'  is null.");
           }
-            _context.teamMembers.Add(teamMembersData);
+            _context.TeamMembersDatas.Add(TeamMembersDatasData);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTeamMembersData", new { id = teamMembersData.Id }, teamMembersData);
+            return CreatedAtAction("GetTeamMembersData", new { id = TeamMembersDatasData.Id }, TeamMembersDatasData);
         }
 
         // DELETE: api/TeamMembersDatas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeamMembersData(int id)
         {
-            if (_context.teamMembers == null)
+            if (_context.TeamMembersDatas == null)
             {
                 return NotFound();
             }
-            var teamMembersData = await _context.teamMembers.FindAsync(id);
-            if (teamMembersData == null)
+            var TeamMembersDatasData = await _context.TeamMembersDatas.FindAsync(id);
+            if (TeamMembersDatasData == null)
             {
                 return NotFound();
             }
 
-            _context.teamMembers.Remove(teamMembersData);
+            _context.TeamMembersDatas.Remove(TeamMembersDatasData);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -125,7 +125,7 @@ namespace VoyagerSQLAPI.Controllers
        // }
         private bool TeamMembersDataExists(int id)
         {
-            return (_context.teamMembers?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.TeamMembersDatas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

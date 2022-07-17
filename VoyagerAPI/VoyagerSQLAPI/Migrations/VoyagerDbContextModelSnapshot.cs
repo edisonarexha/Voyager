@@ -168,7 +168,7 @@ namespace VoyagerSQLAPI.Migrations
                     b.ToTable("hotelrooms");
                 });
 
-            modelBuilder.Entity("VoyagerSQLAPI.Models.PackagesData.PackagesData", b =>
+            modelBuilder.Entity("VoyagerSQLAPI.Models.Packages.PackagesData", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -176,28 +176,29 @@ namespace VoyagerSQLAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PackageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("PackagePrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Version")
+                    b.Property<int>("TicketId")
                         .HasColumnType("int");
 
-                    b.Property<int>("flightId")
+                    b.Property<int>("TripId")
                         .HasColumnType("int");
-
-                    b.Property<int>("hotelid")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("insertedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("photo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -298,7 +299,7 @@ namespace VoyagerSQLAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("teamMembers");
+                    b.ToTable("TeamMembersDatas");
                 });
 
             modelBuilder.Entity("VoyagerSQLAPI.Models.Tickets.Destination", b =>

@@ -7,7 +7,7 @@ using VoyagerSQLAPI.Models.AppLogs;
 using VoyagerSQLAPI.Models.TeamMembers;
 using VoyagerSQLAPI.Models.Hotel.HotelDetailsProc;
 using VoyagerSQLAPI.Models.PaymentGateWay;
-using VoyagerSQLAPI.Models.PackagesData;
+using VoyagerSQLAPI.Models.Packages;
 
 namespace VoyagerSQLAPI.Data
 {
@@ -33,7 +33,7 @@ namespace VoyagerSQLAPI.Data
         public DbSet<VoyagerSQLAPI.Models.TripProcedure.outputTrip>? outputTrip { get; set; }
 
         public DbSet<AppLogsData> appLogs { get; set; }
-        public DbSet<TeamMembersData> teamMembers { get; set; }
+        public DbSet<TeamMembersData> TeamMembersDatas { get; set; }
         public DbSet<PackagesData> packagesDatas { get; set; }
         public DbSet<HotelDetailsProc_Out> hotelproc { get; set; }
         public DbSet<PaymentDetails> paymentdata { get; set; }
