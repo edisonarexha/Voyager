@@ -3,7 +3,7 @@ import request from "./request";
 export async function getAllTeamMembers() {
     try {
         const response = await request
-            .get("/teamMembersDatas");
+            .get("/TeamMembersDatas");
         return response;
     } catch (err) {
         return console.log(err.name);

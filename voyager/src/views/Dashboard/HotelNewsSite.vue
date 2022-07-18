@@ -154,6 +154,7 @@
 </template>
 <script>
 import SideBar from "@/components/Dashboard/SidebarPlugin/SideBar.vue";
+import {getHotels} from "@/sdk/hotels.js"
 export default {
   components: { SideBar },
   data() {
@@ -208,6 +209,7 @@ export default {
         },
       ],
       multipleSelection: [],
+      hotels: [],
       value1: "",
       imageUrl: "",
       ruleForm: {
@@ -283,7 +285,15 @@ export default {
       },
     };
   },
+beforeMount(){
+this.getData()
+},
   methods: {
+    async getData() {
+      await getHotels().then((res) => {
+        this.hotels = res.data;
+      });
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {

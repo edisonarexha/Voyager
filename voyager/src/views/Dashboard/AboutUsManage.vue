@@ -1,6 +1,6 @@
 <template>
   <div class="rooms">
-    <side-bar :sidebar-item-color="sidebarBackground"></side-bar>
+    <side-bar></side-bar>
     <div class="form-max-width">
       <h4>Voyager Dashboard</h4>
       <div class="third-container">
@@ -13,7 +13,7 @@
           </div>
           <div class="mt-2">
             <el-form :model="form">
-              <el-form-item :label-width="formLabelWidth">
+              <el-form-item label="Title">
                 <el-input
                   :disabled="true"
                   v-model="this.aboutData.description"
@@ -22,7 +22,7 @@
                   class="input"
                 ></el-input>
               </el-form-item>
-              <el-form-item :label-width="formLabelWidth">
+              <el-form-item label="Description">
                 <el-input
                   :disabled="true"
                   v-model="this.aboutData.descriptionSecond"
@@ -39,34 +39,42 @@
         </div>
         <div class="report-table">
           <div class="flexed">
-            <h6 style="font-size: 20px">Manage Team Members</h6>
-            <el-button type="primary" @click="teamMembersDialog = true"
-              >New</el-button
-            >
+            <h6 style="font-size: 20px">Team Members</h6>
+            <el-button type="primary" @click="openDialog('fromCreateEvent')">New</el-button>
           </div>
-          <el-table ref="multipleTable" :data="teamMembersData.data" style="width: 950px">
-            <!-- <el-table-column width="120"> -->
-              <template slot-scope="scope">
-            <!-- </el-table-column>  -->
-            <el-table-column type="index"> </el-table-column>
-            <el-table-column property="name" width="120"> </el-table-column>
-            <el-table-column property="jobName" show-overflow-tooltip>
-            </el-table-column>
-            <el-table-column property="jobDescription" show-overflow-tooltip>
-            </el-table-column>
-            <el-table-column property="photo" show-overflow-tooltip>
-            </el-table-column>
-            <el-table-column
-              property="address"
-              show-overflow-tooltip
-              width="80"
-              style="display: flex; gap: 10px"
-            >
-              <i class="el-icon-edit" style="color: #409eff; font-size:22px; cursor:pointer;" ></i>
-              <i class="el-icon-delete" @click="deleteMember($event, scope.row)" style="color: red; font-size:22px; margin-left:15px; cursor:pointer;"></i>
-            </el-table-column>
-            </template>
-          </el-table>
+          <table class="table mt-3" style="margin-top: 0px; position: inherit">
+            <thead>
+              <th class="name-width"></th>
+              <th class="name-width">Name</th>
+              <th class="fields-width">Job Name</th>
+              <th class="fields-width">Job Description</th>
+              <th class="fields-width text-center">Image</th>
+              <th class="text-center">Edit/Delete</th>
+            </thead>
+            <tbody>
+              
+              <tr v-for="(item, index) in teamMembersData" :key="index">
+                <td class="name-width members__data">{{ index+1 }}</td>
+                <td class="name-width members__data">{{ item.name }}</td>
+                <td class="fields-width members__data">{{ item.jobName }}</td>
+                <td class="fields-width members__data">{{ item.jobDescription }}</td>
+                
+                <td v-if="item.photo" class="fields-width member__image members__data"><img :src="require(`@/assets/teamMembers/${item.photo}`)" /></td>
+                <td style="text-align: -webkit-center; vertical-align:middle;">
+                  <div class="flexed" style="width: 40px">
+                    <i
+                      class="el-icon-edit pointer members__button-edit"
+                      @click="openDialog('fromEditEvent', item)"
+                    ></i>
+                    <i
+                      class="el-icon-delete pointer members__button-delete "
+                      @click="deleteMember(item)"
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div>
@@ -75,25 +83,29 @@
             {{ error.length ? error : "" }}
           </p>
           <el-form :model="form">
-            <el-form-item :label-width="formLabelWidth">
-              <el-input
+            <el-form-item label="Title"
                 v-if="!this.aboutData"
+            >
+              <el-input
                 v-model="about.description"
                 autocomplete="off"
                 placeholder="Title"
                 class="input"
               ></el-input>
+            </el-form-item>
+            <el-form-item label="Title" v-else>
               <el-input
-                v-else
                 v-model="aboutData.description"
                 autocomplete="off"
                 placeholder="Title"
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item :label-width="formLabelWidth">
-              <el-input
+            <el-form-item
                 v-if="!this.aboutData"
+                label="Description"
+            >
+              <el-input
                 v-model="about.descriptionSecond"
                 autocomplete="off"
                 placeholder="Description"
@@ -101,8 +113,9 @@
                 class="input"
                 rows="5"
               ></el-input>
+            </el-form-item>
+            <el-form-item label="Description" v-else>
               <el-input
-                v-else
                 v-model="aboutData.descriptionSecond"
                 autocomplete="off"
                 placeholder="Description"
@@ -120,8 +133,8 @@
       <div>
         <!-- team members -->
         <el-dialog :visible.sync="teamMembersDialog">
-          <el-form :model="form">
-            <el-form-item :label-width="formLabelWidth">
+          <el-form :model="member">
+            <el-form-item>
               <el-input
                 v-model="member.name"
                 autocomplete="off"
@@ -129,7 +142,7 @@
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-input
                 v-model="member.jobName"
                 autocomplete="off"
@@ -137,7 +150,7 @@
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-input
                 v-model="member.jobDescription"
                 autocomplete="off"
@@ -147,7 +160,7 @@
                 rows="5"
               ></el-input>
             </el-form-item>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-upload
                 action="https://jsonplaceholder.typicode.com/posts/"
                 list-type="picture-card"
@@ -163,9 +176,7 @@
             </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="createMember()"
-              >Done</el-button
-            >
+            <el-button type="primary" @click="save()">Done</el-button>
           </span>
         </el-dialog>
         <!-- Team MEmbers -->
@@ -177,18 +188,24 @@
 <script>
 import SideBar from "@/components/Dashboard/SidebarPlugin/SideBar.vue";
 import { getAboutList, createAbout, editAbout } from "../../sdk/about";
-import {getAllTeamMembers, createTeamMember,deleteTeamMember} from "../../sdk/teamMembers"
+import {
+  getAllTeamMembers,
+  createTeamMember,
+  deleteTeamMember,
+  updateTeamMember
+} from "../../sdk/teamMembers";
 export default {
   components: { SideBar },
   data() {
     return {
-      member:{
-        name:'',
-        jobName:'',
-        jobDescription:'',
-        photo:''
+      member: {
+        id: "",
+        name: "",
+        jobName: "",
+        jobDescription: "",
+        photo: "",
       },
-      teamMembersData:[],
+      teamMembersData: [],
       error: "",
       dialogFormVisible: false,
       teamMembersDialog: false,
@@ -197,105 +214,87 @@ export default {
         descriptionSecond: "",
         description: "",
       },
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
-      },
+      form: {},
       // formLabelWidth: '120px',
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-02",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-04",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-01",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-08",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-06",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-07",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-      ],
       dialogImageUrl: "",
       dialogVisible: false,
       multipleSelection: [],
+      status: null
     };
   },
   mounted() {
-    this.getAboutUs()
-    this.getTeamMembers()
+    this.getAboutUs();
+    this.getData();
   },
   methods: {
-    async getTeamMembers(){
-      this.teamMembersData = await getAllTeamMembers()
+    openDialog(field, item) {
+      if (field === "fromEditEvent") {
+        this.status = field
+        this.teamMembersDialog = true;
+        this.member = {
+          id: item.id,
+          name: item.name,
+          jobName: item.jobName,
+          jobDescription: item.jobDescription,
+          photo: item.photo,
+        };
+      } else {
+        this.status = field
+        this.teamMembersDialog = true;
+        this.member = {
+          name: "",
+          jobName: "",
+          jobDescription: "",
+          photo: "",
+        };
+      }
     },
-    async deleteMember(member){
-      await deleteTeamMember(member)
+    async getData() {
+      await getAllTeamMembers().then((res) => {
+        this.teamMembersData = res.data;
+      });
     },
-    async createMember(){
-      await createTeamMember(this.member)
-      this.dialogVisible = false
+    async deleteMember(member) {
+      await deleteTeamMember(member).then(() => {
+        this.getData();
+      });
+      this.successDeleteMember()
+    },
+    async createMember() {
+      await createTeamMember(this.member).then(() => {
+        this.teamMembersDialog = false;
+        this.getData();
+      });
+      this.successAddMember()
+    },
+    async updateMember() {
+      await updateTeamMember(this.member).then(() => {
+        this.teamMembersDialog = false;
+        this.getData();
+      });
+      this.successEditMember()
+    },
+    save(){
+      if(this.status === "fromEditEvent"){
+        this.updateMember()
+      }else{
+        this.createMember()
+      }
     },
     successAbout() {
-      this.$toast.success("About has been updated succesfully", {
-        position: "top-right",
-        timeout: 3000,
-        closeOnClick: true,
-        pauseOnFocusLoss: true,
-        pauseOnHover: true,
-        draggable: true,
-        draggablePercent: 0.6,
-        showCloseButtonOnHover: false,
-        hideProgressBar: true,
-        closeButton: "button",
-        icon: true,
-        rtl: false,
-      });
+      this.$toast.success("About has been updated succesfully");
     },
     failAbout() {
-      this.$toast.error("Server Error!!", {
-        position: "top-right",
-        timeout: 3000,
-        closeOnClick: true,
-        pauseOnFocusLoss: true,
-        pauseOnHover: true,
-        draggable: true,
-        draggablePercent: 0.6,
-        showCloseButtonOnHover: false,
-        hideProgressBar: true,
-        closeButton: "button",
-        icon: true,
-        rtl: false,
-      });
+      this.$toast.error("Server Error!!");
+    },
+    successAddMember() {
+      this.$toast.success("Member has been added succesfully");
+    },
+     successEditMember() {
+      this.$toast.success("Member has been updated succesfully");
+    },
+     successDeleteMember() {
+      this.$toast.success("Member has been deleted succesfully");
     },
     clearError() {
       this.error = "";
@@ -355,20 +354,20 @@ export default {
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
-      this.member.photo = file.name
+      this.member.photo = file.name;
       this.dialogVisible = true;
     },
-    handlePictureGetUrl(file){
-      console.log(file)
+    handlePictureGetUrl(file) {
+      console.log(file);
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-  },
+  }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.pointer {
+  cursor: pointer;
+}
 .rooms {
   /* padding: 20px; */
   display: flex;
@@ -379,7 +378,7 @@ export default {
   padding: 20px;
 }
 .form-max-width {
-  max-width: 80%;
+  width: 80%;
   padding: 20px;
 }
 .header {
@@ -388,7 +387,7 @@ export default {
 .report-table {
   border: 1px solid #00000021;
   border-radius: 8px;
-  width: 900px;
+  width: 100%;
   /* height: 700px; */
   padding: 10px;
   margin: 15px;
@@ -418,5 +417,117 @@ export default {
   font-weight: bold;
   font-size: 18px;
   font-family: "Open Sans", sans-serif;
+}
+.table {
+  margin-top: 1rem;
+  font-size: 14px;
+
+  .check {
+    padding: 10px;
+    width: 30px;
+  }
+
+  .table-head {
+    display: flex;
+    border-bottom: 1px solid #d4d4d4;
+    font-weight: bold;
+
+    .head-item {
+      flex: 1;
+      padding: 10px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      /*.sort-icon {
+        visibility: hidden;
+      }
+
+      &:hover {
+        .sort-icon {
+          visibility: visible;
+        }
+      }*/
+    }
+  }
+
+  .sort-icon-asc-desc {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    height: 24px;
+    // width: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+    overflow: initial;
+    position: relative;
+    .sort-caret {
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      position: absolute;
+      left: 4px;
+      // border-bottom-color: #409EFF;
+    }
+    .ascending {
+      border-bottom-color: #c0c4cc;
+    }
+    .descending {
+      border-top-color: #c0c4cc;
+      bottom: 2px;
+    }
+
+    .sorted-field-ascending {
+      border-bottom-color: #409eff;
+    }
+
+    .sorted-field-descending {
+      border-top-color: #409eff;
+      bottom: 2px;
+    }
+  }
+
+  .table-row {
+    display: flex;
+
+    .row-item {
+      flex: 1;
+      padding: 10px;
+      text-align: left;
+    }
+
+    &:nth-of-type(even) {
+      background-color: #f1f1f1;
+    }
+  }
+}
+
+.member__image{
+  width:150px;
+}
+
+.members__data{
+  vertical-align: middle;
+  font-size:18px;
+  font-family: "Open Sans", sans-serif;
+
+}
+
+.members__button-delete{
+  color:red;
+  font-size:25px;
+  margin-left:10px;
+  opacity:0.6;
+}
+
+.members__button-edit{
+  font-size:25px;
+  // margin-left:20px;
+  vertical-align: middle;
+  opacity:0.6;
+}
+.members__button-edit:hover,.members__button-delete:hover{
+  opacity: 1;
 }
 </style>

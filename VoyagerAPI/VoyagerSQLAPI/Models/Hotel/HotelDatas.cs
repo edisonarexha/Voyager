@@ -14,6 +14,8 @@ namespace VoyagerSQLAPI.Models.Hotel
         public string Address { get; set; }
         public string Location { get; set; }
         public int? RoomId { get; set; }
+       /* public int MaxPassagerNumber { get; set; }*/
+
 
 
     }
