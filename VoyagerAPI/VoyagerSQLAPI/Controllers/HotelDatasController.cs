@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VoyagerSQLAPI.Data;
 using VoyagerSQLAPI.Models.Hotel;
+using System.IO;
 
 namespace VoyagerSQLAPI.Controllers
 {
@@ -15,6 +16,8 @@ namespace VoyagerSQLAPI.Controllers
     public class HotelDatasController : ControllerBase
     {
         private readonly VoyagerDbContext _context;
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
         public HotelDatasController(VoyagerDbContext context)
         {
@@ -25,10 +28,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelDatas>>> GethotelDatas()
         {
-          if (_context.hotelDatas == null)
-          {
-              return NotFound();
-          }
+            if (_context.hotelDatas == null)
+            {
+                return NotFound();
+            }
             return await _context.hotelDatas.OrderByDescending(x => x.HotelId).ToListAsync();
             //return await _context.hotelDatas.ToListAsync();
         }
@@ -37,10 +40,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelDatas>> GetHotelDatas(int id)
         {
-          if (_context.hotelDatas == null)
-          {
-              return NotFound();
-          }
+            if (_context.hotelDatas == null)
+            {
+                return NotFound();
+            }
             var hotelDatas = await _context.hotelDatas.FindAsync(id);
 
             if (hotelDatas == null)
@@ -87,10 +90,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<HotelDatas>> PostHotelDatas(HotelDatas hotelDatas)
         {
-          if (_context.hotelDatas == null)
-          {
-              return Problem("Entity set 'VoyagerDbContext.hotelDatas'  is null.");
-          }
+            if (_context.hotelDatas == null)
+            {
+                return Problem("Entity set 'VoyagerDbContext.hotelDatas'  is null.");
+            }
             _context.hotelDatas.Add(hotelDatas);
             await _context.SaveChangesAsync();
 
@@ -121,5 +124,40 @@ namespace VoyagerSQLAPI.Controllers
         {
             return (_context.hotelDatas?.Any(e => e.HotelId == id)).GetValueOrDefault();
         }
-    }
+
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+
+                return new JsonResult("anonymous.png");
+            }
+        }
+
+        [Route("GetPhoto/{name}")]
+        [HttpGet]
+        public IActionResult GetPhoto(string Image)
+        {
+
+            string physicalPath = _env.ContentRootPath + "/Photos/" + Image;
+            Byte[] b = System.IO.File.ReadAllBytes(@"" + physicalPath);
+            return File(b, "image/jpeg");
+        }
+    } 
 }

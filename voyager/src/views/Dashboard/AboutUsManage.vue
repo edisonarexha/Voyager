@@ -68,7 +68,7 @@
                     ></i>
                     <i
                       class="el-icon-delete pointer members__button-delete "
-                      @click="deleteMember(item)"
+                      @click="deleteHotel(item)"
                     ></i>
                   </div>
                 </td>

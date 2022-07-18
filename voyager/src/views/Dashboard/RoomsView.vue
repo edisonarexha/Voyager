@@ -123,7 +123,7 @@ import {
   createHotelRoom,
   deleteHotelRoom,
   updateHotelRoom
-} from "../../sdk/teamMembers";
+} from "../../sdk/rooms";
 export default {
   components: { SideBar },
 data(){
