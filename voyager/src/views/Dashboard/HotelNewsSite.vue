@@ -189,7 +189,6 @@ export default {
     return {
       dialogFormVisible: false,
       status: null,
-      // formLabelWidth: '120px',
       multipleSelection: [],
       hotels: [],
       value1: "",
