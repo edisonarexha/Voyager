@@ -125,7 +125,7 @@ namespace VoyagerSQLAPI.Controllers
             return (_context.hotelDatas?.Any(e => e.HotelId == id)).GetValueOrDefault();
         }
 
-        [Route("SaveFile")]
+       /* [Route("SaveFile")]
         [HttpPost]
         public JsonResult SaveFile()
         {
@@ -134,7 +134,7 @@ namespace VoyagerSQLAPI.Controllers
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
                 string filename = postedFile.FileName;
-                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+                var physicalPath = _context.hotelDatas + "/Photos/" + filename;
 
                 using (var stream = new FileStream(physicalPath, FileMode.Create))
                 {
@@ -159,5 +159,5 @@ namespace VoyagerSQLAPI.Controllers
             Byte[] b = System.IO.File.ReadAllBytes(@"" + physicalPath);
             return File(b, "image/jpeg");
         }
-    } 
+    } */
 }

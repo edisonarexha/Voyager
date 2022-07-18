@@ -29,7 +29,7 @@
                 </td>
                 <td class="name-width">{{ item.hotelName }}</td>
                 <td class="fields-width">{{ item.hotelPrice }}</td>
-                <td class="fields-width">{{ item.hotelDesc }}</td>
+                <td class="fields-width" style="width:250px">{{ item.hotelDesc }}</td>
                 <td class="fields-width">{{ item.insertedDate }}</td>
                 <td class="fields-width">{{ item.location }}</td>
                 <td style="text-align: left">
@@ -80,12 +80,11 @@
                 ></el-input>
               </el-form-item>
               <el-form-item :label-width="formLabelWidth">
-                <el-input
+                <el-date-picker
                   v-model="hotel.insertedDate"
                   autocomplete="off"
                   placeholder="Date"
-                  class="input"
-                ></el-input>
+                ></el-date-picker>
               </el-form-item>
             </div>
             <el-form-item :label-width="formLabelWidth">
@@ -100,13 +99,20 @@
             </el-form-item>
             <el-form-item :label-width="formLabelWidth">
               <el-upload
-                class="avatar-uploader"
-                action="https://localhost:44377/api/HotelDatas/SaveFile/"
-                v-model="imageUrl"
-                :http-request="uploadCoverImage"  
+                v-model="fileList"
+                action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+                list-type="picture-card"
+                ref="upload"
+                :on-preview="handlePictureCardPreview"
+                :on-remove="handleRemove"
+                :on-change="changeFileList"
+                accept=".jpg, .png, .jpeg"
+                :limit="1"
+                :auto-upload="false"
+                :file-list="fileList"
+                :show-file-list="true"
               >
-                <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                <i class="el-icon-plus"></i>
               </el-upload>
             </el-form-item>
           </el-form>
@@ -192,6 +198,7 @@ export default {
     return {
       dialogFormVisible: false,
       status: null,
+      fileList: [],
       multipleSelection: [],
       hotels: [],
       value1: "",
@@ -203,11 +210,11 @@ export default {
         insertedDate: "",
         image: "",
         hotelPrice: 0,
-        address: "",
+        address: "string",
         location: "",
         roomId: 0,
       },
-      url: 'https://localhost:44377/api/HotelDatas/SaveFile/',
+      url: "https://localhost:44377/api/HotelDatas/SaveFile/",
       rules: {
         name: [
           {
@@ -274,34 +281,11 @@ export default {
     this.getData();
   },
   methods: {
-    uploadCoverImage(param) {
-      // this.loading = true;
-      let fileObj = param.file;
-      let form = new FormData();
-      param.data = param.data || [];
-      form.append("image", fileObj);
-      this.uploadMessage = `Uploading file "${fileObj.name}"...`;
-
-      // this.$log.debug('param ', param)
-
-      axios
-        .post(this.url, form, {
-          // headers: this.headers,
-          onUploadProgress: (progressEvent) => {
-            this.onUploadProgress = Math.round((100 * progressEvent.loaded) / progressEvent.total)
-              //const complete =  ((progressEvent.loaded / progressEvent.total) * 100) | 0;
-            //param.onProgress({ percent: complete });
-          },
-        })
-        .then((res) => {
-          this.imageUrl = res.data.image.image;
-          this.$emit("imageUploaded", this.imageUrl);
-        })
-        .catch((error) => {
-        })
-        .finally(() => {
-          this.resetFileUpload()
-        });
+    changeFileList(file) {
+      this.dialogImageUrl = file.url;
+      this.member.photo = file.name;
+      this.fileList = this.$refs.upload.uploadFiles;
+      if (this.fileList.length === 2) this.fileList.splice(0, 1);
     },
     openDialog(field, item) {
       if (field === "fromEditEvent") {
@@ -323,10 +307,13 @@ export default {
         this.dialogFormVisible = true;
         this.hotel = {
           hotelName: "",
-          location: "",
-          hotelPrice: "",
           hotelDesc: "",
-          insertedDate: null,
+          insertedDate: "",
+          image: "",
+          hotelPrice: 0,
+          address: "string",
+          location: "",
+          roomId: 0,
         };
       }
     },
@@ -374,6 +361,12 @@ export default {
     },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview() {
+      this.dialogVisible = true;
     },
     beforeAvatarUpload(file) {
       const isJPG = file.type === "image/jpeg";
