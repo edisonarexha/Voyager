@@ -40,7 +40,9 @@
         <div class="report-table">
           <div class="flexed">
             <h6 style="font-size: 20px">Team Members</h6>
-            <el-button type="primary" @click="openDialog('fromCreateEvent')">New</el-button>
+            <el-button type="primary" @click="openDialog('fromCreateEvent')"
+              >New</el-button
+            >
           </div>
           <table class="table mt-3" style="margin-top: 0px; position: inherit">
             <thead>
@@ -52,22 +54,28 @@
               <th class="text-center">Edit/Delete</th>
             </thead>
             <tbody>
-              
               <tr v-for="(item, index) in teamMembersData" :key="index">
-                <td class="name-width members__data">{{ index+1 }}</td>
+                <td class="name-width members__data">{{ index + 1 }}</td>
                 <td class="name-width members__data">{{ item.name }}</td>
                 <td class="fields-width members__data">{{ item.jobName }}</td>
-                <td class="fields-width members__data">{{ item.jobDescription }}</td>
-                
-                <td v-if="item.photo" class="fields-width member__image members__data"><img :src="require(`@/assets/teamMembers/${item.photo}`)" /></td>
-                <td style="text-align: -webkit-center; vertical-align:middle;">
+                <td class="fields-width members__data">
+                  {{ item.jobDescription }}
+                </td>
+
+                <td
+                  v-if="item.photo"
+                  class="fields-width member__image members__data"
+                >
+                  <img :src="require(`@/assets/teamMembers/${item.photo}`)" />
+                </td>
+                <td style="text-align: -webkit-center; vertical-align: middle">
                   <div class="flexed" style="width: 40px">
                     <i
                       class="el-icon-edit pointer members__button-edit"
                       @click="openDialog('fromEditEvent', item)"
                     ></i>
                     <i
-                      class="el-icon-delete pointer members__button-delete "
+                      class="el-icon-delete pointer members__button-delete"
                       @click="deleteMember(item)"
                     ></i>
                   </div>
@@ -83,9 +91,7 @@
             {{ error.length ? error : "" }}
           </p>
           <el-form :model="form">
-            <el-form-item label="Title"
-                v-if="!this.aboutData"
-            >
+            <el-form-item label="Title" v-if="!this.aboutData">
               <el-input
                 v-model="about.description"
                 autocomplete="off"
@@ -101,10 +107,7 @@
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item
-                v-if="!this.aboutData"
-                label="Description"
-            >
+            <el-form-item v-if="!this.aboutData" label="Description">
               <el-input
                 v-model="about.descriptionSecond"
                 autocomplete="off"
@@ -162,11 +165,18 @@
             </el-form-item>
             <el-form-item>
               <el-upload
-                action="https://jsonplaceholder.typicode.com/posts/"
+              v-model="fileList"
+                action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
                 list-type="picture-card"
-                :on-success="handlePictureGetUrl"
+                ref="upload"
                 :on-preview="handlePictureCardPreview"
                 :on-remove="handleRemove"
+                :on-change="changeFileList"
+                accept=".jpg, .png, .jpeg"
+                :limit="1"
+                :auto-upload="false"
+                :file-list="fileList"
+                :show-file-list="true"
               >
                 <i class="el-icon-plus"></i>
               </el-upload>
@@ -176,7 +186,7 @@
             </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="save()">Done</el-button>
+            <el-button :disabled="(!member.name.length || !member.jobName.length || !member.jobDescription.length || !member.photo.length) ? true : false"  type="primary" @click="save()">Done</el-button>
           </span>
         </el-dialog>
         <!-- Team MEmbers -->
@@ -192,12 +202,14 @@ import {
   getAllTeamMembers,
   createTeamMember,
   deleteTeamMember,
-  updateTeamMember
+  updateTeamMember,
 } from "../../sdk/teamMembers";
 export default {
   components: { SideBar },
   data() {
     return {
+      img:'',
+      fileList: [],
       member: {
         id: "",
         name: "",
@@ -219,7 +231,7 @@ export default {
       dialogImageUrl: "",
       dialogVisible: false,
       multipleSelection: [],
-      status: null
+      status: null,
     };
   },
   mounted() {
@@ -227,10 +239,17 @@ export default {
     this.getData();
   },
   methods: {
+    changeFileList(file) {
+      this.dialogImageUrl = file.url;
+      this.member.photo = file.name;
+      this.fileList = this.$refs.upload.uploadFiles;
+      if (this.fileList.length === 2) this.fileList.splice(0, 1);
+    },
     openDialog(field, item) {
       if (field === "fromEditEvent") {
-        this.status = field
+        this.status = field;
         this.teamMembersDialog = true;
+        this.img = item.photo
         this.member = {
           id: item.id,
           name: item.name,
@@ -239,7 +258,7 @@ export default {
           photo: item.photo,
         };
       } else {
-        this.status = field
+        this.status = field;
         this.teamMembersDialog = true;
         this.member = {
           name: "",
@@ -258,27 +277,33 @@ export default {
       await deleteTeamMember(member).then(() => {
         this.getData();
       });
-      this.successDeleteMember()
+      this.successDeleteMember();
     },
     async createMember() {
       await createTeamMember(this.member).then(() => {
         this.teamMembersDialog = false;
         this.getData();
       });
-      this.successAddMember()
+      this.successAddMember();
+      this.member = {
+        name: '',
+        photo: '',
+        jobName:'',
+        jobDescription:''
+      }
     },
     async updateMember() {
       await updateTeamMember(this.member).then(() => {
         this.teamMembersDialog = false;
         this.getData();
       });
-      this.successEditMember()
+      this.successEditMember();
     },
-    save(){
-      if(this.status === "fromEditEvent"){
-        this.updateMember()
-      }else{
-        this.createMember()
+    save() {
+      if (this.status === "fromEditEvent") {
+        this.updateMember();
+      } else {
+        this.createMember();
       }
     },
     successAbout() {
@@ -290,10 +315,10 @@ export default {
     successAddMember() {
       this.$toast.success("Member has been added succesfully");
     },
-     successEditMember() {
+    successEditMember() {
       this.$toast.success("Member has been updated succesfully");
     },
-     successDeleteMember() {
+    successDeleteMember() {
       this.$toast.success("Member has been deleted succesfully");
     },
     clearError() {
@@ -352,15 +377,10 @@ export default {
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.member.photo = file.name;
+    handlePictureCardPreview() {
       this.dialogVisible = true;
     },
-    handlePictureGetUrl(file) {
-      console.log(file);
-    },
-  }
+  },
 };
 </script>
 
@@ -503,31 +523,31 @@ export default {
   }
 }
 
-.member__image{
-  width:150px;
+.member__image {
+  width: 150px;
 }
 
-.members__data{
+.members__data {
   vertical-align: middle;
-  font-size:18px;
+  font-size: 18px;
   font-family: "Open Sans", sans-serif;
-
 }
 
-.members__button-delete{
-  color:red;
-  font-size:25px;
-  margin-left:10px;
-  opacity:0.6;
+.members__button-delete {
+  color: red;
+  font-size: 25px;
+  margin-left: 10px;
+  opacity: 0.6;
 }
 
-.members__button-edit{
-  font-size:25px;
+.members__button-edit {
+  font-size: 25px;
   // margin-left:20px;
   vertical-align: middle;
-  opacity:0.6;
+  opacity: 0.6;
 }
-.members__button-edit:hover,.members__button-delete:hover{
+.members__button-edit:hover,
+.members__button-delete:hover {
   opacity: 1;
 }
 </style>
