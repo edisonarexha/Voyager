@@ -5,6 +5,7 @@
         public int id { get; set; }
         public int hotelId { get; set; }
 
+        public int userId { get; set; }
         public bool isApproved { get; set; }
         public bool isFree { get; set; }
     }

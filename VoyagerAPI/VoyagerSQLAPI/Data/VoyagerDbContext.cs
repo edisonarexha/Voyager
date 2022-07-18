@@ -7,7 +7,9 @@ using VoyagerSQLAPI.Models.AppLogs;
 using VoyagerSQLAPI.Models.TeamMembers;
 using VoyagerSQLAPI.Models.Hotel.HotelDetailsProc;
 using VoyagerSQLAPI.Models.PaymentGateWay;
-using VoyagerSQLAPI.Models.Packages;
+using VoyagerSQLAPI.Models.PackagesData;
+using VoyagerSQLAPI.Models.Hotel.HotelAndRoomsProc;
+using VoyagerSQLAPI.Models.Tickets.TicketDetail_Proc;
 
 namespace VoyagerSQLAPI.Data
 {
@@ -38,5 +40,8 @@ namespace VoyagerSQLAPI.Data
         public DbSet<HotelDetailsProc_Out> hotelproc { get; set; }
         public DbSet<PaymentDetails> paymentdata { get; set; }
         public DbSet<SuccessPaymentGateAway> paymentSucc {get;set;}
+        public DbSet<HotelReserved> reservationH { get; set; }
+        public DbSet<HotelAndRooms_proc> hotelandrooms { get; set; }
+        public DbSet<TicketData_OUT> ticketsOut { get; set; }
     }
 }

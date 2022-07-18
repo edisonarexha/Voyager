@@ -201,6 +201,12 @@ const routes = [
       component:  () => import( "../views/CheckOut/checkOut.vue"),
 
     },
+    {
+      path: "/paymentdetails",
+      name: "paymentdetails",
+      component:  () => import( "../views/CheckOut/PaymentDetails.vue"),
+
+    },
 ]
    
 
