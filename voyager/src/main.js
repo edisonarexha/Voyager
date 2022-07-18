@@ -12,6 +12,7 @@ import "vue-toastification/dist/index.css";
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import VueApexCharts from 'vue-apexcharts'
+import Chat from 'vue-beautiful-chat'
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -31,6 +32,7 @@ Vue.config.productionTip = false;
 Vue.use(VueMaterial)
 Vue.use(VueApexCharts)
 Vue.component('apex-chart', VueApexCharts)
+Vue.use(Chat)
 
 new Vue({
   router,
