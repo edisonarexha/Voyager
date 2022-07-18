@@ -6,7 +6,7 @@ namespace VoyagerSQLAPI.Models.Tickets.TicketDetail_Proc
     [Keyless]
     public class TicketData_OUT
     {
-        
+
         public int HotelId { get; set; }
         public string? HotelName { get; set; }
         public string? HotelDesc { get; set; }
@@ -29,7 +29,7 @@ namespace VoyagerSQLAPI.Models.Tickets.TicketDetail_Proc
         public string? CompanyName { get; set; }
 
         public string? AirCraftName { get; set; }
-        
+
         public int? TailNumber { get; set; }
         public int? MAXPassagerNumber { get; set; }
     }

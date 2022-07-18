@@ -21,29 +21,29 @@ namespace VoyagerSQLAPI.Controllers
             _context = context;
         }
 
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TicketData_OUT>>> GetTicketData_OUT()
         {
-          if (_context.TicketData_OUT == null)
-          {
-              return NotFound();
-          }
-            return await _context.TicketData_OUT.ToListAsync();
+            if (_context.ticketsOut == null)
+            {
+                return NotFound();
+            }
+            return await _context.ticketsOut.ToListAsync();
         }
 
         [HttpPost]
         public async Task<ActionResult<IEnumerable<TicketData_OUT>>> TicketData(TicketProcData_INP input)
         {
-            
+
 
             string task = "exec Trips " +
                     "@hotelid = " + input.HotelId;
 
-            return await _context.TicketData_OUT.FromSqlRaw(task).ToListAsync();
+            return await _context.ticketsOut.FromSqlRaw(task).ToListAsync();
         }
 
-     
+
 
 
 

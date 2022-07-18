@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VoyagerSQLAPI.Data;
 using VoyagerSQLAPI.Models.Tickets;
-    
+
 namespace VoyagerSQLAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -25,10 +25,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FlightData>>> GetFlightsDatas()
         {
-          if (_context.FlightsDatas == null)
-          {
-              return NotFound();
-          }
+            if (_context.FlightsDatas == null)
+            {
+                return NotFound();
+            }
             return await _context.FlightsDatas.ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<FlightData>> GetFlightData(int id)
         {
-          if (_context.FlightsDatas == null)
-          {
-              return NotFound();
-          }
+            if (_context.FlightsDatas == null)
+            {
+                return NotFound();
+            }
             var flightData = await _context.FlightsDatas.FindAsync(id);
 
             if (flightData == null)
@@ -86,10 +86,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<FlightData>> PostFlightData(FlightData flightData)
         {
-          if (_context.FlightsDatas == null)
-          {
-              return Problem("Entity set 'VoyagerDbContext.FlightsDatas'  is null.");
-          }
+            if (_context.FlightsDatas == null)
+            {
+                return Problem("Entity set 'VoyagerDbContext.FlightsDatas'  is null.");
+            }
             _context.FlightsDatas.Add(flightData);
             await _context.SaveChangesAsync();
 

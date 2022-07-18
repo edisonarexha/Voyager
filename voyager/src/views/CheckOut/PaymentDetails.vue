@@ -351,7 +351,7 @@
 
                         </div>
                         <div class="col-md-6">
-<img src="../../assets/seal.jpg" style="width: 240px;height:100px"/>
+                    <img src="../../assets/seal.png" style="width: 240px;height:100px"/>
                         </div>
                         
                      </div>

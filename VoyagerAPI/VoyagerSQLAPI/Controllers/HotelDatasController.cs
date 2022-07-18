@@ -121,5 +121,6 @@ namespace VoyagerSQLAPI.Controllers
         {
             return (_context.hotelDatas?.Any(e => e.HotelId == id)).GetValueOrDefault();
         }
+
     }
 }

@@ -1,10 +1,9 @@
-﻿
-
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace VoyagerSQLAPI.Models.Hotel.HotelAndRoomsProc
 {
-    [Microsoft.EntityFrameworkCore.Keyless]
+    [Keyless]
     public class HotelAndRooms_proc
     {
         [Key]

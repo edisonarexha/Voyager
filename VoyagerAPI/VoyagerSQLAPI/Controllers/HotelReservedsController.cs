@@ -25,10 +25,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelReserved>>> GetreservationH()
         {
-          if (_context.reservationH == null)
-          {
-              return NotFound();
-          }
+            if (_context.reservationH == null)
+            {
+                return NotFound();
+            }
             return await _context.reservationH.ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelReserved>> GetHotelReserved(int id)
         {
-          if (_context.reservationH == null)
-          {
-              return NotFound();
-          }
+            if (_context.reservationH == null)
+            {
+                return NotFound();
+            }
             var hotelReserved = await _context.reservationH.FindAsync(id);
 
             if (hotelReserved == null)
@@ -86,10 +86,10 @@ namespace VoyagerSQLAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<HotelReserved>> PostHotelReserved(HotelReserved hotelReserved)
         {
-          if (_context.reservationH == null)
-          {
-              return Problem("Entity set 'VoyagerDbContext.reservationH'  is null.");
-          }
+            if (_context.reservationH == null)
+            {
+                return Problem("Entity set 'VoyagerDbContext.reservationH'  is null.");
+            }
             _context.reservationH.Add(hotelReserved);
             await _context.SaveChangesAsync();
 
