@@ -14,7 +14,7 @@
           <div>
             <el-form :model="form" class="flexed-form">
               <div>
-                <el-form-item>
+                <el-form-item label="Email">
                   <el-input
                     v-model="this.detailsData[0].email"
                     autocomplete="off"
@@ -23,7 +23,7 @@
                     class="input"
                   ></el-input>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item label="Phone">
                   <el-input
                     v-model="this.detailsData[0].phone"
                     :disabled='true'
@@ -36,7 +36,7 @@
               </div>
 
               <div>
-                <el-form-item>
+                <el-form-item label="Address">
                   <el-input
                     v-model="this.detailsData[0].address"
                     :disabled='true'
@@ -46,7 +46,7 @@
                     class="input"
                   ></el-input>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item label="Website">
                   <el-input
                     :disabled='true'
                     v-model="this.detailsData[0].website"
@@ -64,24 +64,24 @@
           <div class="flexed">
             <h6 style="font-size: 20px">Contact Messages</h6>
           </div>
-          <el-table ref="multipleTable" :data="contactData" style="width: 950px">
-            <el-table-column type="index"> </el-table-column>
-            <el-table-column property="name" width="120"> </el-table-column>
-            <el-table-column property="email" show-overflow-tooltip>
+          <el-table ref="multipleTable" :data="contactData" class="mt-3" style="width: 100%">
+            <el-table-column type="index" width="80"> </el-table-column>
+            <el-table-column label="Name" property="name" width="160"> </el-table-column>
+            <el-table-column label="Email" property="email" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column property="subject" show-overflow-tooltip>
+            <el-table-column label="Subject" property="subject" show-overflow-tooltip>
             </el-table-column>
-            <el-table-column property="message" show-overflow-tooltip>
+            <el-table-column label="Message" property="message" show-overflow-tooltip>
             </el-table-column>
           </el-table>
         </div>
       </div>
       <div>
-        <el-dialog :visible.sync="dialogFormVisible" @close="clearError">
+        <el-dialog title="Edit Contact Info" :visible.sync="dialogFormVisible" @close="clearError">
            <p class="text-danger error__style"> {{error ? error : null}} </p>
           <el-form :model="form" class="flexed-form">
           <div>
-             <el-form-item>
+             <el-form-item label="Email">
               <el-input
               v-if="!this.detailsData.length"
                 v-model="details.email"
@@ -97,7 +97,7 @@
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="Address">
               <el-input
               v-if="!this.detailsData.length"
                 v-model="details.address"
@@ -117,7 +117,7 @@
             </el-form-item>
           </div>
            <div>
-            <el-form-item>
+            <el-form-item label="Phone">
               <el-input
               v-if="!this.detailsData.length"
                 v-model="details.phone"
@@ -135,7 +135,7 @@
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="Website">
               <el-input
               v-if="!this.detailsData.length"
                 v-model="details.website"
@@ -307,7 +307,7 @@ export default {
   padding: 20px;
 }
 .form-max-width {
-  max-width: 80%;
+  width: 80%;
   padding: 20px;
 }
 .header {
@@ -316,7 +316,7 @@ export default {
 .report-table {
   border: 1px solid #00000021;
   border-radius: 8px;
-  width: 900px;
+  width: 100%;
   /* height: 700px; */
   padding: 10px;
   margin: 15px;

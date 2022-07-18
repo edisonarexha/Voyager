@@ -36,14 +36,14 @@
         </p>
       </div>
       <div class="team__div">
-        <div class="single__member">
+        <div v-for="(member,index) in teamMembers.data" :key="index" class="single__member">
           <div class="single__member-pic">
-            <img src="@/assets/teamMembers/team1.jpg" />
+            <img v-if="member.photo" :src="require(`@/assets/teamMembers/${member.photo}`)" />
           </div>
           <div class="single__member-details">
-            <p class="member__name">John Doe</p>
-            <p class="member__post">Director</p>
-            <p class="member__description">Our mission is to power global travel for everyone, everywhere</p>
+            <p class="member__name">{{member.name ? member.name : null}}</p>
+            <p class="member__post">{{member.jobName ? member.jobName : null}}</p>
+            <p class="member__description">{{member.jobDescription ? member.jobDescription : null}}</p>
             <div class="member__social"> 
               <a href="#"><img width="30" height="30" src="@/assets/icons/facebook.svg" /></a>
               <a href="#"><img width="30" height="30" src="@/assets/icons/instagram.svg" /></a>
@@ -53,57 +53,9 @@
 
           </div>
         </div>
-              <div class="single__member">
-          <div class="single__member-pic">
-            <img src="@/assets/teamMembers/team2.png" />
-          </div>
-          <div class="single__member-details">
-            <p class="member__name">Solomon Anderson</p>
-            <p class="member__post">CEO</p>
-            <p class="member__description">Our mission is to power global travel for everyone, everywhere</p>
-            <div class="member__social"> 
-              <a href="#"><img width="30" height="30" src="@/assets/icons/facebook.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/instagram.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/linkedin.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/twitter.svg" /></a>
-            </div>
-
-          </div>
-        </div>
-              <div class="single__member">
-          <div class="single__member-pic">
-            <img src="@/assets/teamMembers/team3.png" />
-          </div>
-          <div class="single__member-details">
-            <p class="member__name">Rodriguez Horner</p>
-            <p class="member__post">Developer</p>
-            <p class="member__description">Our mission is to power global travel for everyone, everywhere</p>
-            <div class="member__social"> 
-              <a href="#"><img width="30" height="30" src="@/assets/icons/facebook.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/instagram.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/linkedin.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/twitter.svg" /></a>
-            </div>
-
-          </div>
-        </div>
-              <div class="single__member">
-          <div class="single__member-pic">
-            <img src="@/assets/teamMembers/team4.png" />
-          </div>
-          <div class="single__member-details">
-            <p class="member__name">Lane Gates</p>
-            <p class="member__post">Developer</p>
-            <p class="member__description">Our mission is to power global travel for everyone, everywhere</p>
-            <div class="member__social"> 
-              <a href="#"><img width="30" height="30" src="@/assets/icons/facebook.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/instagram.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/linkedin.svg" /></a>
-              <a href="#"><img width="30" height="30" src="@/assets/icons/twitter.svg" /></a>
-            </div>
-
-          </div>
-        </div>
+              
+             
+              
       </div>
     </div>
     <SoonPackages />
@@ -116,7 +68,9 @@ import HeaderView from "../Header.vue";
 import FooterView from "../Footer.vue";
 import SoonPackages from "./SoonPackages.vue";
 import {getAboutList} from '../../sdk/about'
-
+import {
+  getAllTeamMembers,
+} from "../../sdk/teamMembers";
 export default {
   components: {
     HeaderView,
@@ -125,13 +79,18 @@ export default {
   },
   data(){
     return{
+      teamMembers:[],
       aboutData:{}
     }
   },
   mounted(){
     this.getAbout()
+    this.getTeamMembers()
   },
   methods:{
+    async getTeamMembers(){
+      this.teamMembers = await getAllTeamMembers()
+    },
     goToContact(){
       this.$router.push('contact')
     },

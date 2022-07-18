@@ -13,7 +13,7 @@
           </div>
           <div class="mt-2">
             <el-form :model="form">
-              <el-form-item>
+              <el-form-item label="Title">
                 <el-input
                   :disabled="true"
                   v-model="this.aboutData.description"
@@ -22,7 +22,7 @@
                   class="input"
                 ></el-input>
               </el-form-item>
-              <el-form-item>
+              <el-form-item label="Description">
                 <el-input
                   :disabled="true"
                   v-model="this.aboutData.descriptionSecond"
@@ -39,30 +39,35 @@
         </div>
         <div class="report-table">
           <div class="flexed">
-            <h6 style="font-size: 20px">Manage Team Members</h6>
+            <h6 style="font-size: 20px">Team Members</h6>
             <el-button type="primary" @click="openDialog('fromCreateEvent')">New</el-button>
           </div>
-          <table class="table" style="margin-top: 0px; position: inherit">
+          <table class="table mt-3" style="margin-top: 0px; position: inherit">
             <thead>
+              <th class="name-width"></th>
               <th class="name-width">Name</th>
               <th class="fields-width">Job Name</th>
               <th class="fields-width">Job Description</th>
-              <th class="fields-width">Image</th>
+              <th class="fields-width text-center">Image</th>
+              <th class="text-center">Edit/Delete</th>
             </thead>
             <tbody>
+              
               <tr v-for="(item, index) in teamMembersData" :key="index">
-                <td class="name-width">{{ item.name }}</td>
-                <td class="fields-width">{{ item.jobName }}</td>
-                <td class="fields-width">{{ item.jobDescription }}</td>
-                <td class="fields-width">{{ item.photo }}</td>
-                <td style="text-align: left">
+                <td class="name-width members__data">{{ index+1 }}</td>
+                <td class="name-width members__data">{{ item.name }}</td>
+                <td class="fields-width members__data">{{ item.jobName }}</td>
+                <td class="fields-width members__data">{{ item.jobDescription }}</td>
+                
+                <td v-if="item.photo" class="fields-width member__image members__data"><img :src="require(`@/assets/teamMembers/${item.photo}`)" /></td>
+                <td style="text-align: -webkit-center; vertical-align:middle;">
                   <div class="flexed" style="width: 40px">
                     <i
-                      class="el-icon-edit pointer"
+                      class="el-icon-edit pointer members__button-edit"
                       @click="openDialog('fromEditEvent', item)"
                     ></i>
                     <i
-                      class="el-icon-delete pointer"
+                      class="el-icon-delete pointer members__button-delete "
                       @click="deleteMember(item)"
                     ></i>
                   </div>
@@ -78,25 +83,29 @@
             {{ error.length ? error : "" }}
           </p>
           <el-form :model="form">
-            <el-form-item>
-              <el-input
+            <el-form-item label="Title"
                 v-if="!this.aboutData"
+            >
+              <el-input
                 v-model="about.description"
                 autocomplete="off"
                 placeholder="Title"
                 class="input"
               ></el-input>
+            </el-form-item>
+            <el-form-item label="Title" v-else>
               <el-input
-                v-else
                 v-model="aboutData.description"
                 autocomplete="off"
                 placeholder="Title"
                 class="input"
               ></el-input>
             </el-form-item>
-            <el-form-item>
-              <el-input
+            <el-form-item
                 v-if="!this.aboutData"
+                label="Description"
+            >
+              <el-input
                 v-model="about.descriptionSecond"
                 autocomplete="off"
                 placeholder="Description"
@@ -104,8 +113,9 @@
                 class="input"
                 rows="5"
               ></el-input>
+            </el-form-item>
+            <el-form-item label="Description" v-else>
               <el-input
-                v-else
                 v-model="aboutData.descriptionSecond"
                 autocomplete="off"
                 placeholder="Description"
@@ -248,18 +258,21 @@ export default {
       await deleteTeamMember(member).then(() => {
         this.getData();
       });
+      this.successDeleteMember()
     },
     async createMember() {
       await createTeamMember(this.member).then(() => {
         this.teamMembersDialog = false;
         this.getData();
       });
+      this.successAddMember()
     },
     async updateMember() {
       await updateTeamMember(this.member).then(() => {
         this.teamMembersDialog = false;
         this.getData();
       });
+      this.successEditMember()
     },
     save(){
       if(this.status === "fromEditEvent"){
@@ -269,36 +282,19 @@ export default {
       }
     },
     successAbout() {
-      this.$toast.success("About has been updated succesfully", {
-        position: "top-right",
-        timeout: 3000,
-        closeOnClick: true,
-        pauseOnFocusLoss: true,
-        pauseOnHover: true,
-        draggable: true,
-        draggablePercent: 0.6,
-        showCloseButtonOnHover: false,
-        hideProgressBar: true,
-        closeButton: "button",
-        icon: true,
-        rtl: false,
-      });
+      this.$toast.success("About has been updated succesfully");
     },
     failAbout() {
-      this.$toast.error("Server Error!!", {
-        position: "top-right",
-        timeout: 3000,
-        closeOnClick: true,
-        pauseOnFocusLoss: true,
-        pauseOnHover: true,
-        draggable: true,
-        draggablePercent: 0.6,
-        showCloseButtonOnHover: false,
-        hideProgressBar: true,
-        closeButton: "button",
-        icon: true,
-        rtl: false,
-      });
+      this.$toast.error("Server Error!!");
+    },
+    successAddMember() {
+      this.$toast.success("Member has been added succesfully");
+    },
+     successEditMember() {
+      this.$toast.success("Member has been updated succesfully");
+    },
+     successDeleteMember() {
+      this.$toast.success("Member has been deleted succesfully");
     },
     clearError() {
       this.error = "";
@@ -382,7 +378,7 @@ export default {
   padding: 20px;
 }
 .form-max-width {
-  max-width: 80%;
+  width: 80%;
   padding: 20px;
 }
 .header {
@@ -391,7 +387,7 @@ export default {
 .report-table {
   border: 1px solid #00000021;
   border-radius: 8px;
-  width: 900px;
+  width: 100%;
   /* height: 700px; */
   padding: 10px;
   margin: 15px;
@@ -505,5 +501,33 @@ export default {
       background-color: #f1f1f1;
     }
   }
+}
+
+.member__image{
+  width:150px;
+}
+
+.members__data{
+  vertical-align: middle;
+  font-size:18px;
+  font-family: "Open Sans", sans-serif;
+
+}
+
+.members__button-delete{
+  color:red;
+  font-size:25px;
+  margin-left:10px;
+  opacity:0.6;
+}
+
+.members__button-edit{
+  font-size:25px;
+  // margin-left:20px;
+  vertical-align: middle;
+  opacity:0.6;
+}
+.members__button-edit:hover,.members__button-delete:hover{
+  opacity: 1;
 }
 </style>
