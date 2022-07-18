@@ -99,12 +99,15 @@
               ></el-input>
             </el-form-item>
             <el-form-item :label-width="formLabelWidth">
-              <input
-                class="photo"
-                type="file"
-                id="image"
-                placeholder="Photo "
-              />
+              <el-upload
+                class="avatar-uploader"
+                action="https://localhost:44377/api/HotelDatas/SaveFile/"
+                v-model="imageUrl"
+                :http-request="uploadCoverImage"  
+              >
+                <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
             </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
@@ -204,7 +207,7 @@ export default {
         location: "",
         roomId: 0,
       },
-      url: "",
+      url: 'https://localhost:44377/api/HotelDatas/SaveFile/',
       rules: {
         name: [
           {
@@ -271,6 +274,35 @@ export default {
     this.getData();
   },
   methods: {
+    uploadCoverImage(param) {
+      // this.loading = true;
+      let fileObj = param.file;
+      let form = new FormData();
+      param.data = param.data || [];
+      form.append("image", fileObj);
+      this.uploadMessage = `Uploading file "${fileObj.name}"...`;
+
+      // this.$log.debug('param ', param)
+
+      axios
+        .post(this.url, form, {
+          // headers: this.headers,
+          onUploadProgress: (progressEvent) => {
+            this.onUploadProgress = Math.round((100 * progressEvent.loaded) / progressEvent.total)
+              //const complete =  ((progressEvent.loaded / progressEvent.total) * 100) | 0;
+            //param.onProgress({ percent: complete });
+          },
+        })
+        .then((res) => {
+          this.imageUrl = res.data.image.image;
+          this.$emit("imageUploaded", this.imageUrl);
+        })
+        .catch((error) => {
+        })
+        .finally(() => {
+          this.resetFileUpload()
+        });
+    },
     openDialog(field, item) {
       if (field === "fromEditEvent") {
         this.status = field;
@@ -284,7 +316,7 @@ export default {
           insertedDate: item.insertedDate,
           address: item.address,
           roomId: item.roomId,
-          image: item.image
+          image: item.image,
         };
       } else {
         this.status = field;
