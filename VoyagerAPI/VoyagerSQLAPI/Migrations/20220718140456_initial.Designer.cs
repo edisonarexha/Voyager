@@ -12,8 +12,8 @@ using VoyagerSQLAPI.Data;
 namespace VoyagerSQLAPI.Migrations
 {
     [DbContext(typeof(VoyagerDbContext))]
-    [Migration("20220717215026_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220718140456_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
