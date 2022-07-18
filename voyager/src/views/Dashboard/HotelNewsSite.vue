@@ -23,9 +23,7 @@
             <tbody>
               <tr v-for="(item, index) in hotels" :key="index">
                 <td class="name-width">
-                  <img
-                    :src="`https://localhost:44377/api/HotelDatas/SaveFile/${item.image}`"
-                  />
+                  <img :src="require(`@/assets/${item.photo}`)" />
                 </td>
                 <td class="name-width">{{ item.hotelName }}</td>
                 <td class="fields-width">{{ item.hotelPrice }}</td>
