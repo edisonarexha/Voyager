@@ -37,12 +37,12 @@
         <i class="el-icon-location-information
 
 "></i>
-        <span>Trips</span>
+        <span>Packages</span>
       </el-menu-item>
       <el-menu-item index="7" @click="goTo('hotel-news-site')">
         <i class="el-icon-office-building
 "></i>
-        <span>Hotel News/Site</span>
+        <span>Hotels</span>
       </el-menu-item>
       <el-menu-item index="7" @click="goTo('about-us-manage')">
         <i class="el-icon-office-building
@@ -53,10 +53,6 @@
         <i class="el-icon-office-building
 "></i>
         <span>Contact Us</span>
-      </el-menu-item>
-      <el-menu-item index="8">
-        <i class="el-icon-setting"></i>
-        <span>Settings</span>
       </el-menu-item>
     </el-menu>
   </el-col>

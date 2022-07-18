@@ -14,26 +14,45 @@
             <span style="font-size: 15px"> <filter-icon size="1.5x" class="custom-class"></filter-icon> Filter</span>
           </div>
 
-          <el-table :data="tableDashboard">
-            <el-table-column prop="user" label="Users" width="500">
-              <div class="flexed" style="gap: 20px">
-                <el-image
-                  style="width: 100px; height: 100px; margin-top: 10px"
-                  :src="url"
-                  :preview-src-list="srcList"
+          <table class="table mt-3" style="margin-top: 0px; position: inherit">
+            <thead>
+              <th class="name-width"></th>
+              <th class="name-width">Name</th>
+              <th class="fields-width">Job Name</th>
+              <th class="fields-width">Job Description</th>
+              <th class="fields-width text-center">Image</th>
+              <th class="text-center">Edit/Delete</th>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in teamMembersData" :key="index">
+                <td class="name-width members__data">{{ index + 1 }}</td>
+                <td class="name-width members__data">{{ item.name }}</td>
+                <td class="fields-width members__data">{{ item.jobName }}</td>
+                <td class="fields-width members__data">
+                  {{ item.jobDescription }}
+                </td>
+
+                <td
+                  v-if="item.photo"
+                  class="fields-width member__image members__data"
                 >
-                </el-image>
-                <div>
-                  <h6>Tom Cruise</h6>
-                  <span>joined 24.05.2019</span>
-                </div>
-              </div>
-            </el-table-column>
-            <el-table-column prop="name" label="User Name" width="200">
-            </el-table-column>
-            <el-table-column prop="spend" label="Date" width="200">
-            </el-table-column>
-          </el-table>
+                  <img :src="require(`@/assets/teamMembers/${item.photo}`)" />
+                </td>
+                <td style="text-align: -webkit-center; vertical-align: middle">
+                  <div class="flexed" style="width: 40px">
+                    <i
+                      class="el-icon-edit pointer members__button-edit"
+                      @click="openDialog('fromEditEvent', item)"
+                    ></i>
+                    <i
+                      class="el-icon-delete pointer members__button-delete "
+                      @click="deleteHotel(item)"
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

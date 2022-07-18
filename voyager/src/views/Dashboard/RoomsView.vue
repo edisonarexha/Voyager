@@ -20,17 +20,34 @@
         </div>
       </div>
      
-      <el-table :data="tableDashboard" style="width: 100%;" >
-        <el-table-column prop="header" label="Header" width="100">
-          <el-switch></el-switch>
-        </el-table-column>
-        <el-table-column prop="name" label="Name"  width="200">
-        </el-table-column>
-        <el-table-column prop="spend" label="Spend"  width="200">
-        </el-table-column>
-        <el-table-column prop="clicks" label="Clicks"  width="200">
-        </el-table-column>
-      </el-table>
+       <table class="table" style="margin-top: 0px; position: inherit">
+            <thead>
+              <th class="name-width">Name</th>
+              <th class="fields-width">Job Name</th>
+              <th class="fields-width">Job Description</th>
+              <th class="fields-width">Image</th>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in rooms" :key="index">
+                <td class="name-width">{{ item.name }}</td>
+                <td class="fields-width">{{ item.jobName }}</td>
+                <td class="fields-width">{{ item.jobDescription }}</td>
+                <td class="fields-width">{{ item.photo }}</td>
+                <td style="text-align: left">
+                  <div class="flexed" style="width: 40px">
+                    <i
+                      class="el-icon-edit pointer"
+                      @click="openDialog('fromEditEvent', item)"
+                    ></i>
+                    <i
+                      class="el-icon-delete pointer"
+                      @click="deleteMember(item)"
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
     </div>
     </div>
     <div>
@@ -101,6 +118,12 @@
 
 <script>
 import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue'
+import {
+  getHotelRooms,
+  createHotelRoom,
+  deleteHotelRoom,
+  updateHotelRoom
+} from "../../sdk/rooms";
 export default {
   components: { SideBar },
 data(){
@@ -126,7 +149,8 @@ data(){
         name: 'series-1',
         data: [30, 40, 45, 50, 49, 60, 70, 91]
       }],
-    form: {
+      rooms:[],
+      form: {
         name: "",
         region: "",
         date1: "",
@@ -136,51 +160,64 @@ data(){
         resource: "",
         desc: "",
       },
-    tableDashboard: [
-        {
-          
-          name: "DT-Brand-campaign",
-          spend: "$175.22",
-          clicks: "1234",
-        },
-        {
-          name: "new_offer_8735",
-          spend: "$175.22",
-          clicks: "2000",
-        },
-        {
-          name: "spring_2020",
-          spend: "$175.22",
-          clicks: "1239",
-        },
-        {
-          name: "UK_brand_DT_campaign",
-          spend: "$175.22",
-          clicks: "100",
-        },
-        {
-          name: "UK_brand_DT_campaign",
-          spend: "$175.22",
-          clicks: "100",
-        },
-        {
-          name: "UK_brand_DT_campaign",
-          spend: "$175.22",
-          clicks: "100",
-        },
-        {
-          name: "UK_brand_DT_campaign",
-          spend: "$175.22",
-          clicks: "100",
-        },
-        {
-          name: "UK_brand_DT_campaign",
-          spend: "$175.22",
-          clicks: "100",
-        },
-      ],
   }
-}
+},
+ mounted() {
+    this.getData();
+  },
+  methods: {
+    openDialog(field, item) {
+      if (field === "fromEditEvent") {
+        this.status = field
+        this.teamMembersDialog = true;
+        this.member = {
+          id: item.id,
+          name: item.name,
+          jobName: item.jobName,
+          jobDescription: item.jobDescription,
+          photo: item.photo,
+        };
+      } else {
+        this.status = field
+        this.teamMembersDialog = true;
+        this.member = {
+          name: "",
+          jobName: "",
+          jobDescription: "",
+          photo: "",
+        };
+      }
+    },
+    async getData() {
+      await getHotelRooms().then((res) => {
+        this.rooms = res.data;
+      });
+    },
+    async deleteRoom(member) {
+      await deleteHotelRoom(member).then(() => {
+        this.getData();
+      });
+    },
+    async createRoom() {
+      await createHotelRoom(this.member).then(() => {
+        this.teamMembersDialog = false;
+        this.getData();
+      });
+    },
+    async updateRoom() {
+      await updateHotelRoom(this.member).then(() => {
+        this.teamMembersDialog = false;
+        this.getData();
+      });
+    },
+    save(){
+      if(this.status === "fromEditEvent"){
+        this.updateMember()
+      }else{
+        this.createMember()
+      }
+    },
+  }
 }
 </script>
 

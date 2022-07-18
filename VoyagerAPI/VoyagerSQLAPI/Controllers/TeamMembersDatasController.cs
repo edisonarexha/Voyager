@@ -33,7 +33,7 @@ namespace VoyagerSQLAPI.Controllers
         }
 
         // GET: api/TeamMembersDatas/5
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
         public async Task<ActionResult<TeamMembersData>> GetTeamMembersData(int id)
         {
           if (_context.TeamMembersDatas == null)
@@ -48,7 +48,7 @@ namespace VoyagerSQLAPI.Controllers
             }
 
             return TeamMembersDatasData;
-        }
+        }*/
 
         // PUT: api/TeamMembersDatas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

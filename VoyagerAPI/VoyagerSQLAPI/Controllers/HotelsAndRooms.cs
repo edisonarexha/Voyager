@@ -18,7 +18,7 @@ namespace VoyagerSQLAPI.Controllers
         }
 
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult<IEnumerable<HotelAndRooms_proc>>> TicketData()
         {
 
@@ -26,7 +26,7 @@ namespace VoyagerSQLAPI.Controllers
             string task = "exec hotelroomsproc ";
 
             return await _context.hotelandrooms.FromSqlRaw(task).ToListAsync();
-        }
+        }*/
 
 
 
