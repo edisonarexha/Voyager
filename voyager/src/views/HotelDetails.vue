@@ -3,7 +3,7 @@
     <HeaderView />
     <div class="main__div">
       <div class="main__pic">
-        <img class="top__image" src="../assets/HomeRoom.jpg" />
+        <img  class="top__image" src="../assets/HomeRoom.jpg" />
       </div>
 
       <div class="details">
@@ -86,7 +86,6 @@
 
       </div>
     <div>
-      <hr/>
 <div class="container">
   <div class="card" v-for="item in datasources" v-bind:key="item.Id">
     <div class="card-header">
@@ -201,8 +200,6 @@ export default {
     sendToHotelDetails(id){
         Vue.axios.get('https://localhost:44377/api/HotelDatas/' + id).then((resp) => {
       this.list = resp.data;
-
-      console.log('test', resp.data)
     });
     }
   }
