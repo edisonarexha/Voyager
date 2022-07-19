@@ -11,33 +11,36 @@
               >Add a Hotel</el-button
             >
           </div>
-          <table class="table" style="margin-top: 0px; position: inherit">
+          <table class="table" style="margin-top: 15px; position: inherit; width:100%;">
             <thead>
-              <th class="head-item">Hotel Image</th>
+              <th class="head-item"></th>
+              <th class="head-item text-center">Hotel Image</th>
               <th class="head-item">Hotel Name</th>
               <th class="head-item">Hotel Price</th>
               <th class="head-item">Hotel Description</th>
               <th class="head-item">Created</th>
               <th class="head-item">Location</th>
+              <th class="head-item">Edit/Delete</th>
             </thead>
             <tbody>
               <tr v-for="(item, index) in hotels" :key="index">
-                <td class="name-width">
-                  <img :src="require(`@/assets/${item.photo}`)" />
+                <td class="name-width members__data">{{ index + 1 }}</td>
+                <td   v-if="item.image" class="name-width member__image">
+                  <img :src="require(`@/assets/${item.image}`)" />
                 </td>
-                <td class="name-width">{{ item.hotelName }}</td>
-                <td class="fields-width">{{ item.hotelPrice }}</td>
-                <td class="fields-width" style="width:250px">{{ item.hotelDesc }}</td>
-                <td class="fields-width">{{ item.insertedDate }}</td>
-                <td class="fields-width">{{ item.location }}</td>
-                <td style="text-align: left">
-                  <div class="flexed" style="width: 40px">
+                <td class="name-width members__data">{{ item.hotelName }}</td>
+                <td class="fields-width members__data">{{ item.hotelPrice }}</td>
+                <td class="fields-width members__data" >{{ item.hotelDesc }}</td>
+                <td class="fields-width members__data">{{ item.insertedDate }}</td>
+                <td class="fields-width members__data">{{ item.location }}</td>
+                <td style="text-align: left; vertical-align:middle;">
+                  <div class="flexed" style="width: 40px; ">
                     <i
-                      class="el-icon-edit pointer"
+                      class="el-icon-edit pointer members__button-edit"
                       @click="openDialog('fromEditEvent', item)"
                     ></i>
                     <i
-                      class="el-icon-delete pointer"
+                      class="el-icon-delete pointer members__button-delete"
                       @click="deleteHotel(item)"
                     ></i>
                   </div>
@@ -50,42 +53,46 @@
       <div>
         <el-dialog :visible.sync="dialogFormVisible">
           <el-form :model="hotel">
-            <div class="flexed">
-              <el-form-item :label-width="formLabelWidth">
+            <div class="flexed" style="justify-content:space-between">
+              <el-form-item>
                 <el-input
                   v-model="hotel.hotelName"
                   autocomplete="off"
                   placeholder="Hotel Name"
                   class="input"
+                  style="width:300px"
                 ></el-input>
               </el-form-item>
-              <el-form-item :label-width="formLabelWidth">
+              <el-form-item>
                 <el-input
                   v-model="hotel.location"
                   autocomplete="off"
                   placeholder="Place"
                   class="input"
+                   style="width:300px"
                 ></el-input>
               </el-form-item>
             </div>
-            <div class="flexed">
-              <el-form-item :label-width="formLabelWidth">
+            <div class="flexed" style="justify-content:space-between">
+              <el-form-item>
                 <el-input
                   v-model="hotel.hotelPrice"
                   autocomplete="off"
                   placeholder="Price"
                   class="input"
+                   style="width:300px"
                 ></el-input>
               </el-form-item>
-              <el-form-item :label-width="formLabelWidth">
+              <el-form-item>
                 <el-date-picker
                   v-model="hotel.insertedDate"
                   autocomplete="off"
                   placeholder="Date"
+                   style="width:300px"
                 ></el-date-picker>
               </el-form-item>
             </div>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-input
                 v-model="hotel.hotelDesc"
                 autocomplete="off"
@@ -95,7 +102,7 @@
                 rows="5"
               ></el-input>
             </el-form-item>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-upload
                 v-model="fileList"
                 action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
@@ -194,6 +201,7 @@ export default {
   components: { SideBar },
   data() {
     return {
+      dialogImageUrl:'',
       dialogFormVisible: false,
       status: null,
       fileList: [],
@@ -281,7 +289,7 @@ export default {
   methods: {
     changeFileList(file) {
       this.dialogImageUrl = file.url;
-      this.member.photo = file.name;
+      this.hotel.image = file.name;
       this.fileList = this.$refs.upload.uploadFiles;
       if (this.fileList.length === 2) this.fileList.splice(0, 1);
     },
@@ -494,5 +502,34 @@ export default {
       }*/
     }
   }
+}
+
+.member__image {
+  width: 250px;
+}
+
+.members__data {
+  vertical-align: middle;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+}
+
+
+.members__button-delete {
+  color: red;
+  font-size: 25px;
+  margin-left: 10px;
+  opacity: 0.6;
+}
+
+.members__button-edit {
+  font-size: 25px;
+  // margin-left:20px;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+.members__button-edit:hover,
+.members__button-delete:hover {
+  opacity: 1;
 }
 </style>
