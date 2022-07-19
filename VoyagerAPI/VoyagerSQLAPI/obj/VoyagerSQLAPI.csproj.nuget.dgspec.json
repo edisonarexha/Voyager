@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\elton\\OneDrive\\Desktop\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj": {}
+    "C:\\Users\\Tina\\Desktop\\FINAL V2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\elton\\OneDrive\\Desktop\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj": {
+    "C:\\Users\\Tina\\Desktop\\FINAL V2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\elton\\OneDrive\\Desktop\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Tina\\Desktop\\FINAL V2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
         "projectName": "VoyagerSQLAPI",
-        "projectPath": "C:\\Users\\elton\\OneDrive\\Desktop\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
-        "packagesPath": "C:\\Users\\elton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\elton\\OneDrive\\Desktop\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\obj\\",
+        "projectPath": "C:\\Users\\Tina\\Desktop\\FINAL V2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\VoyagerSQLAPI.csproj",
+        "packagesPath": "C:\\Users\\Tina\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tina\\Desktop\\FINAL V2\\Voyager\\VoyagerAPI\\VoyagerSQLAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\elton\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tina\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

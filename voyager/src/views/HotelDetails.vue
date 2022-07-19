@@ -16,7 +16,7 @@
             :success-url="successURL" :cancel-url="cancelUrl" @loading="v => loading = v">
 
           </stripe-checkout>
-          <b-button class="left__div__button" @click="submit*(list.hotelId)"> Claim this</b-button>
+          <b-button class="left__div__button" @click="submit(list.hotelId)"> Claim this</b-button>
         </div>
 
 

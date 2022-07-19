@@ -5,22 +5,22 @@ width:100%;
 overflow: hidden;
 background-color: #e8eaf6;
 ">
-        <div class="container">
+        <div class="container" v-for="item in response" v-bind:key="item.hotelId">
             <div class="row m-0">
                 <div class="col-md-7 col-12">
                     <div class="row">
                         <div class="col-12 mb-4">
                             <div class="row box-right">
                                 <div class="col-md-8 ps-0 ">
-                                    <p class="ps-3 textmuted fw-bold h6 mb-0">TOTAL RECIEVED</p>
+                                    <p class="ps-3 textmuted fw-bold h6 mb-0">TO PAY</p>
                                     <p class="h1 fw-bold d-flex"> <span
-                                            class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>84,254
-                                        <span class="textmuted">.58</span> </p>
-                                    <p class="ms-3 px-2 bg-green">+10% since last month</p>
+                                            class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>{{item.hotelPrice}}
+                                        <span class="textmuted">$</span> </p>
+                                    
                                 </div>
                                 <div class="col-md-4">
                                     <p class="p-blue"> <span class="fas fa-circle pe-2"></span>Pending </p>
-                                    <p class="fw-bold mb-3"><span class="fas fa-dollar-sign pe-1"></span>1254 <span
+                                    <p class="fw-bold mb-3"><span class="fas fa-dollar-sign pe-1"></span>{{item.hotelPrice}} <span
                                             class="textmuted">.50</span> </p>
                                     <p class="p-org"><span class="fas fa-circle pe-2"></span>On drafts</p>
                                     <p class="fw-bold"><span class="fas fa-dollar-sign pe-1"></span>00<span
@@ -31,14 +31,14 @@ background-color: #e8eaf6;
                         <div class="col-12 px-0 mb-4">
                             <div class="box-right">
                                 <div class="d-flex pb-2">
-                                    <p class="fw-bold h7"><span class="textmuted">quickpay.to/</span>Publicnote</p>
+                                    <p class="fw-bold h7"><span class="textmuted">voyagePay.to/</span>Publicnote</p>
                                     <p class="ms-auto p-blue"><span
                                             class=" bg btn btn-primary fas fa-pencil-alt me-3"></span> <span
                                             class=" bg btn btn-primary far fa-clone"></span> </p>
                                 </div>
                                 <div class="bg-blue p-2">
-                                    <P class="h8 textmuted">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Laborum recusandae dolorem voluptas nemo, modi eos minus nesciunt.
+                                    <P class="h8 textmuted">Please be careful when you order online, there can be dangerous misleading
+                                        thank you
                                     <p class="p-blue bg btn btn-primary h8">LEARN MORE</p>
                                     </P>
                                 </div>
@@ -48,25 +48,25 @@ background-color: #e8eaf6;
                             <div class="box-right">
                                 <div class="d-flex mb-2">
                                     <p class="fw-bold">Create new invoice</p>
-                                    <p class="ms-auto textmuted"><span class="fas fa-times"></span></p>
+                                    <p class="ms-auto textmuted">#{{item.maxPassagerNumber}}<span class="fas fa-times"></span></p>
                                 </div>
                                 <div class="d-flex mb-2">
-                                    <p class="h7">#AL2545</p>
+                                    <p class="h7">#{{item.flightNumber}}</p>
                                     <p class="ms-auto bg btn btn-primary p-blue h8"><span
-                                            class="far fa-clone pe-2"></span>COPY PAYMENT LINK </p>
+                                            class="far fa-clone pe-2"></span>{{item.hotelName}}</p>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <p class="textmuted h8">Project / Description</p> <input class="form-control"
-                                            type="text" placeholder="Legal Consulting">
+                                        <p class="textmuted h8">Hotel Name</p> <input class="form-control"
+                                            type="text" placeholder="Legal Consulting" v-model="item.hotelName">
                                     </div>
                                     <div class="col-6">
-                                        <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                                            placeholder="Oct 25, 2020">
+                                        <p class="textmuted h8">Departure</p> <input class="form-control" type="text"
+                                            placeholder="Oct 25, 2020" v-model="item.departure">
                                     </div>
                                     <div class="col-6">
-                                        <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                                            placeholder="Oct 25, 2020">
+                                        <p class="textmuted h8">Arrival</p> <input class="form-control" type="text"
+                                            placeholder="Oct 25, 2020" v-model="item.flightDate">
                                     </div>
                                 </div>
                             </div>
@@ -82,32 +82,31 @@ background-color: #e8eaf6;
                         <div class="h8">
                             <div class="row m-0 border mb-3">
                                 <div class="col-6 h8 pe-0 ps-2">
-                                    <p class="textmuted py-2">Items</p> 
-                                    <span class="d-block py-2 border-bottom">Legal
-                                        Advising</span> <span class="d-block py-2">Expert Consulting</span>
+                                    <p class="textmuted py-2">Tickets</p> 
+                                    <span class="d-block py-2 border-bottom">
+                                        Tickets {{item.ticketName}}</span> <span class="d-block py-2">Hotel {{item.hotelName}}</span>
                                 </div>
                                 <div class="col-2 text-center p-0">
-                                    <p class="textmuted p-2">Qty</p> <span class="d-block p-2 border-bottom">2</span>
+                                    <p class="textmuted p-2">Qty</p> <span class="d-block p-2 border-bottom">1</span>
                                     <span class="d-block p-2">1</span>
                                 </div>
                                 <div class="col-2 p-0 text-center h8 border-end">
                                     <p class="textmuted p-2">Price</p> <span class="d-block border-bottom py-2"><span
-                                            class="fas fa-dollar-sign"></span>500</span> <span
-                                        class="d-block py-2 "><span class="fas fa-dollar-sign"></span>400</span>
+                                            class="fas fa-dollar-sign"></span>{{item.hotelPrice}}</span> <span
+                                        class="d-block py-2 "><span class="fas fa-dollar-sign"></span>{{item.hotelPrice}}</span>
                                 </div>
                                 <div class="col-2 p-0 text-center">
                                     <p class="textmuted p-2">Total</p> <span class="d-block py-2 border-bottom"><span
-                                            class="fas fa-dollar-sign"></span>1000</span> <span
-                                        class="d-block py-2"><span class="fas fa-dollar-sign"></span>400</span>
+                                            class="fas fa-dollar-sign"></span>{{item.hotelPrice}}</span> <span
+                                        class="d-block py-2"><span class="fas fa-dollar-sign"></span>{{item.hotelPrice}}</span>
                                 </div>
                             </div>
                             <div class="d-flex h7 mb-2">
                                 <p class="">Total Amount</p>
-                                <p class="ms-auto"><span class="fas fa-dollar-sign"></span>1400</p>
+                                <p class="ms-auto"><span class="fas fa-dollar-sign"></span>{{item.hotelPrice}}</p>
                             </div>
                             <div class="h8 mb-5">
-                                <p class="textmuted">Lorem ipsum dolor sit amet elit. Adipisci ea harum sed quaerat
-                                    tenetur </p>
+                                <p class="textmuted">Because there is no inclusion of package the price won`t change`</p>
                             </div>
                         </div>
                         <div class="">
@@ -124,10 +123,10 @@ background-color: #e8eaf6;
                                             placeholder="MM/YY"> </div>
                                     <div class="col-6"> <input class="form-control my-3" type="text" placeholder="cvv">
                                     </div>
-                                    <p class="p-blue h8 fw-bold mb-3">MORE PAYMENT METHODS</p>
+                                    <!-- <p class="p-blue h8 fw-bold mb-3">MORE PAYMENT METHODS</p> -->
                                 </div>
-                                <div class="btn btn-primary d-block h8">PAY <span
-                                        class="fas fa-dollar-sign ms-2"></span>1400<span
+                                <div class="btn btn-primary d-block h8" @click="print(item.hotelId)">PAY <span
+                                        class="fas fa-dollar-sign ms-2"></span>{{item.hotelPrice}} $<span
                                         class="ms-3 fas fa-arrow-right"></span></div>
                             </div>
                         </div>
@@ -139,9 +138,41 @@ background-color: #e8eaf6;
 </template>
 
 <script>
+    import Vue from 'vue';
+import axios from 'axios';
+Vue.use( axios)
 export default {
+
     setup() {
 
+    },
+    
+    data() {
+    // this.publishableKey="pk_test_51LJzV4ICtllJLqls31DllGAWtoYUiMLk2JIDBe42CZIi7OXit6dpEyNz9EFcgBVvo0XcqzdghKkKOOFfYqeI9Jtz00jk35XT00"
+    return {
+      response: undefined,
+    
+  
+    }
+  },
+    mounted(){
+          this.$route.params.id;
+        axios({
+      method:'post',
+      url:'https://localhost:44377/api/TicketData_OUT',
+      headers:{},
+      data:{
+        HotelId:this.$route.params.id,
+      }
+    }).then((resp)=>{
+      this.response=resp.data;
+    })
+    },
+    methods:{
+        print(id){
+   this.responseAvailable = false;
+    this.$router.push({name: 'paymentdetails', params: { id: id }})
+        }
     }
 }
 

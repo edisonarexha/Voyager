@@ -10,6 +10,9 @@ using VoyagerSQLAPI.Models.PaymentGateWay;
 using VoyagerSQLAPI.Models.PackagesData;
 using VoyagerSQLAPI.Models.Hotel.HotelAndRoomsProc;
 using VoyagerSQLAPI.Models.Tickets.TicketDetail_Proc;
+using VoyagerSQLAPI.Models.Filters;
+using VoyagerSQLAPI.Models.Packages;
+using VoyagerSQLAPI.Models.DashboardFunctions;
 
 namespace VoyagerSQLAPI.Data
 {
@@ -43,5 +46,9 @@ namespace VoyagerSQLAPI.Data
         public DbSet<HotelReserved> reservationH { get; set; }
         public DbSet<HotelAndRooms_proc> hotelandrooms { get; set; }
         public DbSet<TicketData_OUT> ticketsOut { get; set; }
+        public DbSet<OutPutFilters> filtersout { get; set; }
+        public DbSet<PackagesDetails> packagedetails { get; set; }
+        public DbSet<HotelPrice> hotelPricees { get; set; }
+        public DbSet<AppUser> AppUseres { get; set; }
     }
 }

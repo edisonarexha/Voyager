@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     goToHotel(id) {
-      alert("id=" + id);
+      
       this.$router.push({name: 'details', params: { id: id }})
       //  this.$router.push("details");
     },
