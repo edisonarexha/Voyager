@@ -5,7 +5,7 @@
 <el-row class="tac">
   <el-col >
     <div class="sidebar-header" @click="goTo('dashboard-view')">
-     <img src="@/assets/dashboard-logo.svg" style="color:#909399">
+     <el-avatar style="background-color:rgb(55, 81, 255);color:white; font-size:16px;" size="large">{{getFirstCharThirdPartyName() }}</el-avatar>
     <h5>Voyager Dashboard</h5>
     </div>
     <el-menu
@@ -54,19 +54,49 @@
 "></i>
         <span>Contact Us</span>
       </el-menu-item>
+      <el-menu-item index="7" @click="logout()">
+        <i class="el-icon-setting
+"></i>
+        <span>Log Out</span>
+      </el-menu-item>
     </el-menu>
   </el-col>
 </el-row>
   </div>
 </template>
 <script>
+import { getAuth } from "@firebase/auth";
+import { mapGetters } from 'vuex';
  export default {
    data(){
      return{
        dashboard_details: true
      }
    },
+   computed:{
+     ...mapGetters({
+    user: "user",
+   }),
+   },
+  
     methods: {
+      getFirstCharThirdPartyName() {
+      if (this.user.data) {
+        return this.user.data.email.charAt(0).toUpperCase();
+      } 
+    },
+      logout() {
+      getAuth()
+        .signOut()
+        .then(() => {
+          this.$router.push({
+        name: "login",
+      });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
       goTo(routeName) {
       this.$router.push({ name: routeName });
     },

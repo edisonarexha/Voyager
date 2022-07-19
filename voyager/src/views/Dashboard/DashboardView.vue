@@ -6,13 +6,8 @@
       <h4>Voyager Dashboard</h4>
       <el-dropdown>
   <span class="el-dropdown-link">
-    {{user ? user.data.email : null}}<i class="el-icon-arrow-down el-icon--right"></i>
+    {{user ? user.data.email : null}}<i class=" el-icon--right"></i>
   </span>
-  <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item @click.native="goToHome()">Homepage</el-dropdown-item>
-    <el-dropdown-item divided @click.native="goToUserProfile()">Profile</el-dropdown-item>
-    <el-dropdown-item @click.native="logout()">Logout</el-dropdown-item>
-  </el-dropdown-menu>
 </el-dropdown>
     </div>
       <metrics-view class="metrics" :metrics="metrics" />
@@ -102,7 +97,6 @@
 </template>
 
 <script>
-import { getAuth } from "@firebase/auth";
 import MetricsView from "@/views/MetricsView.vue";
 import SideBar from '@/components/Dashboard/SidebarPlugin/SideBar.vue';
 import { mapGetters } from 'vuex';
@@ -248,18 +242,7 @@ export default {
         name: "homepage",
       });
     },
-    logout() {
-      getAuth()
-        .signOut()
-        .then(() => {
-          this.$router.push({
-        name: "login",
-      });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+    
     
   }
 };

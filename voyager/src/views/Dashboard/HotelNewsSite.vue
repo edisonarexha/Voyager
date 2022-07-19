@@ -50,42 +50,46 @@
       <div>
         <el-dialog :visible.sync="dialogFormVisible">
           <el-form :model="hotel">
-            <div class="flexed">
-              <el-form-item :label-width="formLabelWidth">
+            <div class="flexed" style="justify-content:space-between">
+              <el-form-item>
                 <el-input
                   v-model="hotel.hotelName"
                   autocomplete="off"
                   placeholder="Hotel Name"
                   class="input"
+                  style="width:300px"
                 ></el-input>
               </el-form-item>
-              <el-form-item :label-width="formLabelWidth">
+              <el-form-item>
                 <el-input
                   v-model="hotel.location"
                   autocomplete="off"
                   placeholder="Place"
                   class="input"
+                   style="width:300px"
                 ></el-input>
               </el-form-item>
             </div>
-            <div class="flexed">
-              <el-form-item :label-width="formLabelWidth">
+            <div class="flexed" style="justify-content:space-between">
+              <el-form-item>
                 <el-input
                   v-model="hotel.hotelPrice"
                   autocomplete="off"
                   placeholder="Price"
                   class="input"
+                   style="width:300px"
                 ></el-input>
               </el-form-item>
-              <el-form-item :label-width="formLabelWidth">
+              <el-form-item>
                 <el-date-picker
                   v-model="hotel.insertedDate"
                   autocomplete="off"
                   placeholder="Date"
+                   style="width:300px"
                 ></el-date-picker>
               </el-form-item>
             </div>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-input
                 v-model="hotel.hotelDesc"
                 autocomplete="off"
@@ -95,7 +99,7 @@
                 rows="5"
               ></el-input>
             </el-form-item>
-            <el-form-item :label-width="formLabelWidth">
+            <el-form-item>
               <el-upload
                 v-model="fileList"
                 action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
