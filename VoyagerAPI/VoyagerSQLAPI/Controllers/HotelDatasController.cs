@@ -125,39 +125,40 @@ namespace VoyagerSQLAPI.Controllers
             return (_context.hotelDatas?.Any(e => e.HotelId == id)).GetValueOrDefault();
         }
 
-       /* [Route("SaveFile")]
-        [HttpPost]
-        public JsonResult SaveFile()
-        {
-            try
-            {
-                var httpRequest = Request.Form;
-                var postedFile = httpRequest.Files[0];
-                string filename = postedFile.FileName;
-                var physicalPath = _context.hotelDatas + "/Photos/" + filename;
+        /* [Route("SaveFile")]
+         [HttpPost]
+         public JsonResult SaveFile()
+         {
+             try
+             {
+                 var httpRequest = Request.Form;
+                 var postedFile = httpRequest.Files[0];
+                 string filename = postedFile.FileName;
+                 var physicalPath = _context.hotelDatas + "/Photos/" + filename;
 
-                using (var stream = new FileStream(physicalPath, FileMode.Create))
-                {
-                    postedFile.CopyTo(stream);
-                }
+                 using (var stream = new FileStream(physicalPath, FileMode.Create))
+                 {
+                     postedFile.CopyTo(stream);
+                 }
 
-                return new JsonResult(filename);
-            }
-            catch (Exception)
-            {
+                 return new JsonResult(filename);
+             }
+             catch (Exception)
+             {
 
-                return new JsonResult("anonymous.png");
-            }
-        }
+                 return new JsonResult("anonymous.png");
+             }
+         }
 
-        [Route("GetPhoto/{name}")]
-        [HttpGet]
-        public IActionResult GetPhoto(string Image)
-        {
+         [Route("GetPhoto/{name}")]
+         [HttpGet]
+         public IActionResult GetPhoto(string Image)
+         {
 
-            string physicalPath = _env.ContentRootPath + "/Photos/" + Image;
-            Byte[] b = System.IO.File.ReadAllBytes(@"" + physicalPath);
-            return File(b, "image/jpeg");
-        }
-    } */
+             string physicalPath = _env.ContentRootPath + "/Photos/" + Image;
+             Byte[] b = System.IO.File.ReadAllBytes(@"" + physicalPath);
+             return File(b, "image/jpeg");
+         }
+     } */
+    }
 }
